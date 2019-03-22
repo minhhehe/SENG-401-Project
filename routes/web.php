@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('sketchfab_demo');
 });
 
 Route::get('/storage/{filename}', 'StorageController@sendFile');
