@@ -1,6 +1,17 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script type="text/javascript" src="{{ asset('js/clientscript.js') }}"></script>
+
+        <script type="text/javascript">
+        $.ajaxSetup({
+          headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
+        }
+        });
+        </script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -85,13 +96,20 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="http://localhost:8000/storage/test.png">Get the test.png file</a>
+                    <div class="field">
+                      <label class="label">Flickr API test</label>
+                      <div class="control">
+                        <input class="input" id="flickr_data" type="text" placeholder="text">
+                        <button type="button" id="grab_flickr_button" name="button">Grab the Flickr related images</button>
+                      </div>
+                    </div>
+
+                </div>
+
+
+                <div id='imageSection'>
+
                 </div>
             </div>
         </div>
