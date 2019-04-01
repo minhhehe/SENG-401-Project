@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    // return view('sketchfab_demo');
+    return view('sketchfab_demo');
+});
+
+Route::get('/car_example', function() {
     return view('car_example');
 });
 

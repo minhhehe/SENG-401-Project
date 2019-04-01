@@ -41,7 +41,7 @@
 
 		<div id="container"></div>
 
-		<script src="js/three.js"></script>
+		<script src="js/three.min.js"></script>
 
 		<script src="js/loaders/DRACOLoader.js"></script>
 		<script src="js/loaders/GLTFLoader.js"></script>
