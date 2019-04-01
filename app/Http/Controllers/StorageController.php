@@ -15,7 +15,7 @@ class StorageController extends Controller
 
 
         if (!File::exists($path)) {
-        abort(404);
+            abort(404);
         }
 
 
