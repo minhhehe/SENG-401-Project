@@ -12,5 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('sketchfab_demo');
+    // return view('sketchfab_demo');
+    return view('car_example');
 });
