@@ -35,6 +35,7 @@
 			<span>Rims / Trim: <select id="rim-mat"></select></span>
 			<span>Glass: <select id="glass-mat"></select></span>
 			<span>Custom Body: <input id="custom-body-mat" type="text" value="FFFFFF"></span>
+			<span>Custom Interior: <input id="custom-interior-mat" type="text" value="222222"></span>
 			<br><br>
 			<span>Follow camera: <input type="checkbox" id="camera-toggle"></span>
 		</div>
@@ -68,6 +69,7 @@
 			var rimMatSelect = document.getElementById( 'rim-mat' );
 			var glassMatSelect = document.getElementById( 'glass-mat' );
 			var customBodyMatSelect = document.getElementById('custom-body-mat');
+			var customInteriorMatSelect = document.getElementById('custom-interior-mat');
 
 			var followCamera = document.getElementById( 'camera-toggle' );
 
@@ -77,6 +79,7 @@
 
 			var carParts = {
 				body: [],
+				interior: [],
 				rims:[],
 				glass: [],
 			};
@@ -195,6 +198,8 @@
 					// car parts for material selection
 					carParts.body.push( carModel.getObjectByName( 'body' ) );
 
+					carParts.interior.push(carModel.getObjectByName('leather'));
+
 					carParts.rims.push(
 						carModel.getObjectByName( 'rim_fl' ),
 						carModel.getObjectByName( 'rim_fr' ),
@@ -273,6 +278,7 @@
 				rimMatSelect.addEventListener( 'change', updateMaterials );
 				glassMatSelect.addEventListener( 'change', updateMaterials );
 				customBodyMatSelect.addEventListener('change', updateMaterials);
+				customInteriorMatSelect.addEventListener('change', updateMaterials);
 			}
 
 			// set materials to the current values of the selection menus
@@ -283,9 +289,12 @@
 				var glassMat = materialsLib.glass[ glassMatSelect.selectedIndex ];
 
 				var customMat = new THREE.MeshStandardMaterial( { color: "#" + customBodyMatSelect.value, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'custom' } );
+				var customInteriorMat = new THREE.MeshStandardMaterial( { color: "#" + customInteriorMatSelect.value, envMap: envMap, metalness: 0.3, roughness: 0.2, name: 'customInterior' } );
 
 				// carParts.body.forEach( function ( part ) { part.material = bodyMat; } );
 				carParts.body.forEach( function ( part ) { part.material = customMat; } );
+				carParts.interior.forEach( function ( part ) { part.material = customInteriorMat; } );
+
 				carParts.rims.forEach( function ( part ) { part.material = rimMat; } );
 				carParts.glass.forEach( function ( part ) { part.material = glassMat; } );
 
