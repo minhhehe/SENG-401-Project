@@ -64,36 +64,36 @@ class ImageController extends Controller
 
     public function getBasedOnText($text) {
 
-      $params = array(
-        'api_key' => '334ebb0707c2e188c4522643802154df',
-        'method' => 'flickr.photos.search',
-        'text' => $text,
-        'per_page' => '2',
-        'page' => '1',
-        'format' => 'json',
-        'nojsoncallback' => '1',
-      );
+        $params = array(
+            'api_key' => '334ebb0707c2e188c4522643802154df',
+            'method' => 'flickr.photos.search',
+            'text' => $text,
+            'per_page' => '2',
+            'page' => '1',
+            'format' => 'json',
+            'nojsoncallback' => '1',
+        );
 
-      $encoded_params = array();
+        $encoded_params = array();
 
-      foreach ($params as $k => $v){
-        $encoded_params[] = urlencode($k).'='.urlencode($v);
-      }
-      $url = "https://api.flickr.com/services/rest/?".implode('&', $encoded_params);
-      $rsp = file_get_contents($url);
-      $rsp = str_replace( 'jsonFlickrApi(', '', $rsp );
-      $rsp = substr( $rsp, 0, strlen( $rsp ) );
-      $rsp2 = json_decode($rsp, true);
-      $photos = $rsp2['photos']['photo'];
+        foreach ($params as $k => $v){
+            $encoded_params[] = urlencode($k).'='.urlencode($v);
+        }
+        $url = "https://api.flickr.com/services/rest/?".implode('&', $encoded_params);
+        $rsp = file_get_contents($url);
+        $rsp = str_replace( 'jsonFlickrApi(', '', $rsp );
+        $rsp = substr( $rsp, 0, strlen( $rsp ) );
+        $rsp2 = json_decode($rsp, true);
+        $photos = $rsp2['photos']['photo'];
 
-      $images = array();
-      $length = sizeof($photos);
+        $images = array();
+        $length = sizeof($photos);
 
-      for ($i = 0; $i<$length; $i++) {
-        $imgsrc = 'https://farm'.$photos[$i]["farm"].'.staticflickr.com/'.
-        $photos[$i]["server"] . '/'.$photos[$i]["id"].'_'.$photos[$i]["secret"].'.jpg';
-        array_push($images, $imgsrc);
-      }
-      return $images;
+        for ($i = 0; $i<$length; $i++) {
+            $imgsrc = 'https://farm'.$photos[$i]["farm"].'.staticflickr.com/'.
+            $photos[$i]["server"] . '/'.$photos[$i]["id"].'_'.$photos[$i]["secret"].'.jpg';
+            array_push($images, $imgsrc);
+        }
+        return $images;
     }
 }
