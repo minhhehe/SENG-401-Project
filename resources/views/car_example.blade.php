@@ -92,7 +92,7 @@
 
 			var damping = 5.0;
 			var distance = 5;
-			var cameraTarget = new THREE.Vector3(0, 1, 0);
+			var cameraTarget = new THREE.Vector3();
 
 			function init() {
 
@@ -335,14 +335,15 @@
 
 					if ( followCamera.checked ) {
 
+
+						cameraTarget.y = 3;
+						cameraTarget.z += distance +10;
 						carModel.getWorldPosition( cameraTarget);
 
-						cameraTarget.y = 0.5;
-						cameraTarget.z += distance;
 
-						// camera.position.lerp( cameraTarget, 1 );
-						camera.lookAt( cameraTarget.x, cameraTarget.y, cameraTarget.z - 5);
-						camera.updateProjectionMatrix();
+
+						camera.position.set( cameraTarget.x - 0.3, cameraTarget.y + 1, cameraTarget.z  + 0.3  );
+						camera.lookAt( carModel.position.x, carModel.position.y, carModel.position.z - 10);
 
 					} else {
 
