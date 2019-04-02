@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('laravel-default-welcome');
 });
 
 Route::get('/storage/{filename}', 'StorageController@sendFile');
