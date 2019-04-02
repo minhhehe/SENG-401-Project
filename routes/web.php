@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/storage/{filename}', 'StorageController@sendFile');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
