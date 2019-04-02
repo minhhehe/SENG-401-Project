@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('laravel-default-welcome');
+    return view('welcome_to_CADA');
 });
 
 Route::get('/storage/{filename}', 'StorageController@sendFile');
