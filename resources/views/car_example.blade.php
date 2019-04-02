@@ -4,6 +4,7 @@
 		<title>three.js webgl - materials - car</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
 		<style>
 			body {
 				font-family: Monospace;
@@ -23,6 +24,7 @@
 				color: blue;
 				font-weight: bold;
 			}
+
 		</style>
 	</head>
 
@@ -34,8 +36,12 @@
 			<span>Body: <select id="body-mat"></select></span>
 			<span>Rims / Trim: <select id="rim-mat"></select></span>
 			<span>Glass: <select id="glass-mat"></select></span>
-			<span>Custom Body: <input id="custom-body-mat" type="color" value="FFFFFF"></span>
-			<span>Custom Interior: <input id="custom-interior-mat" type="color" value="222222"></span>
+			<span>Custom Body:
+				<!-- <input id="custom-body-mat" type="submit" name="colour" value="#FFFFFF"> -->
+				<input type='submit' name = 'colour' id ='custom-body-mat' value='#fffff'/>
+
+			</span>
+			<span>Custom Interior: <input id="custom-interior-mat" type="submit" name="colour2" value="#222222"></span>
 			<br><br>
 			<span>Follow camera: <input type="checkbox" id="camera-toggle"></span>
 		</div>
@@ -57,7 +63,8 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src='js/spectrum.js'></script>
-    <link rel='css/stylesheet' href='spectrum.css' />
+    <link rel='stylesheet' href='css/spectrum.css' />
+
 
 		<script>
 
@@ -72,8 +79,11 @@
 			var bodyMatSelect = document.getElementById( 'body-mat' );
 			var rimMatSelect = document.getElementById( 'rim-mat' );
 			var glassMatSelect = document.getElementById( 'glass-mat' );
-			var customBodyMatSelect = document.getElementById('custom-body-mat');
-			var customInteriorMatSelect = document.getElementById('custom-interior-mat');
+			var customBodyMatSelect = $('#custom-body-mat');
+			var customInteriorMatSelect = $('#custom-interior-mat');
+
+			var customBodyColour = "#FFFFFF";
+			var customInteriorColour = "#222222";
 
 			console.log(customBodyMatSelect);
 
@@ -183,9 +193,7 @@
 					carModel.traverse( function ( child ) {
 
 						if ( child.isMesh  ) {
-
 							child.material.envMap = envMap;
-
 						}
 
 					} );
@@ -283,8 +291,42 @@
 				bodyMatSelect.addEventListener( 'change', updateMaterials );
 				rimMatSelect.addEventListener( 'change', updateMaterials );
 				glassMatSelect.addEventListener( 'change', updateMaterials );
-				customBodyMatSelect.addEventListener('change', updateMaterials);
-				customInteriorMatSelect.addEventListener('change', updateMaterials);
+
+				$("#custom-body-mat").spectrum({
+					flat: false,
+				    showInitial: true,
+				    showValue: true,
+
+					change: function(color) {
+						customBodyColour = color.toHexString();
+						console.log(customBodyColour);
+						updateMaterials();
+					},
+
+					move: function(color) {
+						customBodyColour = color.toHexString();
+						console.log(customBodyColour);
+						updateMaterials();
+					}
+				});
+
+				$("#custom-interior-mat").spectrum({
+					flat: false,
+				    showInitial: true,
+				    showValue: true,
+
+					change: function(color) {
+						customInteriorColour = color.toHexString();
+						console.log(customInteriorColour);
+						updateMaterials();
+					},
+
+					move: function(color) {
+						customInteriorColour = color.toHexString();
+						console.log(customInteriorColour);
+						updateMaterials();
+					}
+				});
 			}
 
 			// set materials to the current values of the selection menus
@@ -295,11 +337,11 @@
 				var glassMat = materialsLib.glass[ glassMatSelect.selectedIndex ];
 
 
-				var customMat = new THREE.MeshStandardMaterial( { color: "#" + customBodyMatSelect.value, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'custom' } );
-				var customInteriorMat = new THREE.MeshStandardMaterial( { color: "#" + customInteriorMatSelect.value, envMap: envMap, metalness: 0.3, roughness: 0.2, name: 'customInterior' } );
+				var customBodyMat = new THREE.MeshStandardMaterial( { color: customBodyColour, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'customBody' } );
+				var customInteriorMat = new THREE.MeshStandardMaterial( { color: customInteriorColour, envMap: envMap, metalness: 0.3, roughness: 0.2, name: 'customInterior' } );
 
 				// carParts.body.forEach( function ( part ) { part.material = bodyMat; } );
-				carParts.body.forEach( function ( part ) { part.material = customMat; } );
+				carParts.body.forEach( function ( part ) { part.material = customBodyMat; } );
 				carParts.interior.forEach( function ( part ) { part.material = customInteriorMat; } );
 
 				carParts.rims.forEach( function ( part ) { part.material = rimMat; } );
@@ -330,7 +372,6 @@
 
 						carModel.position.set( 0, 0, 0 );
 						car.speed = 0;
-
 					}
 
 					if ( followCamera.checked ) {
@@ -351,15 +392,12 @@
 						cameraTarget.y += 0.5;
 
 						camera.position.set( 3.25, 2.0, -5 );
-	camera.lookAt( carModel.position );
+						camera.lookAt( carModel.position );
 					}
-
-
 
 				}
 
 				stats.update();
-
 			}
 
 			init();
