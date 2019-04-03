@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome_to_CADA');
 });
 
+Route::get('/car_example', function() {
+    return view('car_example');
+});
+
 Route::get('/storage/{filename}', 'StorageController@sendFile');
 
 Auth::routes();
