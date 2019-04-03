@@ -1,6 +1,9 @@
 @extends('layouts.layout_welcome')
 
-@section('title')
+@section('logo')
 <div><img src="{{ asset('img/CADA_logo.jpg') }}"></div>
-CADA Colour Picker
+@endsection
+
+@section('title')
+<div>CADA Realistic Automotive Projector</div>
 @endsection

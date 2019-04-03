@@ -69,12 +69,23 @@ td
     top: 18px;
 }
 
+.top-left{
+  position: absolute;
+  left: 10px;
+  top: 18px;
+}
+
 .content {
     text-align: center;
 }
 
 .title {
     font-size: 84px;
+}
+
+.subheader{
+  font-size: 60px;
+  font-style: italic;
 }
 
 .links > a {
