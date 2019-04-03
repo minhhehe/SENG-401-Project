@@ -5,5 +5,5 @@
 @endsection
 
 @section('title')
-<div>CADA Realistic Automotive Projector</div>
+<div>CADA Realistic Automotive Project</div>
 @endsection
