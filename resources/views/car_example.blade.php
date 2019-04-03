@@ -181,7 +181,7 @@
 				var loader = new THREE.GLTFLoader();
 				loader.setDRACOLoader( new THREE.DRACOLoader() );
 
-				loader.load( 'temp/ferrari.glb', function( gltf ) { // ------------- TODO Redirect to storage instead of temp ---------------
+				loader.load( 'storage/ferrari.glb', function( gltf ) { // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
 
 					carModel = gltf.scene.children[ 0 ];
 
@@ -196,7 +196,7 @@
 					} );
 
 					// shadow
-					var texture = new THREE.TextureLoader().load( 'temp/ferrari_ao.png' ); // ------------- TODO Redirect to storage instead of temp ---------------
+					var texture = new THREE.TextureLoader().load( 'storage/ferrari_ao.png' ); // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
 					var shadow = new THREE.Mesh(
 						new THREE.PlaneBufferGeometry( 0.655 * 4, 1.3 * 4 ).rotateX( - Math.PI / 2 ),
 						new THREE.MeshBasicMaterial( { map: texture, opacity: 0.8, transparent: true } )
@@ -294,6 +294,8 @@
 				    showInitial: true,
 				    showValue: true,
 
+					color: customBodyColour,
+
 					change: function(color) {
 						customBodyColour = color.toHexString();
 						console.log(customBodyColour);
@@ -311,6 +313,8 @@
 					flat: false,
 				    showInitial: true,
 				    showValue: true,
+
+					color: customInteriorColour,
 
 					change: function(color) {
 						customInteriorColour = color.toHexString();
