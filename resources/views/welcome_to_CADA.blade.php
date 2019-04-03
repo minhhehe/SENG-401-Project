@@ -1,6 +1,6 @@
 @extends('layouts.layout_welcome')
 
 @section('title')
-{{ asset('img/myimage.png') }}
+<div><img src="{{ asset('img/CADA_logo.jpg') }}"></div>
 CADA Colour Picker
 @endsection
