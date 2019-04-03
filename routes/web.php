@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('sketchfab_demo');
+    return view('welcome_to_CADA');
 });
 
 Route::get('/car_example', function() {
@@ -20,3 +20,7 @@ Route::get('/car_example', function() {
 });
 
 Route::get('/storage/{filename}', 'StorageController@sendFile');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
