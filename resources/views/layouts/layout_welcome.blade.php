@@ -13,7 +13,7 @@
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center position-ref">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -32,7 +32,7 @@
               <div class="">
                 @yield('logo')
               </div>
-                <div class="title m-b-md">
+                <div class="title m-b-md" style="margin-top:50px;">
                   @yield('title')
                     <!-- Laravel -->
                 </div>
