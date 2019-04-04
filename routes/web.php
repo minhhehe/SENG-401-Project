@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome_to_CADA');
+    return view('welcome_visitor');
 });
 
 Route::get('/car_example', function() {
