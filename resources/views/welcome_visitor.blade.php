@@ -87,14 +87,15 @@
 				camera.lookAt( 0, 0.5, 0 );
 
 				scene = new THREE.Scene();
-				scene.fog = new THREE.Fog( 0xd7cbb1, 1, 80 );
+				// scene.fog = new THREE.Fog( 0xd7cbb1, 1, 80 );
 
 				var urls = [ 'px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg' ];
 				var loader = new THREE.CubeTextureLoader().setPath( 'textures/cube/skyboxsun25deg/');
+
 				loader.load( urls, function ( texture ) {
 
-					scene.background = texture;
-
+					// scene.background = texture;
+					//
 					var pmremGenerator = new THREE.PMREMGenerator( texture );
 					pmremGenerator.update( renderer );
 
@@ -114,22 +115,22 @@
 
 				} );
 
-				var ground = new THREE.Mesh(
-					new THREE.PlaneBufferGeometry( 2400, 2400 ),
-					new THREE.ShadowMaterial( { color: 0x000000, opacity: 0.15, depthWrite: false }
-				) );
-				ground.rotation.x = - Math.PI / 2;
-				ground.receiveShadow = true;
-				ground.renderOrder = 1;
-				scene.add( ground );
+				// var ground = new THREE.Mesh(
+				// 	new THREE.PlaneBufferGeometry( 2400, 2400 ),
+				// 	new THREE.ShadowMaterial( { color: 0x000000, opacity: 0.15, depthWrite: false }
+				// ) );
+				// ground.rotation.x = - Math.PI / 2;
+				// ground.receiveShadow = true;
+				// ground.renderOrder = 1;
+				// scene.add( ground );
 
-				var grid = new THREE.GridHelper( 400, 40, 0x000000, 0x000000 );
-				grid.material.opacity = 0.2;
-				grid.material.depthWrite = false;
-				grid.material.transparent = true;
-				scene.add( grid );
+				// var grid = new THREE.GridHelper( 400, 40, 0x000000, 0x000000 );
+				// grid.material.opacity = 0.2;
+				// grid.material.depthWrite = false;
+				// grid.material.transparent = true;
+				// scene.add( grid );
 
-				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
 				renderer.gammaOutput = true;
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth * 0.75, window.innerHeight * 0.65 );
