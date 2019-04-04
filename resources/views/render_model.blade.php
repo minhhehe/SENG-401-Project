@@ -129,11 +129,9 @@
 					pmremGenerator.dispose();
 					pmremCubeUVPacker.dispose();
 
-					//
-
 					initCar();
-					initMaterials();
-					initMaterialSelectionMenus();
+					initMaterials(); // FIXME uncomment
+					initMaterialSelectionMenus(); // FIXME uncomment
 
 				} );
 
@@ -174,6 +172,8 @@
 
 			}
 
+			var colorMeshes = [];
+
 			function initCar() {
 
 				THREE.DRACOLoader.setDecoderPath( '{{ asset('js/libs/draco/gltf') }}/' );
@@ -181,16 +181,29 @@
 				var loader = new THREE.GLTFLoader();
 				loader.setDRACOLoader( new THREE.DRACOLoader() );
 
-				loader.load( '{{ asset('storage/ferrari.glb') }}', function( gltf ) { // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
+				loader.load( '{{ asset('storage/' . $filename) }}', function( gltf ) { // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
 
 					carModel = gltf.scene.children[ 0 ];
 
-					car.setModel( carModel );
+					// car.setModel( carModel ); // FIXME uncomment
 
 					carModel.traverse( function ( child ) {
 
 						if ( child.isMesh  ) {
 							child.material.envMap = envMap;
+						}
+
+						// FIXME delete
+						if ('material' in child && 'color' in child.material) {
+							// if (child['material'].name.toLowerCase().includes("color")) {
+							// 	colorMeshes.push(child);
+							// }
+
+							var col = child.material.color
+							if ((col.r != 0 && col.g != 0 && col.b != 0)
+								&& (col.r != 1 && col.g != 1 && col.b != 0)) {
+								colorMeshes.push(child);
+							}
 						}
 
 					} );
@@ -206,24 +219,31 @@
 
 					scene.add( carModel );
 
+					// return; // FIXME remove
+
 					// car parts for material selection
-					carParts.body.push( carModel.getObjectByName( 'body' ) );
-
-					carParts.interior.push(carModel.getObjectByName('leather'));
-
-					carParts.rims.push(
-						carModel.getObjectByName( 'rim_fl' ),
-						carModel.getObjectByName( 'rim_fr' ),
-						carModel.getObjectByName( 'rim_rr' ),
-						carModel.getObjectByName( 'rim_rl' ),
-						carModel.getObjectByName( 'trim' ),
+					// carParts.body.push( carModel.getObjectByName( 'body' ) ); // FIXME uncomment
+					carParts.body.push(
+						carModel.children[0].children[0].children[5],
+						carModel.children[0].children[0].children[6],
+						carModel.children[0].children[0].children[7]
 					);
 
-					carParts.glass.push(
-						carModel.getObjectByName( 'glass' ),
-					 );
+					// carParts.interior.push(carModel.getObjectByName('leather'));
 
-					updateMaterials();
+					// carParts.rims.push(
+					// 	carModel.getObjectByName( 'rim_fl' ),
+					// 	carModel.getObjectByName( 'rim_fr' ),
+					// 	carModel.getObjectByName( 'rim_rr' ),
+					// 	carModel.getObjectByName( 'rim_rl' ),
+					// 	carModel.getObjectByName( 'trim' ),
+					// );
+					//
+					// carParts.glass.push(
+					// 	carModel.getObjectByName( 'glass' ),
+					//  );
+
+					updateMaterials(); // FIXME uncomment
 
 				});
 
@@ -298,13 +318,13 @@
 
 					change: function(color) {
 						customBodyColour = color.toHexString();
-						console.log(customBodyColour);
+						// console.log(customBodyColour);
 						updateMaterials();
 					},
 
 					move: function(color) {
 						customBodyColour = color.toHexString();
-						console.log(customBodyColour);
+						// console.log(customBodyColour);
 						updateMaterials();
 					}
 				});
