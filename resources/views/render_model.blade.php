@@ -40,7 +40,7 @@
 			</span>
 			<span>Custom Interior: <input id="custom-interior-mat" type="submit" name="colour2" value="#222222"></span>
 			<br><br>
-			<span>Follow camera: <input type="checkbox" id="camera-toggle"></span>
+			<span>Driver camera: <input type="checkbox" id="camera-toggle"></span>
 		</div>
 
 		<div id="container"></div>
@@ -79,8 +79,8 @@
 			var customBodyMatSelect = $('#custom-body-mat');
 			var customInteriorMatSelect = $('#custom-interior-mat');
 
-			var customBodyColour = "#FFFFFF";
-			var customInteriorColour = "#222222";
+			var customBodyColour = "#fc1900";
+			var customInteriorColour = "#01036d";
 
 			console.log(customBodyMatSelect);
 
@@ -291,8 +291,17 @@
 
 				$("#custom-body-mat").spectrum({
 					flat: false,
-				    showInitial: true,
-				    showValue: true,
+				  showInitial: true,
+				  showValue: true,
+					showPalette: true,
+
+					palette:[   ['#00000', '#ffffff'],
+						          ['#676a6b', '#a2a9ab'],
+                      ['#fc0000', '#00B1FC'],
+											['#001203', '#FF69B4']
+
+					],
+
 
 					color: customBodyColour,
 
@@ -313,7 +322,15 @@
 					flat: false,
 				    showInitial: true,
 				    showValue: true,
+						showPalette: true,
 
+						palette:[
+							        ['#000000', '#ffffff'],
+											['#f5f5dc', '#d9b382'],
+											['#fc0000', '#00B1FC'],
+											['#696969', '#FF69B4']
+
+					           ],
 					color: customInteriorColour,
 
 					change: function(color) {

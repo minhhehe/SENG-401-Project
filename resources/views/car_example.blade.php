@@ -38,7 +38,7 @@
 				<input type='submit' name = 'colour' id ='custom-body-mat' value='#fffff'/>
 
 			</span>
-			<span>Custom Interior: <input id="custom-interior-mat" type="submit" name="colour2" value="#222222"></span>
+			<span>Custom Interior: <input id="custom-interior-mat" type="submit" name="colour2" value='#00b1fc'></span>
 			<br><br>
 			<span>Follow camera: <input type="checkbox" id="camera-toggle"></span>
 		</div>
@@ -79,8 +79,8 @@
 			var customBodyMatSelect = $('#custom-body-mat');
 			var customInteriorMatSelect = $('#custom-interior-mat');
 
-			var customBodyColour = "#FFFFFF";
-			var customInteriorColour = "#222222";
+			var customBodyColour = "#fc1900";
+			var customInteriorColour = "#00028D";
 
 			console.log(customBodyMatSelect);
 
@@ -291,8 +291,11 @@
 
 				$("#custom-body-mat").spectrum({
 					flat: false,
-				    showInitial: true,
-				    showValue: true,
+				  showInitial: true,
+				  showValue: true,
+					showPalette: true,
+
+					palette: ['#00B1FC'],
 
 					color: customBodyColour,
 
@@ -313,6 +316,9 @@
 					flat: false,
 				    showInitial: true,
 				    showValue: true,
+						showPalette: true,
+
+						palette: ['#00B1FC'],
 
 					color: customInteriorColour,
 
