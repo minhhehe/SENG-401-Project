@@ -13,7 +13,7 @@
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
         <style>
         canvas{
-          canvas { width: 50%; height: 50% }
+          canvas { width: 30%; height: 30% }
         }
         </style>
     </head>
@@ -37,7 +37,7 @@
               <div class="">
                 @yield('logo')
               </div>
-                <div class="title m-b-md" style="margin-top:50px;">
+                <div class="title-small m-b-md" style="margin-top:50px;">
                   @yield('title')
                     <!-- Laravel -->
                 </div>

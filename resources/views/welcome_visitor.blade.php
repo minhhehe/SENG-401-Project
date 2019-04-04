@@ -5,37 +5,7 @@
 @endsection
 
 @section('render_window')
-<!DOCTYPE html>
-<!-- <html lang="en">
-	<head>
-		<title>three.js webgl - materials - car</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-		<style>
-			body {
-				font-family: Monospace;
-				background-color: #000;
-				color: #000;
-				margin: 0px;
-				overflow: hidden;
-			}
-			#info {
-				position: absolute;
-				top: 10px;
-				width: 100%;
-				text-align: center;
-				z-index: 100;
-			}
-			#info a {
-				color: blue;
-				font-weight: bold;
-			}
-
-		</style>
-	</head> -->
-
-	<!-- <body> -->
 		<div id="info">
 			<span>Body: <select id="body-mat"></select></span>
 			<span>Rims / Trim: <select id="rim-mat"></select></span>
@@ -162,7 +132,7 @@
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.gammaOutput = true;
 				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setSize( window.innerWidth * 0.75, window.innerHeight * 0.65 );
 
 				container.appendChild( renderer.domElement );
 
@@ -411,8 +381,4 @@
 			init();
 
 		</script>
-
-	<!-- </body>
-</html> -->
-
 @endsection
