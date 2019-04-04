@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Renderedmodel;
+use App\RenderedModel;
 
 class HomeController extends Controller
 {
@@ -31,7 +31,7 @@ class HomeController extends Controller
 
     */
     public function select() {
-      $renderedmodels = Renderedmodel::all();
-      return view('select', compact(['renderedmodels']));
+      $renderedModels = RenderedModel::all();
+      return view('select', compact(['renderedModels']));
     }
 }

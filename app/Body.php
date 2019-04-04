@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Body extends Model
 {
     //
-    public function renderedmodel() {
+    public function renderedModel() {
       return $this->belongsTo('App\RenderedModel');
     }
 
