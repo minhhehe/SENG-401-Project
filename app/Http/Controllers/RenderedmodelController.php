@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Renderedmodel;
+use App\RenderedModel;
 use App\Body;
 use App\Interior;
 
-class RenderedmodelController extends Controller
+class RenderedModelController extends Controller
 {
   /**
    * Display a listing of the resource.
@@ -50,11 +50,11 @@ class RenderedmodelController extends Controller
    // * @param  int  $id // FIXME restore to this in docs
   public function show($id)
   {
-      $renderedmodel = Renderedmodel::find($id);
-      $bodies = $renderedmodel->bodies()->get();
-      $interiors = $renderedmodel->interiors()->get();
+      $renderedModel = RenderedModel::find($id);
+      $bodies = $renderedModel->bodies()->get();
+      $interiors = $renderedModel->interiors()->get();
       return view('render_model', compact([
-        'renderedmodel', 'bodies', 'interiors'
+        'renderedModel', 'bodies', 'interiors'
       ]));
   }
 
