@@ -21,10 +21,6 @@ Route::get('/car_example', function() {
 
 Route::get('/render_model/{id}', 'RenderedModelController@show'); // TODO Replace 'filename' with 'id'
 
-// Route::resource('/render_model', 'RenderModelController', [
-//     'only' => ['show']
-// ]);
-
 Route::get('/storage/{filename}', 'StorageController@sendFile');
 
 Auth::routes();
