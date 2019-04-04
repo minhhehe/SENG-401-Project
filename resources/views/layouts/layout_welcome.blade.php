@@ -11,6 +11,11 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+        <style>
+        canvas{
+          canvas { width: 50%; height: 50% }
+        }
+        </style>
     </head>
     <body>
         <div class="flex-center position-ref">
@@ -35,6 +40,9 @@
                 <div class="title m-b-md" style="margin-top:50px;">
                   @yield('title')
                     <!-- Laravel -->
+                </div>
+                <div>
+                  @yield('render_window')
                 </div>
                 <div class="links">
                   @yield('links')
