@@ -19,6 +19,10 @@ Route::get('/car_example', function() {
     return view('car_example');
 });
 
+Route::get('/flickr', function() {
+    return view('flickr_API_test');
+});
+
 Route::get('/storage/{filename}', 'StorageController@sendFile');
 
 Auth::routes();
