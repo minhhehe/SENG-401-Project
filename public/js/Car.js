@@ -19,7 +19,8 @@ THREE.Car = ( function ( ) {
 
 	var maxSpeedReverse, accelerationReverse, deceleration;
 
-	var controlKeys = { LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40, BRAKE: 32 };
+	var controlKeys = { LEFT: 'a', UP: 'w', RIGHT: 'd', DOWN: 's', BRAKE: ' ' };
+	// var controlKeys = { LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40, BRAKE: 32 };
 
 	var wheelOrientation = 0;
 	var carOrientation = 0;
