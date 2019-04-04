@@ -15,10 +15,10 @@ class CreateInteriorsTable extends Migration
     {
         Schema::create('interiors', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('renderedmodel_id');
+            $table->unsignedBigInteger('rendered_model_id');
             $table->string('interior');
             $table->timestamps();
-            $table->foreign('renderedmodel_id')->references('id')->on('renderedmodels');
+            $table->foreign('rendered_model_id')->references('id')->on('rendered_models');
         });
     }
 

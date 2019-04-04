@@ -15,10 +15,10 @@ class CreateBodiesTable extends Migration
     {
         Schema::create('bodies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('renderedmodel_id');
+            $table->unsignedBigInteger('rendered_model_id');
             $table->string('body');
             $table->timestamps();
-            $table->foreign('renderedmodel_id')->references('id')->on('renderedmodels');
+            $table->foreign('rendered_model_id')->references('id')->on('rendered_models');
         });
     }
 
