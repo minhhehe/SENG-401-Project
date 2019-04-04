@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRenderedmodelsTable extends Migration
+class CreateBodiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateRenderedmodelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('renderedmodels', function (Blueprint $table) {
+        Schema::create('bodies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('file_name');
-            $table->string('picture');
+            $table->unsignedBigInteger('renderedmodel_id');
+            $table->string('body');
             $table->timestamps();
+            $table->foreign('renderedmodel_id')->references('id')->on('renderedmodels');
         });
     }
 
@@ -28,6 +29,6 @@ class CreateRenderedmodelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('renderedmodels');
+        Schema::dropIfExists('bodies');
     }
 }
