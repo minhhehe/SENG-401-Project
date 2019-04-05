@@ -48,25 +48,33 @@ function setMainDisplay(index) {
     selectedIndex = index;
 }
 
+function selectLeft() {
+    setMainDisplay(selectedIndex - 1);
+}
+
+function selectRight() {
+    setMainDisplay(selectedIndex + 1);
+}
+
 </script>
 @stop
 
 @section('mainDisplay')
 <div class="main-display">
-    <button id="leftButton" class="" style="background-color: green; height: 100%; float: left; width: auto;">
-        Hi
+    <button id="leftButton" class="select-button" onclick="selectLeft()">
+        &lt;
     </button>
     <div style="display: inline-block; float: left; width: auto;">
         <a id="mainDisplayLink" href="#"><img id="mainDisplayImg" src="" class="card-image" alt=""></a>
     </div>
-    <button id="rightButton" class="" style="background-color: green; height: 100%; float: left; width: auto;">
-        k Bye
+    <button id="rightButton" class="select-button" onclick="selectRight()">
+        &gt;
     </button>
 </div>
 
 @stop
 
 @section('list')
-<div id="card-list" style="width: 60%; display: inline-block;">
+<div id="card-list" class="select-list">
 </div>
 @stop
