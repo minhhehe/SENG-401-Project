@@ -30,15 +30,17 @@
 
 	<body>
 		<div id="info">
-			<span>Body: <select id="body-mat"></select></span>
-			<span>Rims / Trim: <select id="rim-mat"></select></span>
-			<span>Glass: <select id="glass-mat"></select></span>
+			<!-- <span>Body: <select id="body-mat"></select></span> -->
+			<!-- <span>Rims / Trim: <select id="rim-mat"></select></span> -->
+			<span>Rims / Trim: <input id="rim-mat" type="color" value="#222222"></span>
+			<span>Glass: <input id="glass-mat" type="color" value="#222222"></span>
+			<!-- <span>Glass: <select id="glass-mat"></select></span> -->
 			<span>Custom Body:
 				<!-- <input id="custom-body-mat" type="submit" name="colour" value="#FFFFFF"> -->
-				<input type='submit' name = 'colour' id ='custom-body-mat' value='#fffff'/>
+				<input type='color' name = 'colour' id ='custom-body-mat' value='#fffff'/>
 
 			</span>
-			<span>Custom Interior: <input id="custom-interior-mat" type="submit" name="colour2" value="#222222"></span>
+			<span>Custom Interior: <input id="custom-interior-mat" type="color" name="colour2" value="#222222"></span>
 			<br><br>
 			<span>Driver camera: <input type="checkbox" id="camera-toggle"></span>
 		</div>
@@ -73,16 +75,18 @@
 
 			var camera, scene, renderer, stats, carModel, materialsLib, envMap;
 
-			var bodyMatSelect = document.getElementById( 'body-mat' );
-			var rimMatSelect = document.getElementById( 'rim-mat' );
-			var glassMatSelect = document.getElementById( 'glass-mat' );
+			// var bodyMatSelect = document.getElementById( 'body-mat' );
+			// var rimMatSelect = document.getElementById( 'rim-mat' );
+			var rimMatCustom = $('#rim-mat');
+			// var glassMatSelect = document.getElementById( 'glass-mat' );
 			var customBodyMatSelect = $('#custom-body-mat');
 			var customInteriorMatSelect = $('#custom-interior-mat');
+			var customGlassMat = $('#glass-mat' );
 
 			var customBodyColour = "#fc1900";
-			var customInteriorColour = "#01036d";
-
-			console.log(customBodyMatSelect);
+			var customInteriorColour = "#000000";
+			var customRimColour = "#fc1900";
+			var customGlassColour = "0xffffff";
 
 			var followCamera = document.getElementById( 'camera-toggle' );
 
@@ -233,17 +237,17 @@
 
 				materialsLib = {
 
-					main: [
-
-						new THREE.MeshStandardMaterial( { color: 0xff4400, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'orange' } ),
-						new THREE.MeshStandardMaterial( { color: 0x001166, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'blue' } ),
-						new THREE.MeshStandardMaterial( { color: 0x006611, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'green' } ),
-						new THREE.MeshStandardMaterial( { color: 0x990000, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'red' } ),
-						new THREE.MeshStandardMaterial( { color: 0x000000, envMap: envMap, metalness: 0.9, roughness: 0.5, name: 'black' } ),
-						new THREE.MeshStandardMaterial( { color: 0xffffff, envMap: envMap, metalness: 0.9, roughness: 0.5, name: 'white' } ),
-						new THREE.MeshStandardMaterial( { color: 0x555555, envMap: envMap, envMapIntensity: 2.0, metalness: 1.0, roughness: 0.2, name: 'metallic' } ),
-
-					],
+					// main: [
+					//
+					// 	new THREE.MeshStandardMaterial( { color: 0xff4400, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'orange' } ),
+					// 	new THREE.MeshStandardMaterial( { color: 0x001166, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'blue' } ),
+					// 	new THREE.MeshStandardMaterial( { color: 0x006611, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'green' } ),
+					// 	new THREE.MeshStandardMaterial( { color: 0x990000, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'red' } ),
+					// 	new THREE.MeshStandardMaterial( { color: 0x000000, envMap: envMap, metalness: 0.9, roughness: 0.5, name: 'black' } ),
+					// 	new THREE.MeshStandardMaterial( { color: 0xffffff, envMap: envMap, metalness: 0.9, roughness: 0.5, name: 'white' } ),
+					// 	new THREE.MeshStandardMaterial( { color: 0x555555, envMap: envMap, envMapIntensity: 2.0, metalness: 1.0, roughness: 0.2, name: 'metallic' } ),
+					//
+					// ],
 
 					glass: [
 
@@ -268,26 +272,26 @@
 
 				}
 
-				materialsLib.main.forEach( function( material ) {
+				// materialsLib.main.forEach( function( material ) {
+				//
+				// 	addOption( material.name, bodyMatSelect );
+				// 	addOption( material.name, rimMatSelect );
+				//
+				// } );
 
-					addOption( material.name, bodyMatSelect );
-					addOption( material.name, rimMatSelect );
+				// materialsLib.glass.forEach( function( material ) {
+				//
+				// 	addOption( material.name, glassMatSelect );
+				//
+				// } );
 
-				} );
+				// bodyMatSelect.selectedIndex = 3;
+				// rimMatSelect.selectedIndex = 5;
+				// glassMatSelect.selectedIndex = 0;
 
-				materialsLib.glass.forEach( function( material ) {
-
-					addOption( material.name, glassMatSelect );
-
-				} );
-
-				bodyMatSelect.selectedIndex = 3;
-				rimMatSelect.selectedIndex = 5;
-				glassMatSelect.selectedIndex = 0;
-
-				bodyMatSelect.addEventListener( 'change', updateMaterials );
-				rimMatSelect.addEventListener( 'change', updateMaterials );
-				glassMatSelect.addEventListener( 'change', updateMaterials );
+				// bodyMatSelect.addEventListener( 'change', updateMaterials );
+				// rimMatSelect.addEventListener( 'change', updateMaterials );
+				// glassMatSelect.addEventListener( 'change', updateMaterials );
 
 				$("#custom-body-mat").spectrum({
 					flat: false,
@@ -345,19 +349,78 @@
 						updateMaterials();
 					}
 				});
+
+
+				$("#rim-mat").spectrum({
+					  flat: false,
+						showInitial: true,
+						showValue: true,
+						showPalette: true,
+
+						palette:[
+											['#000000', '#ffffff'],
+											['#f5f5dc', '#d9b382'],
+											['#fc0000', '#00B1FC'],
+											['#696969', '#FF69B4']
+
+										 ],
+					color: customRimColour,
+
+					change: function(color) {
+						customRimColour = color.toHexString();
+						console.log(customRimColour);
+						updateMaterials();
+					},
+
+					move: function(color) {
+						customRimColour = color.toHexString();
+						console.log(customRimColour);
+						updateMaterials();
+					}
+				});
+
+
+
+				$("#glass-mat").spectrum({
+						flat: false,
+						showInitial: true,
+						showValue: true,
+						showPalette: true,
+
+						palette:[
+											['#000000', '#ffffff'],
+											['#f5f5dc', '#d9b382'],
+											['#fc0000', '#00B1FC'],
+											['#696969', '#FF69B4']
+
+										 ],
+					color: customGlassColour,
+
+					change: function(color) {
+						customGlassColour = color.toHexString();
+						console.log(customGlassColour);
+						updateMaterials();
+					},
+
+					move: function(color) {
+						customGlassColour = color.toHexString();
+						console.log(customGlassColour);
+						updateMaterials();
+					}
+				});
 			}
 
 			// set materials to the current values of the selection menus
 			function updateMaterials() {
 
-				var bodyMat = materialsLib.main[ bodyMatSelect.selectedIndex ];
-				var rimMat = materialsLib.main[ rimMatSelect.selectedIndex ];
-				var glassMat = materialsLib.glass[ glassMatSelect.selectedIndex ];
+				// var bodyMat = materialsLib.main[ bodyMatSelect.selectedIndex ];
+				// var rimMat = materialsLib.main[ rimMatSelect.selectedIndex ];
+				// var glassMat = materialsLib.glass[ glassMatSelect.selectedIndex ];
 
-
+        var glassMat = new THREE.MeshStandardMaterial( { color: customGlassColour,  envMap: envMap, metalness: 1, roughness: 0, opacity: 0.2, transparent: true, premultipliedAlpha: true, name: 'customGlass' } );
 				var customBodyMat = new THREE.MeshStandardMaterial( { color: customBodyColour, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'customBody' } );
 				var customInteriorMat = new THREE.MeshStandardMaterial( { color: customInteriorColour, envMap: envMap, metalness: 0.3, roughness: 0.2, name: 'customInterior' } );
-
+        var rimMat = new THREE.MeshStandardMaterial( { color: customRimColour, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'customRim' } );
 				// carParts.body.forEach( function ( part ) { part.material = bodyMat; } );
 				carParts.body.forEach( function ( part ) { part.material = customBodyMat; } );
 				carParts.interior.forEach( function ( part ) { part.material = customInteriorMat; } );
