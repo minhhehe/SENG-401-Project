@@ -120,12 +120,25 @@ margin:auto;
 }
 
 /* CSS used in select */
+.main-display {
+    border-radius: 5px;
+    background-color: lightgray;
+
+    width: 35vw;
+    height: 25vw;
+
+    padding: 10px;
+    margin: 20px;
+
+    display: inline-block;
+}
+
 .card {
     border:2px solid #ccc;
     border-radius: 2px;
 
-    width: 250px;
-    height: 180px;
+    width: 225px;
+    height: 150px;
 
     display: inline-block;
 }

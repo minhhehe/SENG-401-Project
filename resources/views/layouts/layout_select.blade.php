@@ -14,10 +14,8 @@
 
         <!-- Scripts  -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <!-- <script type="text/javascript"> -->
-            <!-- TODO Dirty hardcoding. Move int JS file -->
-            @yield('script')
-        <!-- </script> -->
+        <!-- TODO Dirty hardcoding. Move into JS file -->
+        @yield('script')
     </head>
     <body>
         <div class="flex-center position-ref full-height">
