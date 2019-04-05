@@ -205,9 +205,8 @@
 
 					scene.add( carModel );
 
-					carParts.body.push(
-						carModel.getObjectByName('body')
-					)
+					carParts.body.push(carModel.getObjectByName('body'));
+					
 					carParts.interior.push(carModel.getObjectByName('leather'));
 
 					carParts.rims.push(

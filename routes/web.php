@@ -19,7 +19,7 @@ Route::get('/car_example', function() {
     return view('car_example');
 });
 
-Route::get('/render_model/{id}', 'RenderedModelController@show'); // TODO Replace 'filename' with 'id'
+Route::get('/render_model/{id}', 'RenderedModelController@show');
 
 Route::get('/storage/{filename}', 'StorageController@sendFile');
 
