@@ -4,6 +4,7 @@
 	<title>three.js webgl - materials - car</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 	<style>
 	body {
@@ -24,11 +25,22 @@
 		color: blue;
 		font-weight: bold;
 	}
+	 .topRight {
+		 position: absolute;
+		   top: 8px;
+		   right: 16px;
+		   font-size: 18px;
+	 }
 
 	</style>
 </head>
 
 <body>
+
+
+<button class="btn btn-secondary topRight"> Exit </button>
+
+
 	<div id="info">
 		<span>Rims / Trim: <input id="rim-mat" type="color"></span>
 		<span>Glass: <input id="glass-mat" type="color"></span>
