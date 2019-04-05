@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>CADA Realistic Automotive Project</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -36,6 +36,13 @@
                 object-fit: cover;
             }
         </style>
+
+        <!-- Scripts  -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            // TODO Dirty hardcoding. Move int JS file
+            @yield('script')
+        </script>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
