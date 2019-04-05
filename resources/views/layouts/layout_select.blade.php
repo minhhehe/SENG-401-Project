@@ -16,15 +16,21 @@
             .card {
                 border:2px solid #ccc;
 
-                width: 300px;
-                height: 200px;
+                width: 250px;
+                height: 180px;
             }
 
             .card-image {
+                /*
                 width: 100%;
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
+                */
+
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
         </style>
     </head>
