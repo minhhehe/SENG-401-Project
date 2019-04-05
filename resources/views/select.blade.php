@@ -12,45 +12,61 @@ var renderedModels = [
     @endforeach
 ];
 
-var selectedIndex = 0;
+var selectedIndex = 1;
 
 $(function() {
     initCardList();
-    setMainDisplay(0);
+    setMainDisplay(selectedIndex);
 });
 
 function initCardList() {
     renderedModels.forEach(function(renderedModel) {
         $("#card-list").append(
-            "<div id='" + renderedModel.id + "' class='card'><a href='" + RENDER_MODEL_URL + renderedModel.id + "'><img src='" + renderedModel.picture + "' class='card-image' alt=''></a></div>"
+            "<div id='card" + renderedModel.id + "' class='card card--unselected'><a href='" + RENDER_MODEL_URL + renderedModel.id + "'><img src='" + renderedModel.picture + "' class='card-image' alt=''></a></div>"
         );
     });
 }
 
 function setMainDisplay(index) {
-    if (index < 0) {
-        index = renderedModels.length - 1;
-    } else if (index >= renderedModels.length) {
-        index = 0;
+    // Index starts at 1
+    if (index - 1 < 0) {
+        index = renderedModels.length;
+    } else if (index > renderedModels.length) {
+        index = 1;
     }
 
-    var renderedModel = renderedModels[index];
-    selectedIndex = index;
+    var renderedModel = renderedModels[index - 1];
 
     $("#mainDisplayLink").attr("href", RENDER_MODEL_URL + renderedModel.id);
     $("#mainDisplayImg").attr("src", renderedModel.picture);
+
+    $("#card" + selectedIndex).removeClass("card--selected");
+    $("#card" + selectedIndex).addClass("card--unselected");
+    $("#card" + index).removeClass("card--unselected");
+    $("#card" + index).addClass("card--selected");
+
+    selectedIndex = index;
 }
 
 </script>
-@endsection
+@stop
 
 @section('mainDisplay')
 <div class="main-display">
-    <a id="mainDisplayLink" href="#"><img id="mainDisplayImg" src="" class="card-image" alt=""></a>
+    <button id="leftButton" class="" style="background-color: green; height: 100%; float: left; width: auto;">
+        Hi
+    </button>
+    <div style="display: inline-block; float: left; width: auto;">
+        <a id="mainDisplayLink" href="#"><img id="mainDisplayImg" src="" class="card-image" alt=""></a>
+    </div>
+    <button id="rightButton" class="" style="background-color: green; height: 100%; float: left; width: auto;">
+        k Bye
+    </button>
 </div>
-@endsection
+
+@stop
 
 @section('list')
 <div id="card-list" style="width: 60%; display: inline-block;">
 </div>
-@endsection
+@stop
