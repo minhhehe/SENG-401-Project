@@ -11,38 +11,13 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-        <style>
-            /* TODO Dirty hardcoding. Move into CSS file */
-            .card {
-                border:2px solid #ccc;
-                border-radius: 2px;
-
-                width: 250px;
-                height: 180px;
-
-                display: inline-block;
-            }
-
-            .card-image {
-                /*
-                width: 100%;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                */
-
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-        </style>
 
         <!-- Scripts  -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script type="text/javascript">
-            // TODO Dirty hardcoding. Move int JS file
+        <!-- <script type="text/javascript"> -->
+            <!-- TODO Dirty hardcoding. Move int JS file -->
             @yield('script')
-        </script>
+        <!-- </script> -->
     </head>
     <body>
         <div class="flex-center position-ref full-height">
