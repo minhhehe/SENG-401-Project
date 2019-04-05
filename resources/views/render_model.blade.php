@@ -184,8 +184,7 @@
 
 				var loader = new THREE.GLTFLoader();
 				loader.setDRACOLoader( new THREE.DRACOLoader() );
-
-				loader.load( '{{ asset('storage/ferrari.glb') }}', function( gltf ) { // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
+				loader.load( '{{ asset("storage/$renderedModel->file_name") }}', function( gltf ) { // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
 
 					carModel = gltf.scene.children[ 0 ];
 
@@ -210,8 +209,7 @@
 
 					scene.add( carModel );
 
-					// car parts for material selection
-					carParts.body.push( carModel.getObjectByName( 'body' ) );
+					carParts.body.push(carModel.getObjectByName('body'));
 
 					carParts.interior.push(carModel.getObjectByName('leather'));
 
