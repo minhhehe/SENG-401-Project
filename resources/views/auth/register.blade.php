@@ -41,7 +41,7 @@
                             </div>
                         </div>
 
-                        <!-- Gender
+                        <!-- Gender -->
                         <div class="form-group row">
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
@@ -55,9 +55,9 @@
                                 @endif
                             </div>
                         </div>
-                        -->
 
-                        <!-- Date of Birth
+
+                        <!-- Date of Birth -->
                         <div class="form-group row">
                             <label for="dob" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
 
@@ -71,7 +71,7 @@
                                 @endif
                             </div>
                         </div>
-                        -->
+
 
                         <!-- Email -->
                         <div class="form-group row">
