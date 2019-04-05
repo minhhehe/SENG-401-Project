@@ -82,8 +82,6 @@
 			var customBodyColour = "#fc1900";
 			var customInteriorColour = "#00028D";
 
-			console.log(customBodyMatSelect);
-
 			var followCamera = document.getElementById( 'camera-toggle' );
 
 			var clock = new THREE.Clock();
@@ -301,13 +299,13 @@
 
 					change: function(color) {
 						customBodyColour = color.toHexString();
-						console.log(customBodyColour);
+						// console.log(customBodyColour);
 						updateMaterials();
 					},
 
 					move: function(color) {
 						customBodyColour = color.toHexString();
-						console.log(customBodyColour);
+						// console.log(customBodyColour);
 						updateMaterials();
 					}
 				});
@@ -324,13 +322,13 @@
 
 					change: function(color) {
 						customInteriorColour = color.toHexString();
-						console.log(customInteriorColour);
+						// console.log(customInteriorColour);
 						updateMaterials();
 					},
 
 					move: function(color) {
 						customInteriorColour = color.toHexString();
-						console.log(customInteriorColour);
+						// console.log(customInteriorColour);
 						updateMaterials();
 					}
 				});
@@ -373,7 +371,6 @@
 
 					car.update( delta / 3 );
 
-					console.log(   );
 
 					if ( carModel.position.length() > 200 ) {
 
@@ -383,15 +380,26 @@
 
 					if ( followCamera.checked ) {
 
-
-						cameraTarget.y = 3;
-						cameraTarget.z += distance +10;
-						carModel.getWorldPosition( cameraTarget);
-
+            carModel.getWorldPosition( cameraTarget);
+						// cameraTarget.y = 3;
+						cameraTarget.z += distance;
 
 
-						camera.position.set( cameraTarget.x - 0.3, cameraTarget.y + 1, cameraTarget.z  + 0.3  );
-						camera.lookAt( carModel.position.x, carModel.position.y, carModel.position.z - 10);
+
+
+						// camera.position.set( cameraTarget.x - 0.3, cameraTarget.y + 1, cameraTarget.z  + 0.3  );
+						// console.log(car.noseX());
+						// camera.lookAt( car.noseX(), car.noseY(), car.noseZ());
+
+						camera.position.set( carModel.position.x, carModel.position.y + 2, carModel.position.z);
+
+						var target	= new THREE.Vector3(car.noseX(), car.noseY(), car.noseZ() - 10);
+
+	          var matrix	= new THREE.Matrix4().makeRotationY(car.angle());
+
+	          target.applyMatrix4(matrix).add(carModel.position);
+
+           	camera.lookAt(target);
 
 					} else {
 
