@@ -15,9 +15,12 @@
             /* TODO Dirty hardcoding. Move into CSS file */
             .card {
                 border:2px solid #ccc;
+                border-radius: 2px;
 
                 width: 250px;
                 height: 180px;
+
+                display: inline-block;
             }
 
             .card-image {
