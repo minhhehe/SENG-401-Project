@@ -19,11 +19,15 @@ Route::get('/car_example', function() {
     return view('car_example');
 });
 
+<<<<<<< HEAD
 Route::get('/render_model/{filename}', 'RenderModelController@show'); // TODO Replace 'filename' with 'id'
 
 // Route::resource('/render_model', 'RenderModelController', [
 //     'only' => ['show']
 // ]);
+=======
+Route::get('/render_model/{id}', 'RenderedModelController@show');
+>>>>>>> devel
 
 Route::get('/storage/{filename}', 'StorageController@sendFile');
 
