@@ -27,3 +27,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/select', 'HomeController@select');
+
+Route::get('/submitted', function() {
+    return view('submitted');
+});
