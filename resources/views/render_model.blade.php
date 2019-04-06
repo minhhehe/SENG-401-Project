@@ -1,3 +1,8 @@
+<?php
+	$loadFull = ($renderedModel->file_name == "ferrari.glb");
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -191,7 +196,9 @@
 
 				carModel = gltf.scene.children[ 0 ];
 
+				@if ($loadFull)
 				car.setModel( carModel );
+				@endif
 
 				carModel.traverse( function ( child ) {
 
@@ -201,6 +208,7 @@
 
 				} );
 
+				@if ($loadFull)
 				// shadow
 				var texture = new THREE.TextureLoader().load( '{{ asset('storage/ferrari_ao.png') }}' ); // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
 				var shadow = new THREE.Mesh(
@@ -209,9 +217,11 @@
 				);
 				shadow.renderOrder = 2;
 				carModel.add( shadow );
+				@endif
 
 				scene.add( carModel );
 
+				@if ($loadFull)
 				carParts.body.push(carModel.getObjectByName('body'));
 
 				carParts.interior.push(carModel.getObjectByName('leather'));
@@ -229,7 +239,7 @@
 				);
 
 				updateMaterials();
-
+				@endif
 			});
 
 		}
