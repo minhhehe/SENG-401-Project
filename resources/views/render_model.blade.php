@@ -1,3 +1,8 @@
+<?php
+	$loadFull = ($renderedModel->file_name == "ferrari.glb");
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,11 +41,6 @@
 </head>
 
 <body>
-
-
-<button class="btn btn-secondary topRight"> Exit </button>
-
-
 	<div id="info">
 		<span>Rims / Trim: <input id="rim-mat" type="color"></span>
 		<span>Glass: <input id="glass-mat" type="color"></span>
@@ -51,6 +51,8 @@
 		<span>Custom Interior: <input id="custom-interior-mat" type="color"></span>
 		<br><br>
 		<span>Driver camera: <input type="checkbox" id="camera-toggle"></span>
+
+		<button class="btn btn-secondary topRight" onclick="document.location.href='{{ url('/submitted') }}'"> Submit </button>
 	</div>
 
 	<div id="container"></div>
@@ -92,7 +94,7 @@
 	var customBodyColour = "#fc1900";
 	var customInteriorColour = "#000000";
 	var customRimColour = "#fc1900";
-	var customGlassColour = "0xffffff";
+	var customGlassColour = "#ffffff";
 
 	var followCamera = document.getElementById( 'camera-toggle' );
 
@@ -194,7 +196,9 @@
 
 				carModel = gltf.scene.children[ 0 ];
 
+				@if ($loadFull)
 				car.setModel( carModel );
+				@endif
 
 				carModel.traverse( function ( child ) {
 
@@ -204,6 +208,7 @@
 
 				} );
 
+				@if ($loadFull)
 				// shadow
 				var texture = new THREE.TextureLoader().load( '{{ asset('storage/ferrari_ao.png') }}' ); // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
 				var shadow = new THREE.Mesh(
@@ -212,9 +217,11 @@
 				);
 				shadow.renderOrder = 2;
 				carModel.add( shadow );
+				@endif
 
 				scene.add( carModel );
 
+				@if ($loadFull)
 				carParts.body.push(carModel.getObjectByName('body'));
 
 				carParts.interior.push(carModel.getObjectByName('leather'));
@@ -232,7 +239,7 @@
 				);
 
 				updateMaterials();
-
+				@endif
 			});
 
 		}
@@ -256,19 +263,19 @@
 
 			change: function(color) {
 				customBodyColour = color.toHexString();
-				console.log(customBodyColour);
 				updateMaterials();
 			},
 
 			move: function(color) {
 				customBodyColour = color.toHexString();
-				console.log(customBodyColour);
 				updateMaterials();
 			},
 
 			hide: function(colour) {
 				if(customBodyColour == "#ff69b4"){
 					document.getElementById('audio').play();
+				} else {
+					document.getElementById('audio').pause();
 				}
 			}
 
