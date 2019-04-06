@@ -22,7 +22,7 @@ $(function() {
 function initCardList() {
     renderedModels.forEach(function(renderedModel) {
         $("#card-list").append(
-            "<div id='card" + renderedModel.id + "' class='card card--unselected'><a href='" + RENDER_MODEL_URL + renderedModel.id + "'><img src='" + renderedModel.picture + "' class='card-image' alt=''></a></div>"
+            "<div id='card" + renderedModel.id + "' class='custom-card custom-card--unselected'><a href='" + RENDER_MODEL_URL + renderedModel.id + "'><img src='" + renderedModel.picture + "' class='custom-card-image' alt=''></a></div>"
         );
     });
 }
@@ -40,10 +40,10 @@ function setMainDisplay(index) {
     $("#mainDisplayLink").attr("href", RENDER_MODEL_URL + renderedModel.id);
     $("#mainDisplayImg").attr("src", renderedModel.picture);
 
-    $("#card" + selectedIndex).removeClass("card--selected");
-    $("#card" + selectedIndex).addClass("card--unselected");
-    $("#card" + index).removeClass("card--unselected");
-    $("#card" + index).addClass("card--selected");
+    $("#card" + selectedIndex).removeClass("custom-card--selected");
+    $("#card" + selectedIndex).addClass("custom-card--unselected");
+    $("#card" + index).removeClass("custom-card--unselected");
+    $("#card" + index).addClass("custom-card--selected");
 
     selectedIndex = index;
 }
@@ -60,14 +60,14 @@ function selectRight() {
 @stop
 
 @section('mainDisplay')
-<div class="main-display">
-    <button id="leftButton" class="select-button" onclick="selectLeft()">
+<div class="custom-main-display">
+    <button id="leftButton" class="custom-select-button" onclick="selectLeft()">
         &lt;
     </button>
     <div style="display: inline-block; float: left; width: auto;">
-        <a id="mainDisplayLink" href="#"><img id="mainDisplayImg" src="" class="card-image" alt=""></a>
+        <a id="mainDisplayLink" href="#"><img id="mainDisplayImg" src="" class="custom-card-image" alt=""></a>
     </div>
-    <button id="rightButton" class="select-button" onclick="selectRight()">
+    <button id="rightButton" class="custom-select-button" onclick="selectRight()">
         &gt;
     </button>
 </div>
@@ -75,6 +75,6 @@ function selectRight() {
 @stop
 
 @section('list')
-<div id="card-list" class="select-list">
+<div id="card-list" class="custom-select-list">
 </div>
 @stop
