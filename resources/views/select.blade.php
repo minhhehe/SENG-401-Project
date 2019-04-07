@@ -72,6 +72,11 @@ function selectRight() {
     </button>
 </div>
 
+<br>
+<div>
+    <h4>Ferrari 458 Italia</h4>
+</div>
+
 @stop
 
 @section('list')
