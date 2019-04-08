@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
   protected $fillable = [
-      'fname', 'lname', 'dob',
-      'gender', 'address','phoneNum',
-      'email', 'billingInfo', 'lastVehiclePurchased',
+    //  'fname', 'lname', 'dob',
+    //  'gender', 'address','phoneNum',
+    //  'email',
+      'billingInfo', 'lastVehiclePurchased',
       'lastVehicleYear', 'lastInterior', 'lastExterior',
       'lastRim', 'lastGlass', 'desiredModel', 'desiredInterior',
       'desiredExterior', 'desiredRim', 'desiredGlass',
