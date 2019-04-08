@@ -4,16 +4,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>CADA Realistic Automotive Project</title>
+        <title>CRAP</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/transition.css') }}" rel="stylesheet">
 
         <!-- Scripts  -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ asset('js/swup.min.js') }}"></script>
         <!-- TODO Dirty hardcoding. Move into JS file -->
         @yield('script')
     </head>
@@ -34,15 +36,22 @@
             @endif
 
             <div class="content">
+              <div id="swup" class="transition-fade">
               <div class="">
                   <!-- The entity to display with the most attention -->
                 @yield('mainDisplay')
               </div>
+            </div>
+            <div id="swup" class="transition-fade">
                 <div class="">
                     <!-- The list of content options -->
                   @yield('list')
                 </div>
+                  </div>
             </div>
         </div>
+        <script type="text/javascript">
+            const swup = new Swup();
+        </script>
     </body>
 </html>
