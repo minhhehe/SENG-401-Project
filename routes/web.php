@@ -23,8 +23,12 @@ Route::get('/flickr', function() {
     return view('flickr_API_test');
 });
 
+Route::get('/render_model/{id}', 'RenderedModelController@show');
+
+
 Route::get('/storage/{filename}', 'StorageController@sendFile');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/select', 'HomeController@select');
