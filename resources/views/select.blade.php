@@ -61,20 +61,20 @@ function selectRight() {
 
 @section('mainDisplay')
 <div class="main-display">
-    <!-- <button id="leftButton" class="select-button" onclick="selectLeft()"> -->
-        <!-- &lt; -->
-    <!-- </button> -->
-    <div style="display: inline-block; float: left; width: auto;">
+    <button id="leftButton" class="select-button" onclick="selectLeft()">
+        &lt;
+    </button>
+    <div style="display: inline-block; float: left; ">
         <a id="mainDisplayLink" href="#"><img id="mainDisplayImg" src="" class="card-image" alt=""></a>
     </div>
-    <!-- <button id="rightButton" class="select-button" onclick="selectRight()"> -->
-        <!-- &gt; -->
+    <button id="rightButton" class="select-button" onclick="selectRight()">
+        &gt;
     </button>
 </div>
 
 @stop
 
 @section('list')
-<div id="card-list" class="select-list">
-</div>
+<!-- <div id="card-list" class="select-list">
+</div> -->
 @stop
