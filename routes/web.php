@@ -25,7 +25,9 @@ Route::get('/storage/{filename}', 'StorageController@sendFile');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'AccountController@index')->name('home');
+Route::patch('/home', 'AccountController@update');
 Route::get('/select', 'HomeController@select');
 
 Route::get('/submitted', function() {

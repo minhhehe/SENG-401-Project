@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\RenderedModel;
 
+
 class HomeController extends Controller
 {
     /**
@@ -15,6 +16,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
     }
 
     /**
@@ -24,14 +26,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = auth()->user();
+        return view('home'), compact(['user']);
     }
 
     /**
 
     */
     public function select() {
+
+      $role = auth()->user()->role;
       $renderedModels = RenderedModel::all();
-      return view('select', compact(['renderedModels']));
+      if($role == 'customer'){
+
+        //TODO rename select view to homeCustomer
+        return view('select', compact(['renderedModels']));
+      }
+      elseif ($role == 'salesperson') {
+
+        // TODO configure other roles and views
+      }
     }
 }
