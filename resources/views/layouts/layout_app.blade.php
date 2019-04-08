@@ -12,6 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/swup.min.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,6 +21,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- <link href="{{ asset('css/custom.css') }}" rel="stylesheet"> -->
+    <link href="{{ asset('css/transitions.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -29,6 +31,7 @@
                     <!-- {{ config('app.name', 'Laravel') }} -->
                     CADA Realistic Automotive Project
                 </a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -75,9 +78,14 @@
             </div>
         </nav>
 
+<!-- <div id = "swup" class = "transition-fade"> -->
         <main class="py-4">
+
             @yield('content')
+
         </main>
+    <!-- </div> -->
     </div>
+    <!-- <script type="text/javascript"> const swup = new Swup(); </script> -->
 </body>
 </html>

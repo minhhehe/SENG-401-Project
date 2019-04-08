@@ -11,6 +11,9 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/transitions.css') }}" rel="stylesheet">
+        <script src="{{ asset('js/swup.min.js') }}"></script>
+
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -29,10 +32,10 @@
             @endif
 
             <div class="content">
-              <div class="">
+              <div id = "swup" class="transition-fade">
                 @yield('logo')
               </div>
-                <div class="title m-b-md">
+                <div id = "swup" class="title m-b-md transition-fade">
                   @yield('title')
                     <!-- Laravel -->
                 </div>
@@ -42,5 +45,6 @@
                 </div>
             </div>
         </div>
+      <script type="text/javascript"> const swup = new Swup(); </script>
     </body>
 </html>
