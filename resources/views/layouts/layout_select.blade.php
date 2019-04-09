@@ -31,7 +31,7 @@
           </a>
           <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                  <a title="You are here" class="nav-link" href="#">Select a Model</a>
+                  <a title="Select a Vehicle Model" class="nav-link" href="#">Select a Model</a>
               </li>
               <li class="nav-item">
                   <a title="Choose A Different Colour" class="nav-link" href="{{ url('/render_model/1') }}">Colour</a>
