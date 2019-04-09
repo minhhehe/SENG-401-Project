@@ -1,10 +1,10 @@
-@extends('layouts.layout_app')
+@extends('layouts.layout_select')
 
-@section('content')
+@section('mainDisplay')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card" style="text-align:left;">
                 <div class="card-header">Submitted</div>
 
                 <div class="card-body">
