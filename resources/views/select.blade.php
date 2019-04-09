@@ -142,17 +142,17 @@ if (typeof callback === 'function') callback()
     <div id="card-list">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
-                <div id="card-1" class="card">
+                <div id="card-1" class="card custom-clickable">
                     <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="" title="View Ferrari 458 Italia">
                 </div>
             </div>
             <div class="col-md-4">
-                <div id="card-2" class="card">
+                <div id="card-2" class="card custom-clickable">
                     <img class="card-img" src="{{ url('storage/range_rover.png') }}" alt="">
                 </div>
             </div>
             <div class="col-md-4">
-                <div id="card-3" class="card">
+                <div id="card-3" class="card custom-clickable">
                     <img class="card-img" src="{{ url('storage/toyota.png') }}" alt="">
                 </div>
             </div>
@@ -164,12 +164,12 @@ if (typeof callback === 'function') callback()
                 </div>
             </div>
             <div class="col-md-4">
-                <div id="card-5" class="card">
+                <div id="card-5" class="card custom-clickable">
                     <img class="card-img" src="{{ url('storage/lamborghini.png') }}" alt="">
                 </div>
             </div>
             <div class="col-md-4">
-                <div id="card-6" class="card">
+                <div id="card-6" class="card custom-clickable">
                     <img class="card-img" src="{{ url('storage/x_wing.png') }}" alt="">
                 </div>
             </div>
