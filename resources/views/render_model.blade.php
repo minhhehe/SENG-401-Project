@@ -480,9 +480,9 @@
 				var camPos = driverOffset.clone();
 				camPos.applyAxisAngle(yAxis, car.angle());
 				camPos.add(carModel.position);
-				camera.position.set(camPos.x, camPos.y, camPos.z);
+				camera.position.set(camPos.x, camPos.y - 0.05, camPos.z);
 
-				camera.rotation.set(0, car.angle(), 0);
+				camera.rotation.set(0, car.angle(),0);
 			} else {
 
 				carModel.getWorldPosition( cameraTarget );
