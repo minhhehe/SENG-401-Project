@@ -52,7 +52,7 @@
 		<br><br>
 		<span>Driver camera: <input type="checkbox" id="camera-toggle"></span>
 
-		<button class="btn btn-secondary topRight" onclick="document.location.href='{{ url('/submitted') }}'"> Submit </button>
+		<button title = "Submit Your Chosen Car Colours - You can always change them later!" class="btn btn-secondary topRight" onclick="document.location.href='{{ url('/submitted') }}'"> Submit </button>
 	</div>
 
 	<div id="container"></div>
@@ -68,7 +68,7 @@
 	<script src="{{ asset('js/Car.js') }}"></script>
 
 	<script src="{{ asset('js/WebGL.js') }}"></script>
-	<script src="{{ asset('js/libs/stats.min.js') }}"></script>
+	<!-- <script src="{{ asset('js/libs/stats.min.js') }}"></script> -->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src='{{ asset('js/spectrum.js') }}'></script>
@@ -84,7 +84,9 @@
 
 	}
 
-	var camera, scene, renderer, stats, carModel, materialsLib, envMap;
+	var camera, scene, renderer;
+	// var stats;
+	var carModel, materialsLib, envMap;
 
 	var rimMatCustom = $('#rim-mat');
 	var customBodyMatSelect = $('#custom-body-mat');
@@ -171,8 +173,8 @@
 
 			container.appendChild( renderer.domElement );
 
-			stats = new Stats();
-			container.appendChild( stats.dom );
+			// stats = new Stats();
+			// container.appendChild( stats.dom );
 
 			window.addEventListener( 'resize', onWindowResize, false );
 
@@ -433,7 +435,7 @@
 
 		}
 
-		stats.update();
+		// stats.update();
 	}
 
 	init();
