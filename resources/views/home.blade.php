@@ -5,7 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Account Details: {{Auth::user()->id}}</div>
+                <!-- <div class="card-header">Account Details: {{Auth::user()->id}}</div> -->
+                <div class="card-header">Account Details: {{Auth::user()->fname}} {{Auth::user()->lname}}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -38,6 +39,9 @@
                       {{@csrf_field()}}
                         {{ method_field('PATCH') }}
                       <br>
+
+                      @if (false)
+                      <?php // TODO: Delete everything between these if tags ?>
                       <!-- First and Last Name -->
                       <div class="field">
                         <div class="control">
@@ -70,6 +74,8 @@
                       </div>
 
                       <div class="h-divider"></div>
+                      <?php // TODO: Delete everything between these if tags ?>
+                      @endif
 
                       <!-- Address -->
                       <!-- TODO Ensure Required -->
@@ -77,7 +83,7 @@
                         <div class="control">
                           <label class="label col-md-3">Address</label>
                           <!-- <input required disabled class="text" type="text" value="{{ Auth::user()->address}}" name="address"> -->
-                          <input required disabled class="text" type="text" value="Moldova" name="address">
+                          <input required class="text" type="text" value="24 Sussex Drive" name="address">
                         </div>
                       </div>
 
