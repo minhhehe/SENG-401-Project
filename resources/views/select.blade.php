@@ -27,6 +27,8 @@ function initCardList() {
         //     "<div id='card" + renderedModel.id + "' class='custom-card custom-card--unselected'><a href='" + RENDER_MODEL_URL + renderedModel.id + "'><img src='" + renderedModel.picture + "' class='custom-card-image' alt=''></a></div>"
         // );
 
+        $("#card-" + renderedModel.id).children().attr('title', "View " + renderedModel.description);
+
         $("#card-" + renderedModel.id).click(function(event) {
             var index = parseInt($(this).attr('id').split('-')[1]);
             selectCard(index);
@@ -51,6 +53,7 @@ function setMainDisplay(index) {
 
   $("#mainDisplayLink").attr("href", RENDER_MODEL_URL + renderedModel.id);
   $("#mainDisplayImg").attr("src", renderedModel.picture);
+  $("#mainDisplayImg").attr("title", "Colour " + renderedModel.description);
   $("#description").text(renderedModel.description);
   // animateCSS('#mainDisplayImg', 'fadeOut', function(){ animateCSS('#mainDisplayImg', 'fadeIn') } );
 
@@ -114,13 +117,13 @@ if (typeof callback === 'function') callback()
 
 @section('mainDisplay')
 <div class="custom-main-display">
-    <button id="leftButton" class="custom-select-button" onclick="selectLeft()">
+    <button id="leftButton" class="custom-select-button" onclick="selectLeft()" title="View previous model">
         &lt;
     </button>
     <div style="display: inline-block; float: left; width: auto;">
         <a id="mainDisplayLink" href="#"><img id="mainDisplayImg" src="" class="custom-card-image" alt=""></a>
     </div>
-    <button id="rightButton" class="custom-select-button" onclick="selectRight()">
+    <button id="rightButton" class="custom-select-button" onclick="selectRight()" title="View next model">
         &gt;
     </button>
 </div>
@@ -140,7 +143,7 @@ if (typeof callback === 'function') callback()
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
                 <div id="card-1" class="card">
-                    <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="">
+                    <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="" title="View Ferrari 458 Italia">
                 </div>
             </div>
             <div class="col-md-4">
