@@ -20,13 +20,16 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->date('dob');
-            // TODO: Add other roles
-            //$table->enum('role', ['visitor'])->default('visitor');
+            $table->enum('role', ['customer','owner','manager','salesperson','sysadmin'])->default('customer');
+            $table->string('address')->nullable();
+            $table->string('day_phone_number')->nullable();
+            $table->string('night_phone_number')->nullable();
             $table->string('gender');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
+
     }
 
     /**
