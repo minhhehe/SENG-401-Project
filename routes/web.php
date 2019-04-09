@@ -33,3 +33,6 @@ Route::get('/select', 'HomeController@select');
 Route::get('/submitted', function() {
     return view('submitted');
 });
+
+// HOTFIX
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
