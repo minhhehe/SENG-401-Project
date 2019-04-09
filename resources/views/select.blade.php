@@ -21,11 +21,11 @@ $(function() {
 });
 
 function initCardList() {
-  renderedModels.forEach(function(renderedModel) {
-    $("#card-list").append(
-      "<div id='card" + renderedModel.id + "' class='card card--unselected'><a href='" + RENDER_MODEL_URL + renderedModel.id + "'><img src='" + renderedModel.picture + "' class='card-image' alt=''></a></div>"
-    );
-  });
+    renderedModels.forEach(function(renderedModel) {
+        $("#card-list").append(
+            "<div id='card" + renderedModel.id + "' class='custom-card custom-card--unselected'><a href='" + RENDER_MODEL_URL + renderedModel.id + "'><img src='" + renderedModel.picture + "' class='custom-card-image' alt=''></a></div>"
+        );
+    });
 }
 
 function setMainDisplay(index) {
@@ -42,10 +42,10 @@ function setMainDisplay(index) {
   $("#mainDisplayImg").attr("src", renderedModel.picture);
   // animateCSS('#mainDisplayImg', 'fadeOut', function(){ animateCSS('#mainDisplayImg', 'fadeIn') } );
 
-  $("#card" + selectedIndex).removeClass("card--selected");
-  $("#card" + selectedIndex).addClass("card--unselected");
-  $("#card" + index).removeClass("card--unselected");
-  $("#card" + index).addClass("card--selected");
+    $("#card" + selectedIndex).removeClass("custom-card--selected");
+    $("#card" + selectedIndex).addClass("custom-card--unselected");
+    $("#card" + index).removeClass("custom-card--unselected");
+    $("#card" + index).addClass("custom-card--selected");
 
 
   selectedIndex = index;
@@ -85,21 +85,27 @@ if (typeof callback === 'function') callback()
 @stop
 
 @section('mainDisplay')
-<div class="main-display">
-  <button id="leftButton" class="select-button" onclick="selectLeft()">
-    &lt;
-  </button>
-  <div style="display: inline-block; float: left; ">
-    <a id="mainDisplayLink" href="#"><img id="mainDisplayImg" src="" class="card-image" alt=""></a>
-  </div>
-  <button id="rightButton" class="select-button" onclick="selectRight()">
-    &gt;
-  </button>
+<div class="custom-main-display">
+    <button id="leftButton" class="custom-select-button" onclick="selectLeft()">
+        &lt;
+    </button>
+    <div style="display: inline-block; float: left; width: auto;">
+        <a id="mainDisplayLink" href="#"><img id="mainDisplayImg" src="" class="custom-card-image" alt=""></a>
+    </div>
+    <button id="rightButton" class="custom-select-button" onclick="selectRight()">
+        &gt;
+    </button>
+</div>
+
+<br>
+<div>
+    <h4>Ferrari 458 Italia</h4>
 </div>
 
 @stop
 
 @section('list')
+<?php // TODO: Re-introduce this list ?>
 <!-- <div id="card-list" class="select-list">
 </div> -->
 @stop
