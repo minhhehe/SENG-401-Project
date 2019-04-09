@@ -4,16 +4,25 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<<<<<<< HEAD
         <title>CRAP</title>
+=======
+        <title>Forkbomb</title>
+>>>>>>> 4ba05df50e859294c1b2c6738b287aa7e6e8208f
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+        <style>
+        canvas{
+          canvas { width: 30%; height: 30% }
+        }
+        </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center position-ref">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -32,9 +41,12 @@
               <div class="">
                 @yield('logo')
               </div>
-                <div class="title m-b-md">
+                <div class="title-small m-b-md" style="margin-top:50px;">
                   @yield('title')
                     <!-- Laravel -->
+                </div>
+                <div>
+                  @yield('render_window')
                 </div>
                 <div class="links">
                   @yield('links')

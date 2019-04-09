@@ -1,14 +1,19 @@
 html, body{
     background-color: #fff;
+    /* background-color: #00ff00; */
     color: #636b6f;
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
     height: 100vh;
     margin: 0;
 }
-td
-{
+td {
     padding:0 15px 0 15px;
+}
+
+#info a {
+  color: blue;
+  font-weight: bold;
 }
 
   .h-divider{
@@ -83,6 +88,10 @@ td
     font-size: 84px;
 }
 
+.title-small {
+    font-size: 44px;
+    font-style: bold;
+}
 .subheader{
   font-size: 60px;
   font-style: italic;

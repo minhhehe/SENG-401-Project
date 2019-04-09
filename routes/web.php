@@ -12,14 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome_to_CADA');
+    return view('welcome_visitor');
 });
 
 Route::get('/car_example', function() {
     return view('car_example');
 });
 
+Route::get('/flickr', function() {
+    return view('flickr_API_test');
+});
+
 Route::get('/render_model/{id}', 'RenderedModelController@show');
+
 
 Route::get('/storage/{filename}', 'StorageController@sendFile');
 

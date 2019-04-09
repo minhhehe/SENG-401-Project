@@ -8,7 +8,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
+<<<<<<< HEAD
     <title>CRAP</title>
+=======
+    <title>Forkbomb</title>
+>>>>>>> 4ba05df50e859294c1b2c6738b287aa7e6e8208f
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -26,7 +30,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
                 <a title = "Back To The Homepage" class="navbar-brand" href="{{ url('/') }}">
                     <!-- {{ config('app.name', 'Laravel') }} -->
-                    CADA Realistic Automotive Project
+                    SENG 401 Project
                 </a>
 
 
