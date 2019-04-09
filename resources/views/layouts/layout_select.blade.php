@@ -26,7 +26,7 @@
 
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a title = "Back To Homepage" class="navbar-brand" href="{{ url('/') }}">
                     <!-- {{ config('app.name', 'Laravel') }} -->
                     CADA Realistic Automotive Project
                 </a>
@@ -38,10 +38,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/select') }}">Select a Model</a>
+                            <a title = "Choose A Different Model"  class="nav-link" href="{{ url('/select') }}">Select a Model</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/render_model/1') }}">Colour</a>
+                            <a title = "Choose A Different Colour"  class="nav-link" href="{{ url('/render_model/1') }}">Colour</a>
                         </li>
                     </ul>
 
@@ -50,23 +50,23 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a title = "New Users Register Here" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a title = "Existing Users Login Here" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a title = "User Information" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->fname }} {{ Auth::user()->lname}} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="{{ url('/home') }}">Your Account<a>
+                                  <a title = "Access Your Account Information" class="dropdown-item" href="{{ url('/home') }}">Your Account<a>
                                     <div class="h-divider"></div>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a title = "Log Out - Goodbye!" class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
