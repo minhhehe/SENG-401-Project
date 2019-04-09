@@ -17,53 +17,56 @@
         <!-- Scripts  -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="{{ asset('js/swup.min.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
         <!-- TODO Dirty hardcoding. Move into JS file -->
         @yield('script')
     </head>
     <body>
 
-
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+          <!-- Left Side Of Navbar -->
+          <a title="Back To Homepage" class="navbar-brand" href="{{ url('/') }}">
+              <!-- {{ config('app.name', 'Laravel') }} -->
+              CADA Realistic Automotive Project
+          </a>
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                  <a title="Select a Vehicle Model" class="nav-link" href="#">Select a Model</a>
+              </li>
+              <li class="nav-item">
+                  <a title="Choose A Different Colour" class="nav-link" href="{{ url('/render_model/1') }}">Colour</a>
+              </li>
+          </ul>
+
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <!-- {{ config('app.name', 'Laravel') }} -->
-                    CADA Realistic Automotive Project
-                </a>
+              <div class="navbar-brand" style="text-align: center;margin-left:15%;font-style:italic;">@yield('title')</div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/select') }}">Select a Model</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/render_model/1') }}">Colour</a>
-                        </li>
-                    </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a title = "New Users Register Here" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a title = "Existing Users Login Here" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ url('/home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a title = "User Information" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->fname }} {{ Auth::user()->lname}} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                  <a title = "Access Your Account Information" class="dropdown-item" href="{{ url('/home') }}">Your Account<a>
+                                    <div class="h-divider"></div>
+                                    <a title = "Log Out - Goodbye!" class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -80,18 +83,14 @@
             </div>
         </nav>
 
-
-
-
-
-        <div class="flex-center position-ref full-height">
+        <!-- <div class="flex-center position-ref full-height"> -->
             <!-- TODO Verify safe to delete this commented block -->
             <!-- <div class="top-left links">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     CADA Realistic Automotive Project
                 </a>
             </div> -->
-            @if (false && Route::has('login'))
+            <!-- @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">John Smith</a>
@@ -103,9 +102,9 @@
                         @endif
                     @endauth
                 </div>
-            @endif
+            @endif -->
 
-            <div class="content">
+            <div class="content" style="margin-top:18px;">
               <div id="swup" class="transition-fade">
               <div class="">
                   <!-- The entity to display with the most attention -->
@@ -119,7 +118,7 @@
                 </div>
                   </div>
             </div>
-        </div>
+        <!-- </div> -->
         <script type="text/javascript">
             const swup = new Swup();
         </script>
