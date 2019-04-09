@@ -21,15 +21,10 @@ $(function() {
 });
 
 function initCardList() {
-    renderedModels.forEach(function(renderedModel) {
+    renderedModels.forEach(function(renderedModel, index) {
         // $("#card-list").append(
         //     "<div id='card" + renderedModel.id + "' class='custom-card custom-card--unselected'><a href='" + RENDER_MODEL_URL + renderedModel.id + "'><img src='" + renderedModel.picture + "' class='custom-card-image' alt=''></a></div>"
         // );
-
-        $("#card-list").append(
-            // var img = $("")
-            // <img class='card-img' src='" + renderedModel.picture + "' alt=''>
-        );
 
         $("#card-" + renderedModel.id).click(function(event) {
             var index = parseInt($(this).attr('id').split('-')[1]);
@@ -155,8 +150,8 @@ if (typeof callback === 'function') callback()
         </div>
         <div class="row">
             <div class="col-md-4">
-                <div id="card-4" class="card">
-                    <img class="card-img" src="{{ url('storage/mclaren.png') }}" alt="" onclick="">
+                <div id="card-4" class="card custom-clickable">
+                    <img class="card-img" src="{{ url('storage/mclaren.png') }}" alt="">
                 </div>
             </div>
             <div class="col-md-4">

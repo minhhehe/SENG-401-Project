@@ -193,6 +193,6 @@ margin:auto;
     display: inline-grid;
 }
 
-.my-outline {
-    border-width: thick;
+.custom-clickable:hover {
+    cursor: pointer;
 }
