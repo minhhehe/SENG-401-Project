@@ -16,14 +16,18 @@ var renderedModels = [
 var selectedIndex = 1;
 
 $(function() {
-  initCardList();
+  // initCardList();
   setMainDisplay(selectedIndex);
 });
 
 function initCardList() {
     renderedModels.forEach(function(renderedModel) {
+        // $("#card-list").append(
+        //     "<div id='card" + renderedModel.id + "' class='custom-card custom-card--unselected'><a href='" + RENDER_MODEL_URL + renderedModel.id + "'><img src='" + renderedModel.picture + "' class='custom-card-image' alt=''></a></div>"
+        // );
+
         $("#card-list").append(
-            "<div id='card" + renderedModel.id + "' class='custom-card custom-card--unselected'><a href='" + RENDER_MODEL_URL + renderedModel.id + "'><img src='" + renderedModel.picture + "' class='custom-card-image' alt=''></a></div>"
+
         );
     });
 }
@@ -46,7 +50,6 @@ function setMainDisplay(index) {
     $("#card" + selectedIndex).addClass("custom-card--unselected");
     $("#card" + index).removeClass("custom-card--unselected");
     $("#card" + index).addClass("custom-card--selected");
-
 
   selectedIndex = index;
 }
@@ -105,7 +108,30 @@ if (typeof callback === 'function') callback()
 @stop
 
 @section('list')
-<?php // TODO: Re-introduce this list ?>
-<!-- <div id="card-list" class="select-list">
+<!-- <div id="card-list" class="custom-select-list">
 </div> -->
+<div style="text-align: center; margin-left: 20%; margin-right: 20%;">
+    <div id="card-list" class="card-columns">
+        <div id="card1" class="card">
+            <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="">
+        </div>
+        <div id="card2" class="card">
+            <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="">
+        </div>
+        <div id="card3" class="card">
+            <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="">
+        </div>
+        <div id="card4" class="card border-secondary" style="border-width: thick;">
+            <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="" >
+        </div>
+        <div id="card5" class="card">
+            <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="">
+        </div>
+        <div id="card6" class="card">
+            <img class="card-img" src="{{ url('storage/x_wing.png') }}" alt="">
+        </div>
+    </div>
+</div>
+
+
 @stop

@@ -124,8 +124,8 @@ margin:auto;
     border-radius: 5px;
     background-color: lightgray;
 
-    width: 60%;
-    height: 30vw;
+    width: 35vw;
+    height: 35vh;
 
     padding: 10px;
     margin: 20px;
@@ -144,7 +144,7 @@ margin:auto;
 
     margin: 5px;
 
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 .custom-card--unselected {
@@ -189,5 +189,6 @@ margin:auto;
 
 .custom-select-list {
     width: 60%;
-    display: inline-block;
+    /* display: inline-block; */
+    display: inline-grid;
 }
