@@ -80,18 +80,14 @@
             </div>
         </nav>
 
-
-
-
-
-        <div class="flex-center position-ref full-height">
+        <!-- <div class="flex-center position-ref full-height"> -->
             <!-- TODO Verify safe to delete this commented block -->
             <!-- <div class="top-left links">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     CADA Realistic Automotive Project
                 </a>
             </div> -->
-            @if (Route::has('login'))
+            <!-- @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">John Smith</a>
@@ -103,9 +99,9 @@
                         @endif
                     @endauth
                 </div>
-            @endif
+            @endif -->
 
-            <div class="content">
+            <div class="content" style="margin-top:18px;">
               <div id="swup" class="transition-fade">
               <div class="">
                   <!-- The entity to display with the most attention -->
@@ -119,7 +115,7 @@
                 </div>
                   </div>
             </div>
-        </div>
+        <!-- </div> -->
         <script type="text/javascript">
             const swup = new Swup();
         </script>
