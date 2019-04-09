@@ -45,16 +45,16 @@
 <body>
 	<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
 		<!-- Left Side Of Navbar -->
-		<a class="navbar-brand" href="{{ url('/') }}">
+		<a title="Back to Homepage"class="navbar-brand" href="{{ url('/') }}">
 				<!-- {{ config('app.name', 'Laravel') }} -->
 				CADA Realistic Automotive Project
 		</a>
 		<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
-						<a class="nav-link" href="{{ url('/select') }}">Select a Model</a>
+						<a title="Choose A Different Model" class="nav-link" href="{{ url('/select') }}">Select a Model</a>
 				</li>
 				<li class="nav-item">
-						<a class="nav-link" href="#">Colour</a>
+						<a title="You are here" class="nav-link" href="#">Colour</a>
 				</li>
 		</ul>
 
@@ -79,14 +79,14 @@
 								@endif
 						@else
 								<li class="nav-item dropdown">
-										<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+										<a title = "User Information" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 												{{ Auth::user()->fname }} {{ Auth::user()->lname}} <span class="caret"></span>
 										</a>
 
 										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-											<a class="dropdown-item" href="{{ url('/home') }}">Your Account<a>
+											<a title = "Access Your Account Information" class="dropdown-item" href="{{ url('/home') }}">Your Account<a>
 												<div class="h-divider"></div>
-												<a class="dropdown-item" href="{{ route('logout') }}"
+												<a title = "Log Out - Goodbye!" class="dropdown-item" href="{{ route('logout') }}"
 													 onclick="event.preventDefault();
 																				 document.getElementById('logout-form').submit();">
 														{{ __('Logout') }}
