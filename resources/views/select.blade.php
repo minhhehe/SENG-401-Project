@@ -69,16 +69,16 @@ function setMainDisplay(index) {
 }
 
 function selectLeft() {
-  animateCSS('#mainDisplayImg', 'bounceOutLeft', function(){
+  animateCSS('#mainDisplayImg', 'bounceOutUp', function(){
     setMainDisplay(selectedIndex - 1);
-    animateCSS('#mainDisplayImg', 'bounceInRight')
+    animateCSS('#mainDisplayImg', 'bounceInDown')
   } );
 }
 
 function selectRight() {
-  animateCSS('#mainDisplayImg', 'bounceOutRight', function(){
+  animateCSS('#mainDisplayImg', 'bounceOutUp', function(){
     setMainDisplay(selectedIndex + 1);
-    animateCSS('#mainDisplayImg', 'bounceInLeft')
+    animateCSS('#mainDisplayImg', 'bounceInDown')
   });
 }
 
@@ -87,9 +87,9 @@ function selectCard(index) {
         return;
     }
 
-    animateCSS('#mainDisplayImg', 'bounceOutRight', function(){
+    animateCSS('#mainDisplayImg', 'bounceOutUp', function(){
       setMainDisplay(index);
-      animateCSS('#mainDisplayImg', 'bounceInLeft')
+      animateCSS('#mainDisplayImg', 'bounceInDown')
     });
 }
 
