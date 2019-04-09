@@ -21,6 +21,12 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+          <div class="top-left links">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <!-- {{ config('app.name', 'Laravel') }} -->
+                CADA Realistic Automotive Project
+            </a>
+          </div>
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
