@@ -21,11 +21,21 @@ $(function() {
 });
 
 function initCardList() {
-    renderedModels.forEach(function(renderedModel) {
-        $("#card-list").append(
-            "<div id='card" + renderedModel.id + "' class='custom-card custom-card--unselected'><a href='" + RENDER_MODEL_URL + renderedModel.id + "'><img src='" + renderedModel.picture + "' class='custom-card-image' alt=''></a></div>"
-        );
+    renderedModels.forEach(function(renderedModel, index) {
+        // $("#card-list").append(
+        //     "<div id='card" + renderedModel.id + "' class='custom-card custom-card--unselected'><a href='" + RENDER_MODEL_URL + renderedModel.id + "'><img src='" + renderedModel.picture + "' class='custom-card-image' alt=''></a></div>"
+        // );
+
+        $("#card-" + renderedModel.id).click(function(event) {
+            var index = parseInt($(this).attr('id').split('-')[1]);
+            selectCard(index);
+        });
     });
+
+    // $("#card-2").click(function(event) {
+    //     var index = parseInt($(this).attr('id').split('-')[1]);
+    //     selectCard(index);
+    // });
 }
 
 function setMainDisplay(index) {
@@ -42,11 +52,13 @@ function setMainDisplay(index) {
   $("#mainDisplayImg").attr("src", renderedModel.picture);
   // animateCSS('#mainDisplayImg', 'fadeOut', function(){ animateCSS('#mainDisplayImg', 'fadeIn') } );
 
-    $("#card" + selectedIndex).removeClass("custom-card--selected");
-    $("#card" + selectedIndex).addClass("custom-card--unselected");
-    $("#card" + index).removeClass("custom-card--unselected");
-    $("#card" + index).addClass("custom-card--selected");
+    // $("#card-" + selectedIndex).removeClass("custom-card--selected");
+    // $("#card-" + selectedIndex).addClass("custom-card--unselected");
+    // $("#card-" + index).removeClass("custom-card--unselected");
+    // $("#card-" + index).addClass("custom-card--selected");
 
+    $("#card-" + selectedIndex).css("border", "");
+    $("#card-" + index).css("border", "4px solid gray");
 
   selectedIndex = index;
 }
@@ -62,9 +74,19 @@ function selectRight() {
   animateCSS('#mainDisplayImg', 'bounceOutRight', function(){
     setMainDisplay(selectedIndex + 1);
     animateCSS('#mainDisplayImg', 'bounceInLeft')
-  } );
+  });
 }
 
+function selectCard(index) {
+    if (index == selectedIndex) {
+        return;
+    }
+
+    animateCSS('#mainDisplayImg', 'bounceOutRight', function(){
+      setMainDisplay(index);
+      animateCSS('#mainDisplayImg', 'bounceInLeft')
+    });
+}
 
 function animateCSS(element, animationName, callback) {
   const node = document.querySelector(element)
@@ -109,7 +131,46 @@ if (typeof callback === 'function') callback()
 @stop
 
 @section('list')
-<?php // TODO: Re-introduce this list ?>
-<!-- <div id="card-list" class="select-list">
+<!-- <div id="card-list" class="custom-select-list">
 </div> -->
+<div style="text-align: center; margin-left: 20%; margin-right: 20%;">
+    <div id="card-list">
+        <div class="row" style="margin-bottom: 10px">
+            <div class="col-md-4">
+                <div id="card-1" class="card">
+                    <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="card-2" class="card">
+                    <img class="card-img" src="{{ url('storage/range_rover.png') }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="card-3" class="card">
+                    <img class="card-img" src="{{ url('storage/toyota.png') }}" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div id="card-4" class="card custom-clickable">
+                    <img class="card-img" src="{{ url('storage/mclaren.png') }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="card-5" class="card">
+                    <img class="card-img" src="{{ url('storage/lamborghini.png') }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="card-6" class="card">
+                    <img class="card-img" src="{{ url('storage/x_wing.png') }}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @stop
