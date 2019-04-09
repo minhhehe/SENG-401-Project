@@ -44,30 +44,31 @@
 
 <body>
 	<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-		<div class="container">
-			<a class="navbar-brand" href="{{ url('/') }}">
+		<!-- Left Side Of Navbar -->
+		<a class="navbar-brand" href="{{ url('/') }}">
 				<!-- {{ config('app.name', 'Laravel') }} -->
 				CADA Realistic Automotive Project
-			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<!-- Left Side Of Navbar -->
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
+		</a>
+		<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
 						<a class="nav-link" href="{{ url('/select') }}">Select a Model</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ url('/render_model/1') }}">Colour</a>
-					</li>
-				</ul>
+				</li>
+				<li class="nav-item">
+						<a class="nav-link" href="#">Colour</a>
+				</li>
+		</ul>
 
-				<!-- Right Side Of Navbar -->
-				<ul class="navbar-nav ml-auto">
-						<!-- Authentication Links -->
-						@guest
+			<div class="container">
+				<div class="navbar-brand" style="text-align: center;margin-left:15%;font-style:italic;">Customize your vehicle</div>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+							<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+							<!-- Right Side Of Navbar -->
+							<ul class="navbar-nav ml-auto">
+									<!-- Authentication Links -->
+									@guest
 								<li class="nav-item">
 										<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
 								</li>
@@ -103,13 +104,10 @@
 	</nav>
 
 	<div id="info">
+		<span>Body: <input type='color' id ='custom-body-mat'/></span>
+		<span>Interior: <input id="custom-interior-mat" type="color"></span>
 		<span>Rims / Trim: <input id="rim-mat" type="color"></span>
 		<span>Glass: <input id="glass-mat" type="color"></span>
-
-		<span>Custom Body: <input type='color' id ='custom-body-mat'/>
-
-		</span>
-		<span>Custom Interior: <input id="custom-interior-mat" type="color"></span>
 		<br><br>
 		<span>Driver camera: <input type="checkbox" id="camera-toggle"></span>
 
