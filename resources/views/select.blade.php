@@ -16,7 +16,7 @@ var renderedModels = [
 var selectedIndex = 1;
 
 $(function() {
-  // initCardList();
+  initCardList();
   setMainDisplay(selectedIndex);
 });
 
@@ -27,9 +27,20 @@ function initCardList() {
         // );
 
         $("#card-list").append(
-
+            // var img = $("")
+            // <img class='card-img' src='" + renderedModel.picture + "' alt=''>
         );
+
+        $("#card-" + renderedModel.id).click(function(event) {
+            var index = parseInt($(this).attr('id').split('-')[1]);
+            selectCard(index);
+        });
     });
+
+    // $("#card-2").click(function(event) {
+    //     var index = parseInt($(this).attr('id').split('-')[1]);
+    //     selectCard(index);
+    // });
 }
 
 function setMainDisplay(index) {
@@ -46,10 +57,13 @@ function setMainDisplay(index) {
   $("#mainDisplayImg").attr("src", renderedModel.picture);
   // animateCSS('#mainDisplayImg', 'fadeOut', function(){ animateCSS('#mainDisplayImg', 'fadeIn') } );
 
-    $("#card" + selectedIndex).removeClass("custom-card--selected");
-    $("#card" + selectedIndex).addClass("custom-card--unselected");
-    $("#card" + index).removeClass("custom-card--unselected");
-    $("#card" + index).addClass("custom-card--selected");
+    // $("#card-" + selectedIndex).removeClass("custom-card--selected");
+    // $("#card-" + selectedIndex).addClass("custom-card--unselected");
+    // $("#card-" + index).removeClass("custom-card--unselected");
+    // $("#card-" + index).addClass("custom-card--selected");
+
+    $("#card-" + selectedIndex).css("border", "");
+    $("#card-" + index).css("border", "4px solid gray");
 
   selectedIndex = index;
 }
@@ -65,9 +79,19 @@ function selectRight() {
   animateCSS('#mainDisplayImg', 'bounceOutRight', function(){
     setMainDisplay(selectedIndex + 1);
     animateCSS('#mainDisplayImg', 'bounceInLeft')
-  } );
+  });
 }
 
+function selectCard(index) {
+    if (index == selectedIndex) {
+        return;
+    }
+
+    animateCSS('#mainDisplayImg', 'bounceOutRight', function(){
+      setMainDisplay(index);
+      animateCSS('#mainDisplayImg', 'bounceInLeft')
+    });
+}
 
 function animateCSS(element, animationName, callback) {
   const node = document.querySelector(element)
@@ -111,24 +135,40 @@ if (typeof callback === 'function') callback()
 <!-- <div id="card-list" class="custom-select-list">
 </div> -->
 <div style="text-align: center; margin-left: 20%; margin-right: 20%;">
-    <div id="card-list" class="card-columns">
-        <div id="card1" class="card">
-            <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="">
+    <div id="card-list">
+        <div class="row" style="margin-bottom: 10px">
+            <div class="col-md-4">
+                <div id="card-1" class="card">
+                    <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="card-2" class="card">
+                    <img class="card-img" src="{{ url('storage/range_rover.png') }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="card-3" class="card">
+                    <img class="card-img" src="{{ url('storage/toyota.png') }}" alt="">
+                </div>
+            </div>
         </div>
-        <div id="card2" class="card">
-            <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="">
-        </div>
-        <div id="card3" class="card">
-            <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="">
-        </div>
-        <div id="card4" class="card border-secondary" style="border-width: thick;">
-            <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="" >
-        </div>
-        <div id="card5" class="card">
-            <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="">
-        </div>
-        <div id="card6" class="card">
-            <img class="card-img" src="{{ url('storage/x_wing.png') }}" alt="">
+        <div class="row">
+            <div class="col-md-4">
+                <div id="card-4" class="card">
+                    <img class="card-img" src="{{ url('storage/mclaren.png') }}" alt="" onclick="">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="card-5" class="card">
+                    <img class="card-img" src="{{ url('storage/lamborghini.png') }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="card-6" class="card">
+                    <img class="card-img" src="{{ url('storage/x_wing.png') }}" alt="">
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -91,7 +91,7 @@
                     CADA Realistic Automotive Project
                 </a>
             </div> -->
-            @if (Route::has('login'))
+            @if (false && Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">John Smith</a>
