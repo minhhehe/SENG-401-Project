@@ -396,7 +396,7 @@
 
 	}
 
-	var driverOffset = new THREE.Vector3(-0.35, 1, 0.05);
+	var driverOffset = new THREE.Vector3(-0.35, 1, 0.3);
 	var yAxis = new THREE.Vector3(0, 1, 0);
 
 	function update() {
