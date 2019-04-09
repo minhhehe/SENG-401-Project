@@ -10,6 +10,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+	<script src="{{ asset('js/app.js') }}"></script>
 
 	<style>
 	body {
@@ -42,74 +44,74 @@
 
 <body>
 	<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-		<div class="container">
-			<a class="navbar-brand" href="{{ url('/') }}">
+		<!-- Left Side Of Navbar -->
+		<a title="Back to Homepage"class="navbar-brand" href="{{ url('/') }}">
 				<!-- {{ config('app.name', 'Laravel') }} -->
 				CADA Realistic Automotive Project
-			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+		</a>
+		<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+						<a title="Choose A Different Model" class="nav-link" href="{{ url('/select') }}">Select a Model</a>
+				</li>
+				<li class="nav-item">
+						<a title="You are here" class="nav-link" href="#">Colour</a>
+				</li>
+		</ul>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<!-- Left Side Of Navbar -->
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="{{ url('/select') }}">Select a Model</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ url('/render_model/1') }}">Colour</a>
-					</li>
-				</ul>
+			<div class="container">
+				<div class="navbar-brand" style="text-align: center;margin-left:15%;font-style:italic;">Customize your vehicle</div>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+							<span class="navbar-toggler-icon"></span>
+					</button>
 
-				<!-- Right Side Of Navbar -->
-				<ul class="navbar-nav ml-auto">
-					<!-- Authentication Links -->
-					@guest
-						<li class="nav-item">
-							<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-						</li>
-						@if (Route::has('register'))
-							<li class="nav-item">
-								<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-							</li>
-						@endif
-					@else
-						<li class="nav-item dropdown">
-							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ url('/home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-								{{ Auth::user()->fname }} {{ Auth::user()->lname}} <span class="caret"></span>
-							</a>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+							<!-- Right Side Of Navbar -->
+							<ul class="navbar-nav ml-auto">
+									<!-- Authentication Links -->
+									@guest
+								<li class="nav-item">
+										<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+								</li>
+								@if (Route::has('register'))
+										<li class="nav-item">
+												<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+										</li>
+								@endif
+						@else
+								<li class="nav-item dropdown">
+										<a title = "User Information" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+												{{ Auth::user()->fname }} {{ Auth::user()->lname}} <span class="caret"></span>
+										</a>
 
-							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="{{ route('logout') }}"
-								   onclick="event.preventDefault();
-												 document.getElementById('logout-form').submit();">
-									{{ __('Logout') }}
-								</a>
+										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+											<a title = "Access Your Account Information" class="dropdown-item" href="{{ url('/home') }}">Your Account<a>
+												<div class="h-divider"></div>
+												<a title = "Log Out - Goodbye!" class="dropdown-item" href="{{ route('logout') }}"
+													 onclick="event.preventDefault();
+																				 document.getElementById('logout-form').submit();">
+														{{ __('Logout') }}
+												</a>
 
-								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-									@csrf
-								</form>
-							</div>
-						</li>
-					@endguest
+												<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+														@csrf
+												</form>
+										</div>
+								</li>
+						@endguest
 				</ul>
 			</div>
 		</div>
 	</nav>
 
 	<div id="info">
+		<span>Body: <input type='color' id ='custom-body-mat'/></span>
+		<span>Interior: <input id="custom-interior-mat" type="color"></span>
 		<span>Rims / Trim: <input id="rim-mat" type="color"></span>
 		<span>Glass: <input id="glass-mat" type="color"></span>
-
-		<span>Custom Body: <input type='color' id ='custom-body-mat'/>
-
-		</span>
-		<span>Custom Interior: <input id="custom-interior-mat" type="color"></span>
 		<br><br>
 		<span>Driver camera: <input type="checkbox" id="camera-toggle"></span>
 
-		<button class="btn btn-secondary topRight" onclick="document.location.href='{{ url('/submitted') }}'"> Submit </button>
+		<button title = "Submit Your Chosen Car Colours - You can always change them later!" class="btn btn-secondary topRight" onclick="document.location.href='{{ url('/submitted') }}'"> Submit </button>
 	</div>
 
 	<div id="container"></div>
@@ -125,7 +127,7 @@
 	<script src="{{ asset('js/Car.js') }}"></script>
 
 	<script src="{{ asset('js/WebGL.js') }}"></script>
-	<script src="{{ asset('js/libs/stats.min.js') }}"></script>
+	<!-- <script src="{{ asset('js/libs/stats.min.js') }}"></script> -->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src='{{ asset('js/spectrum.js') }}'></script>
@@ -133,7 +135,7 @@
 	<audio id="audio" src='{{ asset('temp/HOTPINK.mp3') }}' preload="auto"></audio>
 
 
-	<script>
+	<script defer>
 
 	if ( WEBGL.isWebGLAvailable() === false ) {
 
@@ -141,7 +143,9 @@
 
 	}
 
-	var camera, scene, renderer, stats, carModel, materialsLib, envMap;
+	var camera, scene, renderer;
+	// var stats;
+	var carModel, materialsLib, envMap;
 
 	var rimMatCustom = $('#rim-mat');
 	var customBodyMatSelect = $('#custom-body-mat');
@@ -228,8 +232,8 @@
 
 			container.appendChild( renderer.domElement );
 
-			stats = new Stats();
-			container.appendChild( stats.dom );
+			// stats = new Stats();
+			// container.appendChild( stats.dom );
 
 			window.addEventListener( 'resize', onWindowResize, false );
 
@@ -490,7 +494,7 @@
 
 		}
 
-		stats.update();
+		// stats.update();
 	}
 
 	init();

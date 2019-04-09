@@ -84,6 +84,10 @@ if (typeof callback === 'function') callback()
 </script>
 @stop
 
+@section('title')
+ Choose your vehicle model
+@stop
+
 @section('mainDisplay')
 <div class="custom-main-display">
     <button id="leftButton" class="custom-select-button" onclick="selectLeft()">

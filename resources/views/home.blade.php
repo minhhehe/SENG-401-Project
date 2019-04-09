@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <!-- <div class="card-header">Account Details: {{Auth::user()->id}}</div> -->
-                <div class="card-header">Account Details: {{Auth::user()->fname}} {{Auth::user()->lname}}</div>
+                <div title = "Back To The Homepage" class="card-header">Account Details: {{Auth::user()->fname}} {{Auth::user()->lname}}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -202,7 +202,7 @@
                       <div class="h-divider"></div>
 
                       <div>
-                        <button class="btn" type="submit">Update</button>
+                        <button title = "Update Your Info!" class="btn" type="submit">Update</button>
                       </div>
 
                     </form>
