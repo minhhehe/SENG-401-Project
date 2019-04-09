@@ -79,7 +79,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Address</label>
-                          <input required class="text" type="text" value="{{ Auth::user()->address}}" name="address">
+                          <input class="text" type="text" value="{{ Auth::user()->address}}" name="address">
                         </div>
                       </div>
 
@@ -90,7 +90,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Day Phone Number</label>
-                          <input required class="text" type="number" value="{{ Auth::user()->day_phone_number}}" name="day_phone_number">
+                          <input class="text" type="number" value="{{ Auth::user()->day_phone_number}}" name="day_phone_number">
                         </div>
                       </div>
 
@@ -101,7 +101,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Night Phone Number</label>
-                          <input required class="text" type="number" value="{{ Auth::user()->night_phone_number}}" name="night_phone_number">
+                          <input class="text" type="number" value="{{ Auth::user()->night_phone_number}}" name="night_phone_number">
                         </div>
                       </div>
 
