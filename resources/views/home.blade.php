@@ -49,7 +49,7 @@
                         </div>
                       </div>
 
-                      <div class="h-divider"></div>
+                      <!-- <div class="h-divider"></div> -->
 
                       <!-- Date of Birth -->
                       <div class="field">
@@ -60,7 +60,7 @@
                         </div>
                       </div>
 
-                      <div class="h-divider"></div>
+                      <!-- <div class="h-divider"></div> -->
 
                       <!-- Gender -->
                       <div class="field">
@@ -71,7 +71,7 @@
                         </div>
                       </div>
 
-                      <div class="h-divider"></div>
+                      <!-- <div class="h-divider"></div> -->
                       <?php // TODO: Delete everything between these if tags ?>
                       @endif
 
@@ -85,7 +85,7 @@
                         </div>
                       </div>
 
-                      <div class="h-divider"></div>
+                      <!-- <div class="h-divider"></div> -->
 
                       <!-- Phone Number -->
                       <!-- TODO Number Valid Check -->
@@ -97,7 +97,7 @@
                         </div>
                       </div>
 
-                      <div class="h-divider"></div>
+                      <!-- <div class="h-divider"></div> -->
 
                       <!-- Email -->
                       <!-- TODO Email Valid Check -->
@@ -109,7 +109,7 @@
                         </div>
                       </div>
 
-                      <div class="h-divider"></div>
+                      <!-- <div class="h-divider"></div> -->
 
                       <!-- Billing Info -->
                       <div class="field">
@@ -132,7 +132,7 @@
                         </div>
                       </div>
 
-                      <div class="h-divider"></div>
+                      <!-- <div class="h-divider"></div> -->
 
                       <!-- Previous Vehicle Year -->
                       <!-- Not Required -->
@@ -145,7 +145,7 @@
                         </div>
                       </div>
 
-                      <div class="h-divider"></div>
+                      <!-- <div class="h-divider"></div> -->
 
                       <!-- Previous Vehicle Colour -->
                       <!-- Not Required -->
@@ -169,7 +169,7 @@
                         </div>
                       </div>
 
-                      <div class="h-divider"></div>
+                      <!-- <div class="h-divider"></div> -->
 
                       <!-- Desired Model Colour -->
                       <!-- Not Required -->
@@ -181,7 +181,7 @@
                         </div>
                       </div>
 
-                      <div class="h-divider"></div>
+                      <!-- <div class="h-divider"></div> -->
 
                       <!-- Desired Price Range -->
                       <!-- Not Required -->
@@ -193,12 +193,12 @@
                         </div>
                       </div>
 
-                      <div class="h-divider"></div>
+                      <!-- <div class="h-divider"></div> -->
 
 
                       <div class="h-divider"></div>
-
-                      <div>
+                      <br>
+                      <div style="text-align:center;">
                         <button title = "Update Your Info!" class="btn" type="submit">Update</button>
                       </div>
 
