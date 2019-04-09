@@ -33,9 +33,11 @@
                     Desired Price Range and
                     Desired payment method. -->
 
-                    <!-- TODO Connect fields to a controller -->
-                    <form action="/books/" method="post">
+
+                    <!-- TODO change from home -->
+                    <form action="/home/" method="post">
                       {{@csrf_field()}}
+                        {{ method_field('PATCH') }}
                       <br>
 
                       @if (false)
@@ -44,8 +46,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Name</label>
-                          <input class="input" type="text" value="{{ Auth::user()->fname}} {{ Auth::user()->lname }}" name="name">
-                          <!-- <input disabled cla  ss="input" type="text" value="<fname> <lname>" name="name"> -->
+                          <input disabled class="input" type="text" value="{{ Auth::user()->fname}} {{ Auth::user()->lname }}" name="name">
                         </div>
                       </div>
 
@@ -55,8 +56,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Date of Birth</label>
-                          <!-- <input disabled class="date" type="date" value="{{ Auth::user()->dob}}" name="dob"> -->
-                          <input class="date" type="date" value="1990-04-01" name="dob">
+                          <input disabled class="date" type="date" value="{{ Auth::user()->dob}}" name="dob">
                         </div>
                       </div>
 
@@ -66,8 +66,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Gender</label>
-                          <!-- <input disabled class="text" type="text" value="{{ Auth::user()->gender}}" name="gender"> -->
-                          <input class="text" type="text" value="Male" name="gender">
+                          <input disabled class="text" type="text" value="{{ Auth::user()->gender}}" name="gender">
                         </div>
                       </div>
 
@@ -80,20 +79,29 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Address</label>
-                          <!-- <input required disabled class="text" type="text" value="{{ Auth::user()->address}}" name="address"> -->
-                          <input required class="text" type="text" value="24 Sussex Drive" name="address">
+                          <input required class="text" type="text" value="{{ Auth::user()->address}}" name="address">
                         </div>
                       </div>
 
                       <!-- <div class="h-divider"></div> -->
-
+                      <!-- TODO seperate in day phone and night phone -->
                       <!-- Phone Number -->
                       <!-- TODO Number Valid Check -->
                       <div class="field">
                         <div class="control">
-                          <label class="label col-md-3">Phone</label>
-                          <!-- <input required class="text" type="number" value="{{ Auth::user()->phone}}" name="phone"> -->
-                          <input required class="text" type="number" value="555-555-5555" name="phone">
+                          <label class="label col-md-3">Day Phone Number</label>
+                          <input required class="text" type="number" value="{{ Auth::user()->day_phone_number}}" name="day_phone_number">
+                        </div>
+                      </div>
+
+                      <!-- <div class="h-divider"></div> -->
+                      <!-- TODO seperate in day phone and night phone -->
+                      <!-- Phone Number -->
+                      <!-- TODO Number Valid Check -->
+                      <div class="field">
+                        <div class="control">
+                          <label class="label col-md-3">Night Phone Number</label>
+                          <input required class="text" type="number" value="{{ Auth::user()->night_phone_number}}" name="night_phone_number">
                         </div>
                       </div>
 
@@ -104,8 +112,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Email</label>
-                          <input required class="text" type="email" value="{{ Auth::user()->email}}" name="email">
-                          <!-- <input required class="text" type="email" value="standin@email.com" name="phone"> -->
+                         <input required class="text" type="email" value="{{ Auth::user()->email}}" name="email">
                         </div>
                       </div>
 
@@ -115,8 +122,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Billing Information</label>
-                          <!-- <input required class="text" type="text" value="{{ Auth::user()->billing}}" name="billing"> -->
-                          <input required class="text" type="text" value="Credit" name="billing">
+                           <input class="text" type="text" value="{{$customer->billingInfo}}" name="billingInfo">
                         </div>
                       </div>
 
@@ -127,8 +133,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Previous Vehicle</label>
-                          <!-- <input class="text" type="text" value="{{ Auth::user()->pvehicle}}" name="pvehicle"> -->
-                          <input class="text" type="text" value="Nissan Cube" name="pvehicle">
+                           <input class="text" type="text" value="{{ $customer->lastVehiclePurchased}}" name="lastVehiclePurchased">
                         </div>
                       </div>
 
@@ -140,8 +145,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Previous Vehicle Model Year</label>
-                          <!-- <input class="text" type="number" value="{{ Auth::user()->pvehicle_yr}}" name="pvehicle_yr"> -->
-                          <input class="text" type="number" value="1900" name="pvehicle_yr">
+                          <input class="text" type="number" value="{{ $customer->lastVehicleYear}}" name="lastVehicleYear">
                         </div>
                       </div>
 
@@ -152,8 +156,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Previous Vehicle Model Colour</label>
-                          <!-- <input class="text" type="text" value="{{ Auth::user()->pvehicle_colour}}" name="pvehicle_colour"> -->
-                          <input class="text" type="text" value="Grey" name="pvehicle_colour">
+                          <input class="text" type="text" value="{{ $customer->lastExterior}}" name="lastExterior">
                         </div>
                       </div>
 
@@ -164,8 +167,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Desired Model</label>
-                          <!-- <input class="text" type="text" value="{{ Auth::user()->dvehicle}}" name="dvehicle"> -->
-                          <input class="text" type="text" value="Ferrari 458 Italia" name="dvehicle">
+                          <input class="text" type="text" value="{{ $customer->desiredModel}}" name="desiredModel">
                         </div>
                       </div>
 
@@ -176,8 +178,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Desired Model Colour</label>
-                          <!-- <input class="text" type="text" value="{{ Auth::user()->dvehicle_colour}}" name="dvehicle_colour"> -->
-                          <input class="text" type="text" value="Red" name="dvehicle_colour">
+                          <input class="text" type="text" value="{{ $customer->desiredExterior}}" name="desiredExterior">
                         </div>
                       </div>
 
@@ -188,8 +189,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Desired Price Range</label>
-                          <!-- <input class="text" type="text" value="{{ Auth::user()->price}}" name="price"> -->
-                          <input class="text" type="text" value="$60,000-$80,000" name="price">
+                          <input class="text" type="text" value="{{ $customer->desiredPrice}}" name="desiredPrice">
                         </div>
                       </div>
 
