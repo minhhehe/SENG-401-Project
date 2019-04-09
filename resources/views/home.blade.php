@@ -37,6 +37,9 @@
                     <form action="/books/" method="post">
                       {{@csrf_field()}}
                       <br>
+
+                      @if (false)
+                      <?php // TODO: Delete everything between these if tags ?>
                       <!-- First and Last Name -->
                       <div class="field">
                         <div class="control">
@@ -69,6 +72,8 @@
                       </div>
 
                       <div class="h-divider"></div>
+                      <?php // TODO: Delete everything between these if tags ?>
+                      @endif
 
                       <!-- Address -->
                       <!-- TODO Ensure Required -->
