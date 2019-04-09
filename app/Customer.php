@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
   protected $fillable = [
-    //  'fname', 'lname', 'dob',
-    //  'gender', 'address','phoneNum',
-    //  'email',
+
+      'user_id',
       'billingInfo', 'lastVehiclePurchased',
       'lastVehicleYear', 'lastInterior', 'lastExterior',
       'lastRim', 'lastGlass', 'desiredModel', 'desiredInterior',
@@ -18,13 +17,6 @@ class Customer extends Model
 
   ];
 
-  public function getName() {
-    $name = DB::table('customer')
-      ->select('fname', 'lname')
-      ->where('id', '=', $this->id)
-      ->get();
-    return $name;
-  }
 
   public function getLastColours() {
     $colours = DB::table('customer')

@@ -23,7 +23,6 @@ class CreateUsersTable extends Migration
             $table->enum('role', ['customer','owner','manager','salesperson','sysadmin'])->default('customer');
             $table->string('address')->nullable();
             $table->string('day_phone_number')->nullable();
-            $table->string('night_phone_number')->nullable();
             $table->string('gender');
             $table->string('password');
             $table->rememberToken();

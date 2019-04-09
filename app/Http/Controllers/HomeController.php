@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\RenderedModel;
-
+use App\Customer;
+use App\User;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -26,8 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+        $customer =  DB::table('customers')->where('user_id', $user_id)->first();
         $user = auth()->user();
-        return view('home'), compact(['user']);
+        return $customer;
+      //  return view('home', ['customer' => $customer]);
     }
 
     /**
@@ -35,16 +40,23 @@ class HomeController extends Controller
     */
     public function select() {
 
+
+       $user_id = Auth()->user()->id;
+       $customer =  DB::table('customers')->where('user_id', $user_id)->first();
+
+        if (!$customer){
+          $customer = new Customer();
+          $customer->user_id = $user_id;
+          $customer->save();
+        }
+
       $role = auth()->user()->role;
       $renderedModels = RenderedModel::all();
-      if($role == 'customer'){
 
-        //TODO rename select view to homeCustomer
-        return view('select', compact(['renderedModels']));
-      }
-      elseif ($role == 'salesperson') {
+      return view('select', compact(['renderedModels']));
+
 
         // TODO configure other roles and views
-      }
+
     }
 }

@@ -14,8 +14,8 @@ class CreateCustomersTable extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
+            $table->bigIncrements('id');
 
-            $table->bigIncrements('customer_id'); //20digit customer_id
             $table->bigInteger('user_id')->unsigned() ;
             $table->foreign('user_id')->references('id')->on('users'); //foreign id to user_table
           //  $table->integer('last_edited_by')->nullable();
@@ -27,7 +27,7 @@ class CreateCustomersTable extends Migration
             //$table->string('gender');//Gended
             $table->string('billingInfo')->nullable(); //Billing info
             $table->string('lastVehiclePurchased')->nullable();  //Last vehicle purchaced
-            $table->date('lastVehicleYear')->nullable(); //Last Vehicle year
+            $table->integer('lastVehicleYear')->nullable(); //Last Vehicle year
             $table->string('lastInterior')->nullable();  //Last vehicle interior Colour
             $table->string('lastExterior')->nullable();  //Last vehicle exterior Colour
             $table->string('lastRim')->nullable();  //Last vehicle rim Colour
@@ -42,8 +42,8 @@ class CreateCustomersTable extends Migration
             $table->timestamps();
         });
         //20 digit customer id
-        DB:statement("ALTER TABLE customers AUTO_INCREMENT
-          = 10000000000000000000;");
+        // DB:statement("ALTER TABLE customers AUTO_INCREMENT
+        //   = 10000000000000000000;");
     }
 
 

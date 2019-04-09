@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Facades\DB;
+use App\RenderedModel;
+use App\Customer;
+use App\User;
+use Illuminate\Support\Facades\DB;
 
 class AccountController extends Controller
 {
@@ -12,52 +15,16 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
     public function index()
     {
-      return view('home');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+      $user_id = Auth()->user()->id;
+      $customer =  DB::table('customers')->where('user_id', $user_id)->first();
+      $user = auth()->user();
+      return view('home', ['customer' => $customer]);
     }
 
     /**
@@ -67,15 +34,31 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Customer $customer)
     {
+
       $data = request()->all([
+          'address',
           'day_phone_number',
           'email',
-        ]);
+      ]);
 
-        Auth()->user()->update($data);
-        return redirect('/home');
+      Auth()->user()->update($data);
+      $user_id = Auth()->user()->id;
+      $customer =  Customer::where('user_id', $user_id)->first();
+
+      $customer->billingInfo = request('billingInfo');
+      $customer->lastVehiclePurchased = request('lastVehiclePurchased');
+      $customer->lastVehicleYear = request('lastVehicleYear');
+      $customer->lastExterior = request('lastExterior');
+      $customer->desiredModel = request('desiredModel');
+      $customer->desiredExterior = request('desiredExterior');
+      $customer->desiredPrice = request('desiredPrice');
+
+
+      $customer->save();
+
+      return redirect('/home');
     }
 
     /**

@@ -82,8 +82,8 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Address</label>
-                          <!-- <input required disabled class="text" type="text" value="{{ Auth::user()->address}}" name="address"> -->
-                          <input required class="text" type="text" value="24 Sussex Drive" name="address">
+                          <input required class="text" type="text" value="{{ Auth::user()->address}}" name="address">
+                          <!-- <input required class="text" type="text" value="24 Sussex Drive" name="address"> -->
                         </div>
                       </div>
 
@@ -118,8 +118,8 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Billing Information</label>
-                           <input class="text" type="text" value="{{ Auth::user()->billing}}" name="billing">
-                        <!--  <input required class="text" type="text" value="placeholder billing info" name="billing"> --?
+                           <input class="text" type="text" value="{{$customer->billingInfo}}" name="billingInfo">
+                        <!--  <input required class="text" type="text" value="placeholder billing info" name="billing"> -->
                         </div>
                       </div>
 
@@ -130,8 +130,8 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Previous Vehicle</label>
-                           <!-- <input class="text" type="text" value="{{ Auth::user()->pvehicle}}" name="pvehicle"> -->
-                          <input class="text" type="text" value="placeholder vehicle" name="pvehicle">
+                           <input class="text" type="text" value="{{ $customer->lastVehiclePurchased}}" name="lastVehiclePurchased">
+                          <!-- <input class="text" type="text" value="placeholder vehicle" name="pvehicle"> -->
                         </div>
                       </div>
 
@@ -143,8 +143,8 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Previous Vehicle Model Year</label>
-                          <!-- <input class="text" type="number" value="{{ Auth::user()->pvehicle_yr}}" name="pvehicle_yr"> -->
-                         <input class="text" type="number" value="1900" name="pvehicle_yr">
+                          <input class="text" type="number" value="{{ $customer->lastVehicleYear}}" name="lastVehicleYear">
+                         <!-- <input class="text" type="number" value="1900" name="pvehicle_yr"> -->
                         </div>
                       </div>
 
@@ -155,7 +155,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Previous Vehicle Model Colour</label>
-                          <input class="text" type="text" value="{{ Auth::user()->pvehicle_colour}}" name="pvehicle_colour">
+                          <input class="text" type="text" value="{{ $customer->lastExterior}}" name="lastExterior">
                           <!--  <input class="text" type="text" value="placeholder colour" name="pvehicle_colour"> -->
                         </div>
                       </div>
@@ -167,7 +167,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Desired Model</label>
-                          <input class="text" type="text" value="{{ Auth::user()->dvehicle}}" name="dvehicle">
+                          <input class="text" type="text" value="{{ $customer->desiredModel}}" name="desiredModel">
                           <!-- <input class="text" type="text" value="placeholder desired model" name="dvehicle"> -->
                         </div>
                       </div>
@@ -179,7 +179,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Desired Model Colour</label>
-                          <input class="text" type="text" value="{{ Auth::user()->dvehicle_colour}}" name="dvehicle_colour">
+                          <input class="text" type="text" value="{{ $customer->desiredExterior}}" name="desiredExterior">
                         <!--  <input class="text" type="text" value="placeholder desired model colour" name="dvehicle_colour">-->
                         </div>
                       </div>
@@ -191,7 +191,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Desired Price Range</label>
-                          <input class="text" type="text" value="{{ Auth::user()->price}}" name="price">
+                          <input class="text" type="text" value="{{ $customer->desiredPrice}}" name="desiredPrice">
                           <!-- <input class="text" type="text" value="placeholder desired model colour" name="price"> -->
                         </div>
                       </div>
