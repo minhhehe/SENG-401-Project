@@ -1,22 +1,23 @@
 @extends('layouts.layout_select')
 
 @section('script')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 <script type="text/javascript">
 const RENDER_MODEL_URL = "{{ url('render_model') }}/";
 var renderedModels = [
-    @foreach ($renderedModels as $renderedModel)
-    {
-        id: {{ $renderedModel->id }},
-        picture: "{{ asset('storage/' . $renderedModel->picture) }}"
-    },
-    @endforeach
+  @foreach ($renderedModels as $renderedModel)
+  {
+    id: {{ $renderedModel->id }},
+    picture: "{{ asset('storage/' . $renderedModel->picture) }}"
+  },
+  @endforeach
 ];
 
 var selectedIndex = 1;
 
 $(function() {
-    initCardList();
-    setMainDisplay(selectedIndex);
+  initCardList();
+  setMainDisplay(selectedIndex);
 });
 
 function initCardList() {
@@ -28,32 +29,56 @@ function initCardList() {
 }
 
 function setMainDisplay(index) {
-    // Index starts at 1
-    if (index - 1 < 0) {
-        index = renderedModels.length;
-    } else if (index > renderedModels.length) {
-        index = 1;
-    }
+  // Index starts at 1
+  if (index - 1 < 0) {
+    index = renderedModels.length;
+  } else if (index > renderedModels.length) {
+    index = 1;
+  }
 
-    var renderedModel = renderedModels[index - 1];
+  var renderedModel = renderedModels[index - 1];
 
-    $("#mainDisplayLink").attr("href", RENDER_MODEL_URL + renderedModel.id);
-    $("#mainDisplayImg").attr("src", renderedModel.picture);
+  $("#mainDisplayLink").attr("href", RENDER_MODEL_URL + renderedModel.id);
+  $("#mainDisplayImg").attr("src", renderedModel.picture);
+  // animateCSS('#mainDisplayImg', 'fadeOut', function(){ animateCSS('#mainDisplayImg', 'fadeIn') } );
 
     $("#card" + selectedIndex).removeClass("custom-card--selected");
     $("#card" + selectedIndex).addClass("custom-card--unselected");
     $("#card" + index).removeClass("custom-card--unselected");
     $("#card" + index).addClass("custom-card--selected");
 
-    selectedIndex = index;
+
+  selectedIndex = index;
 }
 
 function selectLeft() {
+  animateCSS('#mainDisplayImg', 'bounceOutLeft', function(){
     setMainDisplay(selectedIndex - 1);
+    animateCSS('#mainDisplayImg', 'bounceInRight')
+  } );
 }
 
 function selectRight() {
+  animateCSS('#mainDisplayImg', 'bounceOutRight', function(){
     setMainDisplay(selectedIndex + 1);
+    animateCSS('#mainDisplayImg', 'bounceInLeft')
+  } );
+}
+
+
+function animateCSS(element, animationName, callback) {
+  const node = document.querySelector(element)
+  node.classList.add('animated', animationName)
+
+  function handleAnimationEnd() {
+
+    node.classList.remove('animated', animationName)
+    node.removeEventListener('animationend', handleAnimationEnd)
+if (typeof callback === 'function') callback()
+
+  }
+
+  node.addEventListener('animationend', handleAnimationEnd)
 }
 
 </script>
@@ -80,6 +105,7 @@ function selectRight() {
 @stop
 
 @section('list')
-<div id="card-list" class="custom-select-list">
-</div>
+<?php // TODO: Re-introduce this list ?>
+<!-- <div id="card-list" class="select-list">
+</div> -->
 @stop

@@ -1,7 +1,7 @@
 @extends('layouts.layout_welcome')
 
 @section('logo')
-<div><img src="{{ asset('img/CADA_logo.jpg') }}"></div>
+<div><a href="https://www.cada.ca/web/cada/" target="_blank"><img src="{{ asset('img/CADA_logo.jpg') }}"></a></div>
 @endsection
 
 @section('title')

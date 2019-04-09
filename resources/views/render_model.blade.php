@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>three.js webgl - materials - car</title>
+	<title>CRAP</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -453,6 +453,9 @@
 
 	}
 
+	var driverOffset = new THREE.Vector3(-0.35, 1, 0.3);
+	var yAxis = new THREE.Vector3(0, 1, 0);
+
 	function update() {
 
 		var delta = clock.getDelta();
@@ -470,17 +473,12 @@
 			}
 
 			if ( followCamera.checked ) {
+				var camPos = driverOffset.clone();
+				camPos.applyAxisAngle(yAxis, car.angle());
+				camPos.add(carModel.position);
+				camera.position.set(camPos.x, camPos.y, camPos.z);
 
-
-				cameraTarget.y = 3;
-				cameraTarget.z += distance +10;
-				carModel.getWorldPosition( cameraTarget);
-
-
-
-				camera.position.set( cameraTarget.x - 0.3, cameraTarget.y + 1, cameraTarget.z  + 0.3  );
-				camera.lookAt( carModel.position.x, carModel.position.y, carModel.position.z - 10);
-
+				camera.rotation.set(0, car.angle(), 0);
 			} else {
 
 				carModel.getWorldPosition( cameraTarget );
