@@ -19,10 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('lname');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->date('dob');
+            $table->date('dob')->nullable();
             // TODO: Add other roles
             //$table->enum('role', ['visitor'])->default('visitor');
-            $table->string('gender');
+            $table->string('gender')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
