@@ -39,6 +39,7 @@ class AccountController extends Controller
 
       $data = request()->all([
           'address',
+          'night_phone_number',
           'day_phone_number',
           'email',
       ]);
