@@ -8,7 +8,8 @@ var renderedModels = [
   @foreach ($renderedModels as $renderedModel)
   {
     id: {{ $renderedModel->id }},
-    picture: "{{ asset('storage/' . $renderedModel->picture) }}"
+    picture: "{{ asset('storage/' . $renderedModel->picture) }}",
+    description: "{{ $renderedModel->description }}"
   },
   @endforeach
 ];
@@ -50,6 +51,7 @@ function setMainDisplay(index) {
 
   $("#mainDisplayLink").attr("href", RENDER_MODEL_URL + renderedModel.id);
   $("#mainDisplayImg").attr("src", renderedModel.picture);
+  $("#description").text(renderedModel.description);
   // animateCSS('#mainDisplayImg', 'fadeOut', function(){ animateCSS('#mainDisplayImg', 'fadeIn') } );
 
     // $("#card-" + selectedIndex).removeClass("custom-card--selected");
@@ -125,7 +127,7 @@ if (typeof callback === 'function') callback()
 
 <br>
 <div>
-    <h4>Ferrari 458 Italia</h4>
+    <h4 id="description">Ferrari 458 Italia</h4>
 </div>
 
 @stop
