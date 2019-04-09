@@ -10,6 +10,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+	<script src="{{ asset('js/app.js') }}"></script>
 
 	<style>
 	body {
@@ -64,35 +66,37 @@
 
 				<!-- Right Side Of Navbar -->
 				<ul class="navbar-nav ml-auto">
-					<!-- Authentication Links -->
-					@guest
-						<li class="nav-item">
-							<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-						</li>
-						@if (Route::has('register'))
-							<li class="nav-item">
-								<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-							</li>
-						@endif
-					@else
-						<li class="nav-item dropdown">
-							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ url('/home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-								{{ Auth::user()->fname }} {{ Auth::user()->lname}} <span class="caret"></span>
-							</a>
+						<!-- Authentication Links -->
+						@guest
+								<li class="nav-item">
+										<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+								</li>
+								@if (Route::has('register'))
+										<li class="nav-item">
+												<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+										</li>
+								@endif
+						@else
+								<li class="nav-item dropdown">
+										<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+												{{ Auth::user()->fname }} {{ Auth::user()->lname}} <span class="caret"></span>
+										</a>
 
-							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="{{ route('logout') }}"
-								   onclick="event.preventDefault();
-												 document.getElementById('logout-form').submit();">
-									{{ __('Logout') }}
-								</a>
+										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item" href="{{ url('/home') }}">Your Account<a>
+												<div class="h-divider"></div>
+												<a class="dropdown-item" href="{{ route('logout') }}"
+													 onclick="event.preventDefault();
+																				 document.getElementById('logout-form').submit();">
+														{{ __('Logout') }}
+												</a>
 
-								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-									@csrf
-								</form>
-							</div>
-						</li>
-					@endguest
+												<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+														@csrf
+												</form>
+										</div>
+								</li>
+						@endguest
 				</ul>
 			</div>
 		</div>
@@ -133,7 +137,7 @@
 	<audio id="audio" src='{{ asset('temp/HOTPINK.mp3') }}' preload="auto"></audio>
 
 
-	<script>
+	<script defer>
 
 	if ( WEBGL.isWebGLAvailable() === false ) {
 
