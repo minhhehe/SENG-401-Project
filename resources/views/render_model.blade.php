@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>CRAP</title>
+	<title> FK BS 2019 </title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -45,21 +45,16 @@
 <body>
 	<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
 		<!-- Left Side Of Navbar -->
-		<a title="Back to Homepage"class="navbar-brand" href="{{ url('/') }}">
+		<a class="navbar-brand" href="{{ url('/') }}">
 				<!-- {{ config('app.name', 'Laravel') }} -->
-				CADA Realistic Automotive Project
+				FKBmb Background Simulator 2019
 		</a>
 		<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-						<a title="Choose A Different Model" class="nav-link" href="{{ url('/select') }}">Select a Model</a>
-				</li>
-				<li class="nav-item">
-						<a title="You are here" class="nav-link" href="#">Colour</a>
-				</li>
+
 		</ul>
 
 			<div class="container">
-				<div class="navbar-brand" style="text-align: center;margin-left:15%;font-style:italic;">Customize your vehicle</div>
+
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 							<span class="navbar-toggler-icon"></span>
 					</button>
@@ -84,9 +79,9 @@
 										</a>
 
 										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-											<a title = "Access Your Account Information" class="dropdown-item" href="{{ url('/home') }}">Your Account<a>
+											<a class="dropdown-item" href="{{ url('/home') }}">Your Account<a>
 												<div class="h-divider"></div>
-												<a title = "Log Out - Goodbye!" class="dropdown-item" href="{{ route('logout') }}"
+												<a class="dropdown-item" href="{{ route('logout') }}"
 													 onclick="event.preventDefault();
 																				 document.getElementById('logout-form').submit();">
 														{{ __('Logout') }}
@@ -101,405 +96,368 @@
 				</ul>
 			</div>
 		</div>
-	</nav>
 
-	<div id="info">
-		<span>Body: <input type='color' id ='custom-body-mat'/></span>
-		<span>Interior: <input id="custom-interior-mat" type="color"></span>
-		<span>Rims / Trim: <input id="rim-mat" type="color"></span>
-		<span>Glass: <input id="glass-mat" type="color"></span>
-		<br><br>
-		<span>Driver camera: <input type="checkbox" id="camera-toggle"></span>
+		<div id="container"></div>
 
-		<button title = "Submit Your Chosen Car Colours - You can always change them later!" class="btn btn-secondary topRight" onclick="document.location.href='{{ url('/submitted') }}'"> Submit </button>
+		<button class="btn btn-secondary topRight" onclick="document.location.href='{{ url('/submitted') }}'"> Submit </button>
 	</div>
 
-	<div id="container"></div>
+		<script src="js/loaders/DRACOLoader.js"></script>
+		<script src="js/loaders/GLTFLoader.js"></script>
 
-	<script src="{{ asset('js/three.min.js') }}"></script>
+		<script src="js/pmrem/PMREMGenerator.js"></script>
+		<script src="js/pmrem/PMREMCubeUVPacker.js"></script>
 
-	<script src="{{ asset('js/loaders/DRACOLoader.js') }}"></script>
-	<script src="{{ asset('js/loaders/GLTFLoader.js') }}"></script>
+		<script src="js/Car.js"></script>
 
-	<script src="{{ asset('js/pmrem/PMREMGenerator.js') }}"></script>
-	<script src="{{ asset('js/pmrem/PMREMCubeUVPacker.js') }}"></script>
+		<script src="js/WebGL.js"></script>
+		<script src="js/libs/stats.min.js"></script>
 
-	<script src="{{ asset('js/Car.js') }}"></script>
-
-	<script src="{{ asset('js/WebGL.js') }}"></script>
-	<!-- <script src="{{ asset('js/libs/stats.min.js') }}"></script> -->
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src='{{ asset('js/spectrum.js') }}'></script>
-	<link rel='stylesheet' href='{{ asset('css/spectrum.css') }}' />
-	<audio id="audio" src='{{ asset('temp/HOTPINK.mp3') }}' preload="auto"></audio>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src='js/spectrum.js'></script>
+    <link rel='stylesheet' href='css/spectrum.css' />
 
 
-	<script defer>
+		<script>
 
-	if ( WEBGL.isWebGLAvailable() === false ) {
+			if ( WEBGL.isWebGLAvailable() === false ) {
 
-		document.body.appendChild( WEBGL.getWebGLErrorMessage() );
+				document.body.appendChild( WEBGL.getWebGLErrorMessage() );
 
-	}
+			}
 
-	var camera, scene, renderer;
-	// var stats;
-	var carModel, materialsLib, envMap;
+			var camera, scene, renderer, stats, carModel, materialsLib, envMap;
 
-	var rimMatCustom = $('#rim-mat');
-	var customBodyMatSelect = $('#custom-body-mat');
-	var customInteriorMatSelect = $('#custom-interior-mat');
-	var customGlassMat = $('#glass-mat' );
+			var bodyMatSelect = document.getElementById( 'body-mat' );
+			var rimMatSelect = document.getElementById( 'rim-mat' );
+			var glassMatSelect = document.getElementById( 'glass-mat' );
+			var customBodyMatSelect = $('#custom-body-mat');
+			var customInteriorMatSelect = $('#custom-interior-mat');
 
-	var customBodyColour = "#fc1900";
-	var customInteriorColour = "#000000";
-	var customRimColour = "#fc1900";
-	var customGlassColour = "#ffffff";
+			var customBodyColour = "#FFFFFF";
+			var customInteriorColour = "#222222";
 
-	var followCamera = document.getElementById( 'camera-toggle' );
+			console.log(customBodyMatSelect);
 
+			var followCamera = document.getElementById( 'camera-toggle' );
 
+			var clock = new THREE.Clock();
+			var car = new THREE.Car();
+			car.turningRadius = 75;
 
-	var clock = new THREE.Clock();
-	var car = new THREE.Car();
-	car.turningRadius = 75;
+			var carParts = {
+				body: [],
+				interior: [],
+				rims:[],
+				glass: [],
+			};
 
-	var carParts = {
-		body: [],
-		interior: [],
-		rims:[],
-		glass: [],
-	};
+			var damping = 5.0;
+			var distance = 5;
+			var cameraTarget = new THREE.Vector3();
 
-	var damping = 5.0;
-	var distance = 5;
-	var cameraTarget = new THREE.Vector3();
+			function init() {
 
-	function init() {
+				var container = document.getElementById( 'container' );
 
-		var container = document.getElementById( 'container' );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 200 );
+				camera.position.set( 3.25, 2.0, -5 );
+				camera.lookAt( 0, 0.5, 0 );
 
-		camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 200 );
-		camera.position.set( 3.25, 2.0, -5 );
-		camera.lookAt( 0, 0.5, 0 );
+				scene = new THREE.Scene();
+				// scene.fog = new THREE.Fog( 0xd7cbb1, 1, 80 );
 
-		scene = new THREE.Scene();
-		scene.fog = new THREE.Fog( 0xd7cbb1, 1, 80 );
+				var urls = [ 'px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg' ];
+				var loader = new THREE.CubeTextureLoader().setPath( 'textures/cube/skyboxsun25deg/');
 
-		var urls = [ 'px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg' ];
-		var loader = new THREE.CubeTextureLoader().setPath( '{{ asset('textures/cube/skyboxsun25deg') }}/');
-		loader.load( urls, function ( texture ) {
+				loader.load( urls, function ( texture ) {
 
-			scene.background = texture;
+					// scene.background = texture;
+					//
+					var pmremGenerator = new THREE.PMREMGenerator( texture );
+					pmremGenerator.update( renderer );
 
-			var pmremGenerator = new THREE.PMREMGenerator( texture );
-			pmremGenerator.update( renderer );
+					var pmremCubeUVPacker = new THREE.PMREMCubeUVPacker( pmremGenerator.cubeLods );
+					pmremCubeUVPacker.update( renderer );
 
-			var pmremCubeUVPacker = new THREE.PMREMCubeUVPacker( pmremGenerator.cubeLods );
-			pmremCubeUVPacker.update( renderer );
+					envMap = pmremCubeUVPacker.CubeUVRenderTarget.texture;
 
-			envMap = pmremCubeUVPacker.CubeUVRenderTarget.texture;
+					pmremGenerator.dispose();
+					pmremCubeUVPacker.dispose();
 
-			pmremGenerator.dispose();
-			pmremCubeUVPacker.dispose();
+					//
 
-
-			initCar();
-			initMaterialSelectionMenus();
-
-		} );
-
-		var ground = new THREE.Mesh(
-			new THREE.PlaneBufferGeometry( 2400, 2400 ),
-			new THREE.ShadowMaterial( { color: 0x000000, opacity: 0.15, depthWrite: false }
-			) );
-			ground.rotation.x = - Math.PI / 2;
-			ground.receiveShadow = true;
-			ground.renderOrder = 1;
-			scene.add( ground );
-
-			var grid = new THREE.GridHelper( 400, 40, 0x000000, 0x000000 );
-			grid.material.opacity = 0.2;
-			grid.material.depthWrite = false;
-			grid.material.transparent = true;
-			scene.add( grid );
-
-			renderer = new THREE.WebGLRenderer( { antialias: true } );
-			renderer.gammaOutput = true;
-			renderer.setPixelRatio( window.devicePixelRatio );
-			renderer.setSize( window.innerWidth, window.innerHeight );
-
-			container.appendChild( renderer.domElement );
-
-			// stats = new Stats();
-			// container.appendChild( stats.dom );
-
-			window.addEventListener( 'resize', onWindowResize, false );
-
-			renderer.setAnimationLoop( function() {
-
-				update();
-
-				renderer.render( scene, camera );
-
-			} );
-
-		}
-
-		function initCar() {
-
-			THREE.DRACOLoader.setDecoderPath( '{{ asset('js/libs/draco/gltf') }}/' );
-
-			var loader = new THREE.GLTFLoader();
-			loader.setDRACOLoader( new THREE.DRACOLoader() );
-			loader.load( '{{ asset("storage/$renderedModel->file_name") }}', function( gltf ) { // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
-
-				carModel = gltf.scene.children[ 0 ];
-
-				@if ($loadFull)
-				car.setModel( carModel );
-				@endif
-
-				carModel.traverse( function ( child ) {
-
-					if ( child.isMesh  ) {
-						child.material.envMap = envMap;
-					}
+					initCar();
+					initMaterials();
+					initMaterialSelectionMenus();
 
 				} );
 
-				@if ($loadFull)
-				// shadow
-				var texture = new THREE.TextureLoader().load( '{{ asset('storage/ferrari_ao.png') }}' ); // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
-				var shadow = new THREE.Mesh(
-					new THREE.PlaneBufferGeometry( 0.655 * 4, 1.3 * 4 ).rotateX( - Math.PI / 2 ),
-					new THREE.MeshBasicMaterial( { map: texture, opacity: 0.8, transparent: true } )
-				);
-				shadow.renderOrder = 2;
-				carModel.add( shadow );
-				@endif
+				// var ground = new THREE.Mesh(
+				// 	new THREE.PlaneBufferGeometry( 2400, 2400 ),
+				// 	new THREE.ShadowMaterial( { color: 0x000000, opacity: 0.15, depthWrite: false }
+				// ) );
+				// ground.rotation.x = - Math.PI / 2;
+				// ground.receiveShadow = true;
+				// ground.renderOrder = 1;
+				// scene.add( ground );
 
-				scene.add( carModel );
+				// var grid = new THREE.GridHelper( 400, 40, 0x000000, 0x000000 );
+				// grid.material.opacity = 0.2;
+				// grid.material.depthWrite = false;
+				// grid.material.transparent = true;
+				// scene.add( grid );
 
-				@if ($loadFull)
-				carParts.body.push(carModel.getObjectByName('body'));
+				renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
+				renderer.gammaOutput = true;
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth * 0.75, window.innerHeight * 0.65 );
 
-				carParts.interior.push(carModel.getObjectByName('leather'));
+				container.appendChild( renderer.domElement );
 
-				carParts.rims.push(
-					carModel.getObjectByName( 'rim_fl' ),
-					carModel.getObjectByName( 'rim_fr' ),
-					carModel.getObjectByName( 'rim_rr' ),
-					carModel.getObjectByName( 'rim_rl' ),
-					carModel.getObjectByName( 'trim' ),
-				);
+				stats = new Stats();
+				container.appendChild( stats.dom );
 
-				carParts.glass.push(
-					carModel.getObjectByName( 'glass' ),
-				);
+				window.addEventListener( 'resize', onWindowResize, false );
 
-				updateMaterials();
-				@endif
-			});
+				renderer.setAnimationLoop( function() {
 
-		}
-		function initMaterialSelectionMenus() {
+					update();
 
-			$("#custom-body-mat").spectrum({
-				flat: false,
-				showInitial: true,
-				showValue: true,
-				showPalette: true,
+					renderer.render( scene, camera );
 
-				palette:[   ['#00000', '#ffffff'],
-				['#676a6b', '#a2a9ab'],
-				['#fc0000', '#00B1FC'],
-				['#001203', '#FF69B4']
+				} );
 
-			],
+			}
 
+			function initCar() {
 
-			color: customBodyColour,
+				THREE.DRACOLoader.setDecoderPath( 'js/libs/draco/gltf/' );
 
-			change: function(color) {
-				customBodyColour = color.toHexString();
-				updateMaterials();
-			},
+				var loader = new THREE.GLTFLoader();
+				loader.setDRACOLoader( new THREE.DRACOLoader() );
 
-			move: function(color) {
-				customBodyColour = color.toHexString();
-				updateMaterials();
-			},
+				loader.load( 'storage/ferrari.glb', function( gltf ) { // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
 
-			hide: function(colour) {
-				if(customBodyColour == "#ff69b4"){
-					document.getElementById('audio').play();
-				} else {
-					document.getElementById('audio').pause();
+					carModel = gltf.scene.children[ 0 ];
+
+					car.setModel( carModel );
+
+					carModel.traverse( function ( child ) {
+
+						if ( child.isMesh  ) {
+							child.material.envMap = envMap;
+						}
+
+					} );
+
+					// shadow
+					var texture = new THREE.TextureLoader().load( 'storage/ferrari_ao.png' ); // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
+					var shadow = new THREE.Mesh(
+						new THREE.PlaneBufferGeometry( 0.655 * 4, 1.3 * 4 ).rotateX( - Math.PI / 2 ),
+						new THREE.MeshBasicMaterial( { map: texture, opacity: 0.8, transparent: true } )
+					);
+					shadow.renderOrder = 2;
+					carModel.add( shadow );
+
+					scene.add( carModel );
+
+					// car parts for material selection
+					carParts.body.push( carModel.getObjectByName( 'body' ) );
+
+					carParts.interior.push(carModel.getObjectByName('leather'));
+
+					carParts.rims.push(
+						carModel.getObjectByName( 'rim_fl' ),
+						carModel.getObjectByName( 'rim_fr' ),
+						carModel.getObjectByName( 'rim_rr' ),
+						carModel.getObjectByName( 'rim_rl' ),
+						carModel.getObjectByName( 'trim' ),
+					);
+
+					carParts.glass.push(
+						carModel.getObjectByName( 'glass' ),
+					 );
+
+					updateMaterials();
+
+				});
+
+			}
+
+			function initMaterials() {
+
+				materialsLib = {
+
+					main: [
+
+						new THREE.MeshStandardMaterial( { color: 0xff4400, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'orange' } ),
+						new THREE.MeshStandardMaterial( { color: 0x001166, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'blue' } ),
+						new THREE.MeshStandardMaterial( { color: 0x006611, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'green' } ),
+						new THREE.MeshStandardMaterial( { color: 0x990000, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'red' } ),
+						new THREE.MeshStandardMaterial( { color: 0x000000, envMap: envMap, metalness: 0.9, roughness: 0.5, name: 'black' } ),
+						new THREE.MeshStandardMaterial( { color: 0xffffff, envMap: envMap, metalness: 0.9, roughness: 0.5, name: 'white' } ),
+						new THREE.MeshStandardMaterial( { color: 0x555555, envMap: envMap, envMapIntensity: 2.0, metalness: 1.0, roughness: 0.2, name: 'metallic' } ),
+
+					],
+
+					glass: [
+
+						new THREE.MeshStandardMaterial( { color: 0xffffff, envMap: envMap, metalness: 1, roughness: 0, opacity: 0.2, transparent: true, premultipliedAlpha: true, name: 'clear' } ),
+						new THREE.MeshStandardMaterial( { color: 0x000000, envMap: envMap, metalness: 1, roughness: 0, opacity: 0.2, transparent: true, premultipliedAlpha: true, name: 'smoked' } ),
+						new THREE.MeshStandardMaterial( { color: 0x001133, envMap: envMap, metalness: 1, roughness: 0, opacity: 0.2, transparent: true, premultipliedAlpha: true, name: 'blue' } ),
+
+					],
+
 				}
+
 			}
 
-		});
+			function initMaterialSelectionMenus() {
 
-		$("#custom-interior-mat").spectrum({
-			flat: false,
-			showInitial: true,
-			showValue: true,
-			showPalette: true,
+				function addOption( name, menu ) {
 
-			palette:[
-				['#000000', '#ffffff'],
-				['#f5f5dc', '#d9b382'],
-				['#fc0000', '#00B1FC'],
-				['#696969', '#FF69B4']
+					var option = document.createElement( 'option' );
+					option.text = name;
+					option.value = name;
+					menu.add( option );
 
-			],
-			color: customInteriorColour,
+				}
 
-			change: function(color) {
-				customInteriorColour = color.toHexString();
-				console.log(customInteriorColour);
-				updateMaterials();
-			},
+				materialsLib.main.forEach( function( material ) {
 
-			move: function(color) {
-				customInteriorColour = color.toHexString();
-				console.log(customInteriorColour);
-				updateMaterials();
-			}
-		});
+					addOption( material.name, bodyMatSelect );
+					addOption( material.name, rimMatSelect );
 
+				} );
 
-		$("#rim-mat").spectrum({
-			flat: false,
-			showInitial: true,
-			showValue: true,
-			showPalette: true,
+				materialsLib.glass.forEach( function( material ) {
 
-			palette:[
-				['#000000', '#ffffff'],
-				['#f5f5dc', '#d9b382'],
-				['#fc0000', '#00B1FC'],
-				['#696969', '#FF69B4']
+					addOption( material.name, glassMatSelect );
 
-			],
-			color: customRimColour,
+				} );
 
-			change: function(color) {
-				customRimColour = color.toHexString();
-				console.log(customRimColour);
-				updateMaterials();
-			},
+				bodyMatSelect.selectedIndex = 3;
+				rimMatSelect.selectedIndex = 5;
+				glassMatSelect.selectedIndex = 0;
 
-			move: function(color) {
-				customRimColour = color.toHexString();
-				console.log(customRimColour);
-				updateMaterials();
-			}
-		});
+				bodyMatSelect.addEventListener( 'change', updateMaterials );
+				rimMatSelect.addEventListener( 'change', updateMaterials );
+				glassMatSelect.addEventListener( 'change', updateMaterials );
 
+				$("#custom-body-mat").spectrum({
+					flat: false,
+				    showInitial: true,
+				    showValue: true,
 
+					color: customBodyColour,
 
-		$("#glass-mat").spectrum({
-			flat: false,
-			showInitial: true,
-			showValue: true,
-			showPalette: true,
+					change: function(color) {
+						customBodyColour = color.toHexString();
+						console.log(customBodyColour);
+						updateMaterials();
+					},
 
-			palette:[
-				['#000000', '#ffffff'],
-				['#f5f5dc', '#d9b382'],
-				['#fc0000', '#00B1FC'],
-				['#696969', '#FF69B4']
+					move: function(color) {
+						customBodyColour = color.toHexString();
+						console.log(customBodyColour);
+						updateMaterials();
+					}
+				});
 
-			],
-			color: customGlassColour,
+				$("#custom-interior-mat").spectrum({
+					flat: false,
+				    showInitial: true,
+				    showValue: true,
 
-			change: function(color) {
-				customGlassColour = color.toHexString();
-				console.log(customGlassColour);
-				updateMaterials();
-			},
+					color: customInteriorColour,
 
-			move: function(color) {
-				customGlassColour = color.toHexString();
-				console.log(customGlassColour);
-				updateMaterials();
-			}
-		});
-	}
+					change: function(color) {
+						customInteriorColour = color.toHexString();
+						console.log(customInteriorColour);
+						updateMaterials();
+					},
 
-	// set materials to the current values of the selection menus
-	function updateMaterials() {
-
-		var glassMat = new THREE.MeshStandardMaterial( { color: customGlassColour,  envMap: envMap, metalness: 1, roughness: 0, opacity: 0.2, transparent: true, premultipliedAlpha: true, name: 'customGlass' } );
-		var customBodyMat = new THREE.MeshStandardMaterial( { color: customBodyColour, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'customBody' } );
-		var customInteriorMat = new THREE.MeshStandardMaterial( { color: customInteriorColour, envMap: envMap, metalness: 0.3, roughness: 0.2, name: 'customInterior' } );
-		var rimMat = new THREE.MeshStandardMaterial( { color: customRimColour, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'customRim' } );
-
-
-		// carParts.body.forEach( function ( part ) { part.material = bodyMat; } );
-		carParts.body.forEach( function ( part ) { part.material = customBodyMat; } );
-		carParts.interior.forEach( function ( part ) { part.material = customInteriorMat; } );
-
-		carParts.rims.forEach( function ( part ) { part.material = rimMat; } );
-		carParts.glass.forEach( function ( part ) { part.material = glassMat; } );
-
-	}
-
-	function onWindowResize() {
-
-		camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
-
-		renderer.setSize( window.innerWidth, window.innerHeight );
-
-	}
-
-	var driverOffset = new THREE.Vector3(-0.35, 1, 0.3);
-	var yAxis = new THREE.Vector3(0, 1, 0);
-
-	function update() {
-
-		var delta = clock.getDelta();
-
-		if ( carModel ) {
-
-			car.update( delta / 3 );
-
-			console.log(   );
-
-			if ( carModel.position.length() > 200 ) {
-
-				carModel.position.set( 0, 0, 0 );
-				car.speed = 0;
+					move: function(color) {
+						customInteriorColour = color.toHexString();
+						console.log(customInteriorColour);
+						updateMaterials();
+					}
+				});
 			}
 
-			if ( followCamera.checked ) {
-				var camPos = driverOffset.clone();
-				camPos.applyAxisAngle(yAxis, car.angle());
-				camPos.add(carModel.position);
-				camera.position.set(camPos.x, camPos.y - 0.05, camPos.z);
+			// set materials to the current values of the selection menus
+			function updateMaterials() {
 
-				camera.rotation.set(0, car.angle(),0);
-			} else {
+				var bodyMat = materialsLib.main[ bodyMatSelect.selectedIndex ];
+				var rimMat = materialsLib.main[ rimMatSelect.selectedIndex ];
+				var glassMat = materialsLib.glass[ glassMatSelect.selectedIndex ];
 
-				carModel.getWorldPosition( cameraTarget );
-				cameraTarget.y += 0.5;
 
-				camera.position.set( 3.25, 2.0, -5 );
-				camera.lookAt( carModel.position );
+				var customBodyMat = new THREE.MeshStandardMaterial( { color: customBodyColour, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'customBody' } );
+				var customInteriorMat = new THREE.MeshStandardMaterial( { color: customInteriorColour, envMap: envMap, metalness: 0.3, roughness: 0.2, name: 'customInterior' } );
+
+				// carParts.body.forEach( function ( part ) { part.material = bodyMat; } );
+				carParts.body.forEach( function ( part ) { part.material = customBodyMat; } );
+				carParts.interior.forEach( function ( part ) { part.material = customInteriorMat; } );
+
+				carParts.rims.forEach( function ( part ) { part.material = rimMat; } );
+				carParts.glass.forEach( function ( part ) { part.material = glassMat; } );
+
 			}
 
-		}
+			function onWindowResize() {
 
-		// stats.update();
-	}
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
 
-	init();
+				renderer.setSize( window.innerWidth, window.innerHeight );
 
-	</script>
+			}
 
-</body>
-</html>
+			function update() {
+
+				var delta = clock.getDelta();
+
+				if ( carModel ) {
+
+					car.update( delta / 3 );
+
+					console.log(   );
+
+					if ( carModel.position.length() > 200 ) {
+
+						carModel.position.set( 0, 0, 0 );
+						car.speed = 0;
+					}
+
+					if ( followCamera.checked ) {
+
+
+						cameraTarget.y = 3;
+						cameraTarget.z += distance +10;
+						carModel.getWorldPosition( cameraTarget);
+
+
+
+						camera.position.set( cameraTarget.x - 0.3, cameraTarget.y + 1, cameraTarget.z  + 0.3  );
+						camera.lookAt( carModel.position.x, carModel.position.y, carModel.position.z - 10);
+
+					} else {
+
+						carModel.getWorldPosition( cameraTarget );
+						cameraTarget.y += 0.5;
+
+						camera.position.set( 3.25, 2.0, -5 );
+						camera.lookAt( carModel.position );
+					}
+
+				}
+
+				stats.update();
+			}
+
+			init();
+
+		</script>
+@endsection

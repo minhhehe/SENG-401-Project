@@ -115,21 +115,6 @@
 
 				} );
 
-				// var ground = new THREE.Mesh(
-				// 	new THREE.PlaneBufferGeometry( 2400, 2400 ),
-				// 	new THREE.ShadowMaterial( { color: 0x000000, opacity: 0.15, depthWrite: false }
-				// ) );
-				// ground.rotation.x = - Math.PI / 2;
-				// ground.receiveShadow = true;
-				// ground.renderOrder = 1;
-				// scene.add( ground );
-
-				// var grid = new THREE.GridHelper( 400, 40, 0x000000, 0x000000 );
-				// grid.material.opacity = 0.2;
-				// grid.material.depthWrite = false;
-				// grid.material.transparent = true;
-				// scene.add( grid );
-
 				renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
 				renderer.gammaOutput = true;
 				renderer.setPixelRatio( window.devicePixelRatio );
@@ -174,13 +159,13 @@
 					} );
 
 					// shadow
-					var texture = new THREE.TextureLoader().load( 'storage/ferrari_ao.png' ); // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
-					var shadow = new THREE.Mesh(
-						new THREE.PlaneBufferGeometry( 0.655 * 4, 1.3 * 4 ).rotateX( - Math.PI / 2 ),
-						new THREE.MeshBasicMaterial( { map: texture, opacity: 0.8, transparent: true } )
-					);
-					shadow.renderOrder = 2;
-					carModel.add( shadow );
+					// var texture = new THREE.TextureLoader().load( 'storage/ferrari_ao.png' ); // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
+					// var shadow = new THREE.Mesh(
+					// 	new THREE.PlaneBufferGeometry( 0.655 * 4, 1.3 * 4 ).rotateX( - Math.PI / 2 ),
+					// 	new THREE.MeshBasicMaterial( { map: texture, opacity: 0.8, transparent: true } )
+					// );
+					// shadow.renderOrder = 2;
+					// carModel.add( shadow );
 
 					scene.add( carModel );
 
