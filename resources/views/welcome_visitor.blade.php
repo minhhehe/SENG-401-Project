@@ -18,7 +18,7 @@
 			<span>Custom Interior: <input id="custom-interior-mat" type="submit" name="colour2" value="#222222"></span>
 			<br><br> -->
 			<!-- <span>Follow camera: <input type="checkbox" id="camera-toggle"></span> -->
-		</div>
+		<!-- </div> -->
 
 		<div id="container"></div>
 
