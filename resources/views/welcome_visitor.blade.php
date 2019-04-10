@@ -6,18 +6,18 @@
 
 @section('render_window')
 
-		<div id="info">
+		<!-- <div id="info">
 			<span>Body: <select id="body-mat"></select></span>
 			<span>Rims / Trim: <select id="rim-mat"></select></span>
 			<span>Glass: <select id="glass-mat"></select></span>
-			<span>Custom Body:
+			<span>Custom Body: -->
 				<!-- <input id="custom-body-mat" type="submit" name="colour" value="#FFFFFF"> -->
-				<input type='submit' name = 'colour' id ='custom-body-mat' value='#fffff'/>
+				<!-- <input type='submit' name = 'colour' id ='custom-body-mat' value='#fffff'/>
 
 			</span>
 			<span>Custom Interior: <input id="custom-interior-mat" type="submit" name="colour2" value="#222222"></span>
-			<br><br>
-			<span>Follow camera: <input type="checkbox" id="camera-toggle"></span>
+			<br><br> -->
+			<!-- <span>Follow camera: <input type="checkbox" id="camera-toggle"></span> -->
 		</div>
 
 		<div id="container"></div>
@@ -338,26 +338,14 @@
 						car.speed = 0;
 					}
 
-					if ( followCamera.checked ) {
 
-
-						cameraTarget.y = 3;
-						cameraTarget.z += distance +10;
-						carModel.getWorldPosition( cameraTarget);
-
-
-
-						camera.position.set( cameraTarget.x - 0.3, cameraTarget.y + 1, cameraTarget.z  + 0.3  );
-						camera.lookAt( carModel.position.x, carModel.position.y, carModel.position.z - 10);
-
-					} else {
 
 						carModel.getWorldPosition( cameraTarget );
 						cameraTarget.y += 0.5;
 
 						camera.position.set( 3.25, 2.0, -5 );
 						camera.lookAt( carModel.position );
-					}
+
 
 				}
 
