@@ -281,8 +281,8 @@
 					cameraTarget.y += 0.5;
 
 
-					// camera.position.set( {{ $renderedModel->camera_x }}, {{ $renderedModel->camera_y }}, {{ $renderedModel->camera_z }} );
-					camera.position.set( x, 7 , -2);
+					camera.position.set( {{ $renderedModel->camera_x }}, {{ $renderedModel->camera_y }}, {{ $renderedModel->camera_z }} );
+					// camera.position.set( x, 7 , -2);
 					camera.lookAt( carModel.position );
 				}
 				x=x+0.1;
