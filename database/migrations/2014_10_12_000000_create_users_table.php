@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->date('dob')->nullable();
+            //$table->string('phone_number')->nullable();
             // TODO: Add other roles
             //$table->enum('role', ['visitor'])->default('visitor');
             $table->string('gender')->nullable();
