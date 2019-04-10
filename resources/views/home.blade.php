@@ -40,15 +40,15 @@
                         {{ method_field('PATCH') }}
                       <br>
 
-                      @if (false)
+                      @if (true)
                       <?php // TODO: Delete everything between these if tags ?>
                       <!-- First and Last Name -->
-                      <div class="field">
+                      <!-- <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Name</label>
                           <input disabled class="input" type="text" value="{{ Auth::user()->fname}} {{ Auth::user()->lname }}" name="name">
                         </div>
-                      </div>
+                      </div> -->
 
                       <!-- <div class="h-divider"></div> -->
 
@@ -56,7 +56,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Date of Birth</label>
-                          <input disabled class="date" type="date" value="{{ Auth::user()->dob}}" name="dob">
+                          <input class="date" type="date" value="{{ Auth::user()->dob}}" name="dob">
                         </div>
                       </div>
 
@@ -66,7 +66,7 @@
                       <div class="field">
                         <div class="control">
                           <label class="label col-md-3">Gender</label>
-                          <input disabled class="text" type="text" value="{{ Auth::user()->gender}}" name="gender">
+                          <input class="text" type="text" value="{{ Auth::user()->gender}}" name="gender">
                         </div>
                       </div>
 
@@ -74,50 +74,34 @@
                       <?php // TODO: Delete everything between these if tags ?>
                       @endif
 
-                      <!-- Address -->
-                      <!-- TODO Ensure Required -->
-                      <div class="field">
-                        <div class="control">
-                          <label class="label col-md-3">Address</label>
-                          <input class="text" type="text" value="{{ Auth::user()->address}}" name="address">
-                        </div>
-                      </div>
 
                       <!-- <div class="h-divider"></div> -->
                       <!-- TODO seperate in day phone and night phone -->
                       <!-- Phone Number -->
                       <!-- TODO Number Valid Check -->
-                      <div class="field">
-                        <div class="control">
-                          <label class="label col-md-3">Day Phone Number</label>
-                          <input class="text" type="number" value="{{ Auth::user()->day_phone_number}}" name="day_phone_number">
-                        </div>
-                      </div>
+
 
                       <!-- <div class="h-divider"></div> -->
-                      <!-- TODO seperate in day phone and night phone -->
-                      <!-- Phone Number -->
-                      <!-- TODO Number Valid Check -->
-                      <div class="field">
-                        <div class="control">
-                          <label class="label col-md-3">Night Phone Number</label>
-                          <input class="text" type="number" value="{{ Auth::user()->night_phone_number}}" name="night_phone_number">
-                        </div>
+                    @if (false)
+                    <div class="field">
+                      <div class="control">
+                        <label class="label col-md-3">Phone Number</label>
+                        <input class="text" type="number" value="{{ Auth::user()->day_phone_number}}" name="phone_number">
                       </div>
+                    </div>
 
-                      <!-- <div class="h-divider"></div> -->
 
-                      <!-- Email -->
-                      <!-- TODO Email Valid Check -->
-                      <div class="field">
-                        <div class="control">
-                          <label class="label col-md-3">Email</label>
-                         <input required class="text" type="email" value="{{ Auth::user()->email}}" name="email">
-                        </div>
+                    <!-- <div class="h-divider"></div> -->
+
+                    <!-- Email -->
+                    <!-- TODO Email Valid Check -->
+                    <div class="field">
+                      <div class="control">
+                        <label class="label col-md-3">Email</label>
+                       <input required class="text" type="email" value="{{ Auth::user()->email}}" name="email">
                       </div>
-
-                      <!-- <div class="h-divider"></div> -->
-
+                    </div>
+                    
                       <!-- Billing Info -->
                       <div class="field">
                         <div class="control">
@@ -134,6 +118,15 @@
                         <div class="control">
                           <label class="label col-md-3">Previous Vehicle</label>
                            <input class="text" type="text" value="{{ $customer->lastVehiclePurchased}}" name="lastVehiclePurchased">
+                        </div>
+                      </div>
+
+                      <!-- Address -->
+                      <!-- TODO Ensure Required -->
+                      <div class="field">
+                        <div class="control">
+                          <label class="label col-md-3">Address</label>
+                          <input class="text" type="text" value="{{ Auth::user()->address}}" name="address">
                         </div>
                       </div>
 
@@ -192,7 +185,7 @@
                           <input class="text" type="text" value="{{ $customer->desiredPrice}}" name="desiredPrice">
                         </div>
                       </div>
-
+                        @endif
                       <!-- <div class="h-divider"></div> -->
 
 

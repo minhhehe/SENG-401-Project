@@ -6,24 +6,23 @@
 
 @section('render_window')
 
-		<div id="info">
+		<!-- <div id="info">
 			<span>Body: <select id="body-mat"></select></span>
 			<span>Rims / Trim: <select id="rim-mat"></select></span>
 			<span>Glass: <select id="glass-mat"></select></span>
-			<span>Custom Body:
+			<span>Custom Body: -->
 				<!-- <input id="custom-body-mat" type="submit" name="colour" value="#FFFFFF"> -->
-				<input type='submit' name = 'colour' id ='custom-body-mat' value='#fffff'/>
+				<!-- <input type='submit' name = 'colour' id ='custom-body-mat' value='#fffff'/>
 
 			</span>
 			<span>Custom Interior: <input id="custom-interior-mat" type="submit" name="colour2" value="#222222"></span>
-			<br><br>
-			<span>Follow camera: <input type="checkbox" id="camera-toggle"></span>
+			<br><br> -->
+			<!-- <span>Follow camera: <input type="checkbox" id="camera-toggle"></span> -->
 		</div>
 
 		<div id="container"></div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 		<script src="js/clientscript.js"></script>
 
 
@@ -40,7 +39,7 @@
 		<script src="js/WebGL.js"></script>
 		<script src="js/libs/stats.min.js"></script>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script src='js/spectrum.js'></script>
     <link rel='stylesheet' href='css/spectrum.css' />
 
@@ -120,21 +119,6 @@
 
 				} );
 
-				// var ground = new THREE.Mesh(
-				// 	new THREE.PlaneBufferGeometry( 2400, 2400 ),
-				// 	new THREE.ShadowMaterial( { color: 0x000000, opacity: 0.15, depthWrite: false }
-				// ) );
-				// ground.rotation.x = - Math.PI / 2;
-				// ground.receiveShadow = true;
-				// ground.renderOrder = 1;
-				// scene.add( ground );
-
-				// var grid = new THREE.GridHelper( 400, 40, 0x000000, 0x000000 );
-				// grid.material.opacity = 0.2;
-				// grid.material.depthWrite = false;
-				// grid.material.transparent = true;
-				// scene.add( grid );
-
 				renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
 				renderer.gammaOutput = true;
 				renderer.setPixelRatio( window.devicePixelRatio );
@@ -179,13 +163,13 @@
 					} );
 
 					// shadow
-					var texture = new THREE.TextureLoader().load( 'storage/ferrari_ao.png' ); // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
-					var shadow = new THREE.Mesh(
-						new THREE.PlaneBufferGeometry( 0.655 * 4, 1.3 * 4 ).rotateX( - Math.PI / 2 ),
-						new THREE.MeshBasicMaterial( { map: texture, opacity: 0.8, transparent: true } )
-					);
-					shadow.renderOrder = 2;
-					carModel.add( shadow );
+					// var texture = new THREE.TextureLoader().load( 'storage/ferrari_ao.png' ); // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
+					// var shadow = new THREE.Mesh(
+					// 	new THREE.PlaneBufferGeometry( 0.655 * 4, 1.3 * 4 ).rotateX( - Math.PI / 2 ),
+					// 	new THREE.MeshBasicMaterial( { map: texture, opacity: 0.8, transparent: true } )
+					// );
+					// shadow.renderOrder = 2;
+					// carModel.add( shadow );
 
 					scene.add( carModel );
 
@@ -360,26 +344,14 @@
 						car.speed = 0;
 					}
 
-					if ( followCamera.checked ) {
 
-
-						cameraTarget.y = 3;
-						cameraTarget.z += distance +10;
-						carModel.getWorldPosition( cameraTarget);
-
-
-
-						camera.position.set( cameraTarget.x - 0.3, cameraTarget.y + 1, cameraTarget.z  + 0.3  );
-						camera.lookAt( carModel.position.x, carModel.position.y, carModel.position.z - 10);
-
-					} else {
 
 						carModel.getWorldPosition( cameraTarget );
 						cameraTarget.y += 0.5;
 
 						camera.position.set( 3.25, 2.0, -5 );
 						camera.lookAt( carModel.position );
-					}
+
 
 				}
 
