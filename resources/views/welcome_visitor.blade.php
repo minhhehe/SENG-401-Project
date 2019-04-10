@@ -380,5 +380,5 @@
 @stop
 
 @section('model_background')
-<img id="model_backdrop" src="https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/befbcde0-9b36-11e6-95b9-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg">
+<img style="width:60%;height:85%;" id="model_backdrop" src="">
 @stop
