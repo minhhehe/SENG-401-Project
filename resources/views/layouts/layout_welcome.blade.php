@@ -42,8 +42,8 @@
                     <!-- Laravel -->
                 </div>
                 <div>
-                  <div>@yield('model_background')</div>
-                  <div>@yield('render_window')</div>
+                  <div class="">@yield('model_background')</div>
+                  <div class="">@yield('render_window')</div>
                 </div>
                 <div>
                   @yield('image_gallery')
