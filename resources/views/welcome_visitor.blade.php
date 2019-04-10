@@ -366,3 +366,7 @@
 		<button id="grab_flickr_button"> Search Flickr </button>
 		<div id="imageSection"> </div>
 @endsection
+
+@section('')
+
+@stop

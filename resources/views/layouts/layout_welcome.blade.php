@@ -44,6 +44,9 @@
                 <div>
                   @yield('render_window')
                 </div>
+                <div>
+                  @yield('image_gallery')
+                </div>
                 <div class="links">
                   @yield('links')
                     <!-- <a href="https://laravel.com/docs">Docs</a>-->
