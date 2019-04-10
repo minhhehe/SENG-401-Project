@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('select');
-});
+Route::get('/', 'HomeController@select');
 
 Route::get('/car_example', function() {
     return view('car_example');
