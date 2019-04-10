@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>CRAP</title>
+	<title> FK BS 2019 </title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -45,21 +45,16 @@
 <body>
 	<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
 		<!-- Left Side Of Navbar -->
-		<a title="Back to Homepage"class="navbar-brand" href="{{ url('/') }}">
+		<a class="navbar-brand" href="{{ url('/') }}">
 				<!-- {{ config('app.name', 'Laravel') }} -->
-				CADA Realistic Automotive Project
+				FKBmb Background Simulator 2019
 		</a>
 		<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-						<a title="Choose A Different Model" class="nav-link" href="{{ url('/select') }}">Select a Model</a>
-				</li>
-				<li class="nav-item">
-						<a title="You are here" class="nav-link" href="#">Colour</a>
-				</li>
+
 		</ul>
 
 			<div class="container">
-				<div class="navbar-brand" style="text-align: center;margin-left:15%;font-style:italic;">Customize your vehicle</div>
+
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 							<span class="navbar-toggler-icon"></span>
 					</button>
@@ -84,9 +79,9 @@
 										</a>
 
 										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-											<a title = "Access Your Account Information" class="dropdown-item" href="{{ url('/home') }}">Your Account<a>
+											<a class="dropdown-item" href="{{ url('/home') }}">Your Account<a>
 												<div class="h-divider"></div>
-												<a title = "Log Out - Goodbye!" class="dropdown-item" href="{{ route('logout') }}"
+												<a class="dropdown-item" href="{{ route('logout') }}"
 													 onclick="event.preventDefault();
 																				 document.getElementById('logout-form').submit();">
 														{{ __('Logout') }}
@@ -111,7 +106,7 @@
 		<br><br>
 		<span>Driver camera: <input type="checkbox" id="camera-toggle"></span>
 
-		<button title = "Submit Your Chosen Car Colours - You can always change them later!" class="btn btn-secondary topRight" onclick="document.location.href='{{ url('/submitted') }}'"> Submit </button>
+		<button class="btn btn-secondary topRight" onclick="document.location.href='{{ url('/submitted') }}'"> Submit </button>
 	</div>
 
 	<div id="container"></div>
