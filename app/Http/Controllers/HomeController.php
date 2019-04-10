@@ -28,11 +28,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $customer =  DB::table('customers')->where('user_id', $user_id)->first();
-        $user = auth()->user();
-        return $customer;
-      //  return view('home', ['customer' => $customer]);
     }
 
     /**
@@ -41,16 +36,7 @@ class HomeController extends Controller
     public function select() {
 
 
-       $user_id = Auth()->user()->id;
-       $customer =  DB::table('customers')->where('user_id', $user_id)->first();
 
-        if (!$customer){
-          $customer = new Customer();
-          $customer->user_id = $user_id;
-          $customer->save();
-        }
-
-        $role = auth()->user()->role;
         $renderedModels = RenderedModel::all();
         $defaultBackgrounds = [
             'http://localhost:8000/storage/default1.jpg',
