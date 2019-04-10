@@ -380,5 +380,5 @@
 @stop
 
 @section('model_background')
-<img style="width:60%;height:85%;" id="model_backdrop" src="">
+<img style="width:650px;height:400px" id="model_backdrop" src="http://localhost:8000/storage/default0.jpg">
 @stop
