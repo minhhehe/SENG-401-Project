@@ -1,26 +1,8 @@
 @extends('layouts.layout_welcome')
 
-@section('title')
-<div>SENG 401 Project Visitor Landing Page</div>
-@endsection
-
 @section('render_window')
 
-		<!-- <div id="info">
-			<span>Body: <select id="body-mat"></select></span>
-			<span>Rims / Trim: <select id="rim-mat"></select></span>
-			<span>Glass: <select id="glass-mat"></select></span>
-			<span>Custom Body: -->
-				<!-- <input id="custom-body-mat" type="submit" name="colour" value="#FFFFFF"> -->
-				<!-- <input type='submit' name = 'colour' id ='custom-body-mat' value='#fffff'/>
-
-			</span>
-			<span>Custom Interior: <input id="custom-interior-mat" type="submit" name="colour2" value="#222222"></span>
-			<br><br> -->
-			<!-- <span>Follow camera: <input type="checkbox" id="camera-toggle"></span> -->
-		<!-- </div> -->
-
-		<div id="container"></div>
+		<div class = "model" id="container"></div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="js/clientscript.js"></script>
@@ -367,16 +349,21 @@
 		<input class="input" id="flickr_data" type="text" placeholder="Text input">
 		<button id="grab_flickr_button"> Search Flickr </button>
 		<br>
-		<div id="imageSection"> </div>
+		<div id="imageSectionContainer" style="background:blue;margin-top:10px;">
+			<div id="imageSection" class="flex-container" style="justify-content: center; flex-wrap: wrap; margin:auto;">
+			</div>
+		</div>
 	@else
-		<div id="imageSection">
-			<img id='thumb_0' style="width:100px;height:100px;" src='http://localhost:8000/storage/default1.jpg' onclick="swapBackround('http://localhost:8000/storage/default1.jpg')"><br>
-			<img id='thumb_1' style='width:100px;height:100px;' src='http://localhost:8000/storage/default2.jpg' onclick="swapBackround('http://localhost:8000/storage/default2.jpg')"><br>
-			<img id='thumb_2' style='width:100px;height:100px;' src='http://localhost:8000/storage/default3.jpg' onclick="swapBackround('http://localhost:8000/storage/default3.jpg')"><br>
+		<div id="imageSectionContainer" style="background:red;">
+				<div id="imageSection" class="flex-container" style="justify-content: center;margin:auto;">
+					<div><img id='thumb_0' style="width:100px;height:100px;" src='http://localhost:8000/storage/default1.jpg' onclick="swapBackround('http://localhost:8000/storage/default1.jpg')"></div>
+					<div><img id='thumb_1' style='width:100px;height:100px;' src='http://localhost:8000/storage/default2.jpg' onclick="swapBackround('http://localhost:8000/storage/default2.jpg')"></div>
+					<div><img id='thumb_2' style='width:100px;height:100px;' src='http://localhost:8000/storage/default3.jpg' onclick="swapBackround('http://localhost:8000/storage/default3.jpg')"></div>
+				</div>
 		</div>
   @endauth
 @stop
 
 @section('model_background')
-<img id="model_backdrop" src="https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/befbcde0-9b36-11e6-95b9-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg">
+<img id="model_backdrop" src="http://localhost:8000/storage/default0.jpg">
 @stop
