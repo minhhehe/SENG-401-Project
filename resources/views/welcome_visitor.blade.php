@@ -25,6 +25,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="js/clientscript.js"></script>
 
+
 		<script src="js/three.min.js"></script>
 
 		<script src="js/loaders/DRACOLoader.js"></script>
@@ -361,6 +362,7 @@
 
 		</script>
 
+		<input class="input" id="flickr_data" type="text" placeholder="Text input">
 		<button id="grab_flickr_button"> Search Flickr </button>
 		<div id="imageSection"> </div>
 @endsection
