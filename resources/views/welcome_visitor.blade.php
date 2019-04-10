@@ -349,10 +349,13 @@
 		<input class="input" id="flickr_data" type="text" placeholder="Text input">
 		<button id="grab_flickr_button"> Search Flickr </button>
 		<br>
-		<div id="imageSection" style="background:blue;"> </div>
+		<div id="imageSectionContainer" style="background:blue;margin-top:10px;">
+			<div id="imageSection" class="flex-container" style="justify-content: center; flex-wrap: wrap; margin:auto;">
+			</div>
+		</div>
 	@else
-		<div id="imageSection" style="background:red;">
-				<div class="flex-container" style="justify-content: center;margin:auto;">
+		<div id="imageSectionContainer" style="background:red;">
+				<div id="imageSection" class="flex-container" style="justify-content: center;margin:auto;">
 					<div><img id='thumb_0' style="width:100px;height:100px;" src='http://localhost:8000/storage/default1.jpg' onclick="swapBackround('http://localhost:8000/storage/default1.jpg')"></div>
 					<div><img id='thumb_1' style='width:100px;height:100px;' src='http://localhost:8000/storage/default2.jpg' onclick="swapBackround('http://localhost:8000/storage/default2.jpg')"></div>
 					<div><img id='thumb_2' style='width:100px;height:100px;' src='http://localhost:8000/storage/default3.jpg' onclick="swapBackround('http://localhost:8000/storage/default3.jpg')"></div>

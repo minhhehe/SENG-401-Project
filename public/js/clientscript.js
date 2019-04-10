@@ -19,13 +19,13 @@ $(document).ready(function() {
 
 function displayAllImages(data) {
     var arrayLength = data.length;
-    var code = "<div class=\"flex-container\" style=\"margin:auto;\">";
+    var code = "";
 
     for (var i = 0; i < arrayLength; i++) {
         code = code +
             "<div><img id='thumb_"+ i +"'style='width:100px;height:100px;'src='" + data[i] + "' onclick=\"swapBackround('"+data[i]+"')\"></div>"
     }
-    code = code + "</div>";
+    // code = code + "</div>";
     return code;
 }
 
