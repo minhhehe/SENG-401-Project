@@ -281,7 +281,7 @@
 					carModel.getWorldPosition( cameraTarget );
 					cameraTarget.y += 0.5;
 
-					camera.position.set( 1.5, 4.0, 10 );
+					camera.position.set( {{ $renderedModel->camera_x }}, {{ $renderedModel->camera_y }}, {{ $renderedModel->camera_z }} );
 					camera.lookAt( carModel.position );
 				}
 			}

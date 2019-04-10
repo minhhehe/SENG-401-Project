@@ -18,6 +18,10 @@ class CreateRenderedModelsTable extends Migration
             $table->string('file_name');
             $table->string('picture');
             $table->timestamps();
+            // $table->string('description'); // handled in add_description_to_rendered_model
+            $table->float('camera_x');
+            $table->float('camera_y');
+            $table->float('camera_z');
         });
     }
 

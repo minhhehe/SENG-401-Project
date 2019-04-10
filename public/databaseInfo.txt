@@ -1,8 +1,2 @@
-INSERT INTO `rendered_models` (`id`, `file_name`, `picture`, `created_at`, `updated_at`, `description`) VALUES ('1', 'ferrari.glb', 'ferrari.png', NULL, NULL, 'Ferrari 458 Italia');
-INSERT INTO `rendered_models` (`id`, `file_name`, `picture`, `created_at`, `updated_at`, `description`) VALUES ('2', 'range_rover.glb', 'range_rover.png', NULL, NULL, 'Range Rover Evoque');
-INSERT INTO `rendered_models` (`id`, `file_name`, `picture`, `created_at`, `updated_at`, `description`) VALUES ('3', 'toyota.glb', 'toyota.png', NULL, NULL, 'Toyota Land Cruiser');
-INSERT INTO `rendered_models` (`id`, `file_name`, `picture`, `created_at`, `updated_at`, `description`) VALUES ('4', 'mclaren.glb', 'mclaren.png', NULL, NULL, 'McLaren P1');
-INSERT INTO `rendered_models` (`id`, `file_name`, `picture`, `created_at`, `updated_at`, `description`) VALUES ('5', 'lamborghini.glb', 'lamborghini.png', NULL, NULL, 'Lamborghini Aventador');
-INSERT INTO `rendered_models` (`id`, `file_name`, `picture`, `created_at`, `updated_at`, `description`) VALUES ('6', 'x_wing.glb', 'x_wing.png', NULL, NULL, 'T-65B X-wing');
-
-INSERT INTO `bodies` (`id`, `rendered_model_id`, `body`, `created_at`, `updated_at`) VALUES ('1', '1', 'body', NULL, NULL);
+INSERT INTO `rendered_models` (`id`, `file_name`, `picture`, `created_at`, `updated_at`, `description`, `camera_x`, `camera_y`, `camera_z`)
+VALUES ('1', 'pikachu.glb', 'pikachu.png', NULL, NULL, 'Pikachu', 1.5, 4, 10);
