@@ -260,9 +260,8 @@
 				renderer.setSize( window.innerWidth, window.innerHeight );
 
 			}
-
+			var x = 0;
 			function update() {
-
 				var delta = clock.getDelta();
 
 				if ( carModel ) {
@@ -281,9 +280,12 @@
 					carModel.getWorldPosition( cameraTarget );
 					cameraTarget.y += 0.5;
 
-					camera.position.set( {{ $renderedModel->camera_x }}, {{ $renderedModel->camera_y }}, {{ $renderedModel->camera_z }} );
+
+					// camera.position.set( {{ $renderedModel->camera_x }}, {{ $renderedModel->camera_y }}, {{ $renderedModel->camera_z }} );
+					camera.position.set( x, 7 , -2);
 					camera.lookAt( carModel.position );
 				}
+				x=x+0.1;
 			}
 
 			init();
