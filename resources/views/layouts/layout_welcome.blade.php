@@ -42,7 +42,11 @@
                     <!-- Laravel -->
                 </div>
                 <div>
-                  @yield('render_window')
+                  <div class="">@yield('model_background')</div>
+                  <div class="">@yield('render_window')</div>
+                </div>
+                <div>
+                  @yield('image_gallery')
                 </div>
                 <div class="links">
                   @yield('links')

@@ -359,10 +359,24 @@
 			}
 
 			init();
-
 		</script>
+@endsection
 
+@section('image_gallery')
+  @auth
 		<input class="input" id="flickr_data" type="text" placeholder="Text input">
 		<button id="grab_flickr_button"> Search Flickr </button>
+		<br>
 		<div id="imageSection"> </div>
-@endsection
+	@else
+		<div id="imageSection">
+			<img id='thumb_0' style="width:100px;height:100px;" src='http://localhost:8000/storage/default1.jpg' onclick="swapBackround('http://localhost:8000/storage/default1.jpg')"><br>
+			<img id='thumb_1' style='width:100px;height:100px;' src='http://localhost:8000/storage/default2.jpg' onclick="swapBackround('http://localhost:8000/storage/default2.jpg')"><br>
+			<img id='thumb_2' style='width:100px;height:100px;' src='http://localhost:8000/storage/default3.jpg' onclick="swapBackround('http://localhost:8000/storage/default3.jpg')"><br>
+		</div>
+  @endauth
+@stop
+
+@section('model_background')
+<img id="model_backdrop" src="https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/befbcde0-9b36-11e6-95b9-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg">
+@stop
