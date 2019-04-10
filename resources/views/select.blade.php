@@ -8,7 +8,8 @@ var renderedModels = [
   @foreach ($renderedModels as $renderedModel)
   {
     id: {{ $renderedModel->id }},
-    picture: "{{ asset('storage/' . $renderedModel->picture) }}"
+    picture: "{{ asset('storage/' . $renderedModel->picture) }}",
+    description: "{{ $renderedModel->description }}"
   },
   @endforeach
 ];
@@ -21,11 +22,23 @@ $(function() {
 });
 
 function initCardList() {
-  renderedModels.forEach(function(renderedModel) {
-    $("#card-list").append(
-      "<div id='card" + renderedModel.id + "' class='card card--unselected'><a href='" + RENDER_MODEL_URL + renderedModel.id + "'><img src='" + renderedModel.picture + "' class='card-image' alt=''></a></div>"
-    );
-  });
+    renderedModels.forEach(function(renderedModel, index) {
+        // $("#card-list").append(
+        //     "<div id='card" + renderedModel.id + "' class='custom-card custom-card--unselected'><a href='" + RENDER_MODEL_URL + renderedModel.id + "'><img src='" + renderedModel.picture + "' class='custom-card-image' alt=''></a></div>"
+        // );
+
+        $("#card-" + renderedModel.id).children().attr('title', "View " + renderedModel.description);
+
+        $("#card-" + renderedModel.id).click(function(event) {
+            var index = parseInt($(this).attr('id').split('-')[1]);
+            selectCard(index);
+        });
+    });
+
+    // $("#card-2").click(function(event) {
+    //     var index = parseInt($(this).attr('id').split('-')[1]);
+    //     selectCard(index);
+    // });
 }
 
 function setMainDisplay(index) {
@@ -40,31 +53,45 @@ function setMainDisplay(index) {
 
   $("#mainDisplayLink").attr("href", RENDER_MODEL_URL + renderedModel.id);
   $("#mainDisplayImg").attr("src", renderedModel.picture);
+  $("#mainDisplayImg").attr("title", "Colour " + renderedModel.description);
+  $("#description").text(renderedModel.description);
   // animateCSS('#mainDisplayImg', 'fadeOut', function(){ animateCSS('#mainDisplayImg', 'fadeIn') } );
 
-  $("#card" + selectedIndex).removeClass("card--selected");
-  $("#card" + selectedIndex).addClass("card--unselected");
-  $("#card" + index).removeClass("card--unselected");
-  $("#card" + index).addClass("card--selected");
+    // $("#card-" + selectedIndex).removeClass("custom-card--selected");
+    // $("#card-" + selectedIndex).addClass("custom-card--unselected");
+    // $("#card-" + index).removeClass("custom-card--unselected");
+    // $("#card-" + index).addClass("custom-card--selected");
 
+    $("#card-" + selectedIndex).css("border", "");
+    $("#card-" + index).css("border", "4px solid gray");
 
   selectedIndex = index;
 }
 
 function selectLeft() {
-  animateCSS('#mainDisplayImg', 'bounceOutLeft', function(){
+  animateCSS('#mainDisplayImg', 'bounceOutUp', function(){
     setMainDisplay(selectedIndex - 1);
-    animateCSS('#mainDisplayImg', 'bounceInRight')
+    animateCSS('#mainDisplayImg', 'bounceInDown')
   } );
 }
 
 function selectRight() {
-  animateCSS('#mainDisplayImg', 'bounceOutRight', function(){
+  animateCSS('#mainDisplayImg', 'bounceOutUp', function(){
     setMainDisplay(selectedIndex + 1);
-    animateCSS('#mainDisplayImg', 'bounceInLeft')
-  } );
+    animateCSS('#mainDisplayImg', 'bounceInDown')
+  });
 }
 
+function selectCard(index) {
+    if (index == selectedIndex) {
+        return;
+    }
+
+    animateCSS('#mainDisplayImg', 'bounceOutUp', function(){
+      setMainDisplay(index);
+      animateCSS('#mainDisplayImg', 'bounceInDown')
+    });
+}
 
 function animateCSS(element, animationName, callback) {
   const node = document.querySelector(element)
@@ -84,22 +111,71 @@ if (typeof callback === 'function') callback()
 </script>
 @stop
 
+@section('title')
+ Choose your vehicle model
+@stop
+
 @section('mainDisplay')
-<div class="main-display">
-  <button id="leftButton" class="select-button" onclick="selectLeft()">
-    &lt;
-  </button>
-  <div style="display: inline-block; float: left; ">
-    <a id="mainDisplayLink" href="#"><img id="mainDisplayImg" src="" class="card-image" alt=""></a>
-  </div>
-  <button id="rightButton" class="select-button" onclick="selectRight()">
-    &gt;
-  </button>
+<div class="custom-main-display">
+    <button id="leftButton" class="custom-select-button" onclick="selectLeft()" title="View previous model">
+        &lt;
+    </button>
+    <div style="display: inline-block; float: left; width: auto;">
+        <a id="mainDisplayLink" href="#"><img id="mainDisplayImg" src="" class="custom-card-image" alt=""></a>
+    </div>
+    <button id="rightButton" class="custom-select-button" onclick="selectRight()" title="View next model">
+        &gt;
+    </button>
+</div>
+
+<br>
+<div>
+    <h4 id="description">Ferrari 458 Italia</h4>
 </div>
 
 @stop
 
 @section('list')
-<!-- <div id="card-list" class="select-list">
+<!-- <div id="card-list" class="custom-select-list">
 </div> -->
+<div style="text-align: center; margin-left: 20%; margin-right: 20%;">
+    <div id="card-list">
+        <div class="row" style="margin-bottom: 10px">
+            <div class="col-md-4">
+                <div id="card-1" class="card custom-clickable">
+                    <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="" title="View Ferrari 458 Italia">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="card-2" class="card custom-clickable">
+                    <img class="card-img" src="{{ url('storage/range_rover.png') }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="card-3" class="card custom-clickable">
+                    <img class="card-img" src="{{ url('storage/toyota.png') }}" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div id="card-4" class="card custom-clickable">
+                    <img class="card-img" src="{{ url('storage/mclaren.png') }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="card-5" class="card custom-clickable">
+                    <img class="card-img" src="{{ url('storage/lamborghini.png') }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="card-6" class="card custom-clickable">
+                    <img class="card-img" src="{{ url('storage/x_wing.png') }}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @stop

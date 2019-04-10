@@ -42,6 +42,8 @@ THREE.Car = ( function ( ) {
 
 	var loaded = false;
 
+  var noseX, noseY, noseZ;
+
 	var controls = {
 
 		brake: false,
@@ -229,6 +231,10 @@ THREE.Car = ( function ( ) {
 			// angle of car
 			root.rotation.y = carOrientation;
 
+      noseX = root.position.x;
+      noseZ = root.position.z;
+      noseY = root.position.y;
+
 			// wheels rolling
 			var angularSpeedRatio = - 2 / wheelDiameter;
 
@@ -291,7 +297,23 @@ THREE.Car = ( function ( ) {
 			size = bb.getSize( size );
 			length = Math.max( size.x, size.y, size.z );
 
-		}
+		},
+
+    noseX: function() {
+      return noseX;
+    },
+
+    noseY: function() {
+      return noseY;
+    },
+
+    noseZ: function() {
+      return noseZ;
+    },
+
+    angle: function() {
+      return carOrientation;
+    }
 
 	};
 

@@ -129,12 +129,12 @@ margin:auto;
 }
 
 /* CSS used in select */
-.main-display {
+.custom-main-display {
     border-radius: 5px;
     background-color: lightgray;
 
-    width: 60%;
-    height: 30vw;
+    width: 35vw;
+    height: 35vh;
 
     padding: 10px;
     margin: 20px;
@@ -145,7 +145,7 @@ margin:auto;
     display: flex;
 }
 
-.card {
+.custom-card {
     border-radius: 2px;
 
     width: 60%;
@@ -153,24 +153,24 @@ margin:auto;
 
     margin: 5px;
 
-    display: inline-block;
+    /* display: inline-block; */
 }
 
-.card--unselected {
+.custom-card--unselected {
     border: 2px solid lightgray;
 }
 
-.card--selected {
+.custom-card--selected {
     border: 4px solid gray;
 }
 
-.card-image {
+.custom-card-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.select-button {
+.custom-select-button {
     height: 100%;
     float: left;
     width: auto;
@@ -184,19 +184,24 @@ margin:auto;
     font-size: 20px;
 }
 
-.select-button:hover {
+.custom-select-button:hover {
     cursor: pointer;
 }
 
-.select-button:focus {
+.custom-select-button:focus {
     outline: 0;
 }
 
-.select-button__content {
+.custom-select-button__content {
     scale(1, 2);
 }
 
-.select-list {
+.custom-select-list {
     width: 60%;
-    display: inline-block;
+    /* display: inline-block; */
+    display: inline-grid;
+}
+
+.custom-clickable:hover {
+    cursor: pointer;
 }
