@@ -22,12 +22,12 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a title = "Select Vehicle Model Here" href="{{ url('/select') }}">Start Simulating</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a title = "Existing Users Login Here" href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a title = "New Users Register Here" href="{{ route('register') }}">Register</a>
                         @endif
                     @endauth
                 </div>
