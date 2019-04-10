@@ -63,6 +63,16 @@ class RenderedModelController extends Controller
       ]));
   }
 
+// FIXME: DELETE ME
+  public function showBackup($id) {
+      $renderedModel = RenderedModel::find($id);
+      $bodies = $renderedModel->bodies()->get();
+      $interiors = $renderedModel->interiors()->get();
+      return view('render_model_backup', compact([
+        'renderedModel', 'bodies', 'interiors'
+      ]));
+  }
+
   /**
    * Show the form for editing the specified resource.
    *

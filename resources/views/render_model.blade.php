@@ -1,132 +1,112 @@
 <?php
 	$loadFull = ($renderedModel->file_name == "ferrari.glb");
- ?>
-
-
+	?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title> FK BS 2019 </title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-	<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-	<script src="{{ asset('js/app.js') }}"></script>
-
-	<style>
-	body {
-		/* font-family: Monospace; */
-		background-color: #000;
-		color: #000;
-		margin: 0px;
-		overflow: hidden;
-	}
-	#info {
-		position: absolute;
-		top: 80px;
-		width: 100%;
-		text-align: center;
-		z-index: 100;
-	}
-	#info a {
-		color: blue;
-		font-weight: bold;
-	}
-	 .topRight {
-		 position: absolute;
-		   top: 8px;
-		   right: 16px;
-		   font-size: 18px;
-	 }
-
-	</style>
-</head>
-
-<body>
-	<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+	<head>
+		<title> FK BS 2019 </title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<!-- CSRF Token -->
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+		<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+		<script src="{{ asset('js/app.js') }}"></script>
+		<style>
+			body {
+			/* font-family: Monospace; */
+			background-color: #000;
+			color: #000;
+			margin: 0px;
+			overflow: hidden;
+			}
+			#info {
+			position: absolute;
+			top: 80px;
+			width: 100%;
+			text-align: center;
+			z-index: 100;
+			}
+			#info a {
+			color: blue;
+			font-weight: bold;
+			}
+			.topRight {
+			position: absolute;
+			top: 8px;
+			right: 16px;
+			font-size: 18px;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
 		<!-- Left Side Of Navbar -->
 		<a class="navbar-brand" href="{{ url('/') }}">
-				<!-- {{ config('app.name', 'Laravel') }} -->
-				FKBmb Background Simulator 2019
+			<!-- {{ config('app.name', 'Laravel') }} -->
+			FKBmb Background Simulator 2019
 		</a>
 		<ul class="navbar-nav mr-auto">
-
 		</ul>
-
-			<div class="container">
-
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-							<span class="navbar-toggler-icon"></span>
-					</button>
-
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-							<!-- Right Side Of Navbar -->
-							<ul class="navbar-nav ml-auto">
-									<!-- Authentication Links -->
-									@guest
-								<li class="nav-item">
-										<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-								</li>
-								@if (Route::has('register'))
-										<li class="nav-item">
-												<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-										</li>
-								@endif
-						@else
-								<li class="nav-item dropdown">
-										<a title = "User Information" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-												{{ Auth::user()->fname }} {{ Auth::user()->lname}} <span class="caret"></span>
-										</a>
-
-										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-											<a class="dropdown-item" href="{{ url('/home') }}">Your Account<a>
-												<div class="h-divider"></div>
-												<a class="dropdown-item" href="{{ route('logout') }}"
-													 onclick="event.preventDefault();
-																				 document.getElementById('logout-form').submit();">
-														{{ __('Logout') }}
-												</a>
-
-												<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-														@csrf
-												</form>
-										</div>
-								</li>
-						@endguest
+		<div class="container">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- Right Side Of Navbar -->
+				<ul class="navbar-nav ml-auto">
+					<!-- Authentication Links -->
+					@guest
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+					</li>
+					@if (Route::has('register'))
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+					</li>
+					@endif
+					@else
+					<li class="nav-item dropdown">
+						<a title = "User Information" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+						{{ Auth::user()->fname }} {{ Auth::user()->lname}} <span class="caret"></span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{ url('/home') }}">Your Account
+							<a>
+								<div class="h-divider"></div>
+							<a class="dropdown-item" href="{{ route('logout') }}"
+								onclick="event.preventDefault();
+								document.getElementById('logout-form').submit();">
+							{{ __('Logout') }}
+							</a>
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+								@csrf
+							</form>
+						</div>
+					</li>
+					@endguest
 				</ul>
 			</div>
 		</div>
-
 		<div id="container"></div>
-
 		<button class="btn btn-secondary topRight" onclick="document.location.href='{{ url('/submitted') }}'"> Submit </button>
-	</div>
-
-		<script src="js/loaders/DRACOLoader.js"></script>
-		<script src="js/loaders/GLTFLoader.js"></script>
-
-		<script src="js/pmrem/PMREMGenerator.js"></script>
-		<script src="js/pmrem/PMREMCubeUVPacker.js"></script>
-
-		<script src="js/Car.js"></script>
-
-		<script src="js/WebGL.js"></script>
-		<script src="js/libs/stats.min.js"></script>
-
+		</div>
+		<script src="{{ asset('js/three.min.js') }}"></script>
+		<script src="{{ asset('js/loaders/DRACOLoader.js') }}"></script>
+		<script src="{{ asset('js/loaders/GLTFLoader.js') }}"></script>
+		<script src="{{ asset('js/pmrem/PMREMGenerator.js') }}"></script>
+		<script src="{{ asset('js/pmrem/PMREMCubeUVPacker.js') }}"></script>
+		<script src="{{ asset('js/Car.js') }}"></script>
+		<script src="{{ asset('js/WebGL.js') }}"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src='js/spectrum.js'></script>
-    <link rel='stylesheet' href='css/spectrum.css' />
-
-
 		<script>
-
 			if ( WEBGL.isWebGLAvailable() === false ) {
 
 				document.body.appendChild( WEBGL.getWebGLErrorMessage() );
 
 			}
 
-			var camera, scene, renderer, stats, carModel, materialsLib, envMap;
+			var camera, scene, renderer, carModel, envMap;
 
 			var bodyMatSelect = document.getElementById( 'body-mat' );
 			var rimMatSelect = document.getElementById( 'rim-mat' );
@@ -138,8 +118,6 @@
 			var customInteriorColour = "#222222";
 
 			console.log(customBodyMatSelect);
-
-			var followCamera = document.getElementById( 'camera-toggle' );
 
 			var clock = new THREE.Clock();
 			var car = new THREE.Car();
@@ -168,7 +146,7 @@
 				// scene.fog = new THREE.Fog( 0xd7cbb1, 1, 80 );
 
 				var urls = [ 'px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg' ];
-				var loader = new THREE.CubeTextureLoader().setPath( 'textures/cube/skyboxsun25deg/');
+				var loader = new THREE.CubeTextureLoader().setPath( '{{ asset('textures/cube/skyboxsun25deg') }}/');
 
 				loader.load( urls, function ( texture ) {
 
@@ -188,8 +166,6 @@
 					//
 
 					initCar();
-					initMaterials();
-					initMaterialSelectionMenus();
 
 				} );
 
@@ -215,9 +191,6 @@
 
 				container.appendChild( renderer.domElement );
 
-				stats = new Stats();
-				container.appendChild( stats.dom );
-
 				window.addEventListener( 'resize', onWindowResize, false );
 
 				renderer.setAnimationLoop( function() {
@@ -232,16 +205,18 @@
 
 			function initCar() {
 
-				THREE.DRACOLoader.setDecoderPath( 'js/libs/draco/gltf/' );
+				THREE.DRACOLoader.setDecoderPath( '{{ asset('js/libs/draco/gltf') }}/' );
 
 				var loader = new THREE.GLTFLoader();
 				loader.setDRACOLoader( new THREE.DRACOLoader() );
 
-				loader.load( 'storage/ferrari.glb', function( gltf ) { // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
+				loader.load( '{{ asset("storage/$renderedModel->file_name") }}', function( gltf ) { // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
 
 					carModel = gltf.scene.children[ 0 ];
 
+					@if ($loadFull)
 					car.setModel( carModel );
+					@endif
 
 					carModel.traverse( function ( child ) {
 
@@ -251,17 +226,20 @@
 
 					} );
 
+					@if ($loadFull)
 					// shadow
-					var texture = new THREE.TextureLoader().load( 'storage/ferrari_ao.png' ); // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
+					var texture = new THREE.TextureLoader().load( '{{ asset('storage/ferrari_ao.png') }}' ); // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
 					var shadow = new THREE.Mesh(
 						new THREE.PlaneBufferGeometry( 0.655 * 4, 1.3 * 4 ).rotateX( - Math.PI / 2 ),
 						new THREE.MeshBasicMaterial( { map: texture, opacity: 0.8, transparent: true } )
 					);
 					shadow.renderOrder = 2;
 					carModel.add( shadow );
+					@endif
 
 					scene.add( carModel );
 
+					@if ($loadFull)
 					// car parts for material selection
 					carParts.body.push( carModel.getObjectByName( 'body' ) );
 
@@ -279,130 +257,8 @@
 						carModel.getObjectByName( 'glass' ),
 					 );
 
-					updateMaterials();
-
+					@endif
 				});
-
-			}
-
-			function initMaterials() {
-
-				materialsLib = {
-
-					main: [
-
-						new THREE.MeshStandardMaterial( { color: 0xff4400, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'orange' } ),
-						new THREE.MeshStandardMaterial( { color: 0x001166, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'blue' } ),
-						new THREE.MeshStandardMaterial( { color: 0x006611, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'green' } ),
-						new THREE.MeshStandardMaterial( { color: 0x990000, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'red' } ),
-						new THREE.MeshStandardMaterial( { color: 0x000000, envMap: envMap, metalness: 0.9, roughness: 0.5, name: 'black' } ),
-						new THREE.MeshStandardMaterial( { color: 0xffffff, envMap: envMap, metalness: 0.9, roughness: 0.5, name: 'white' } ),
-						new THREE.MeshStandardMaterial( { color: 0x555555, envMap: envMap, envMapIntensity: 2.0, metalness: 1.0, roughness: 0.2, name: 'metallic' } ),
-
-					],
-
-					glass: [
-
-						new THREE.MeshStandardMaterial( { color: 0xffffff, envMap: envMap, metalness: 1, roughness: 0, opacity: 0.2, transparent: true, premultipliedAlpha: true, name: 'clear' } ),
-						new THREE.MeshStandardMaterial( { color: 0x000000, envMap: envMap, metalness: 1, roughness: 0, opacity: 0.2, transparent: true, premultipliedAlpha: true, name: 'smoked' } ),
-						new THREE.MeshStandardMaterial( { color: 0x001133, envMap: envMap, metalness: 1, roughness: 0, opacity: 0.2, transparent: true, premultipliedAlpha: true, name: 'blue' } ),
-
-					],
-
-				}
-
-			}
-
-			function initMaterialSelectionMenus() {
-
-				function addOption( name, menu ) {
-
-					var option = document.createElement( 'option' );
-					option.text = name;
-					option.value = name;
-					menu.add( option );
-
-				}
-
-				materialsLib.main.forEach( function( material ) {
-
-					addOption( material.name, bodyMatSelect );
-					addOption( material.name, rimMatSelect );
-
-				} );
-
-				materialsLib.glass.forEach( function( material ) {
-
-					addOption( material.name, glassMatSelect );
-
-				} );
-
-				bodyMatSelect.selectedIndex = 3;
-				rimMatSelect.selectedIndex = 5;
-				glassMatSelect.selectedIndex = 0;
-
-				bodyMatSelect.addEventListener( 'change', updateMaterials );
-				rimMatSelect.addEventListener( 'change', updateMaterials );
-				glassMatSelect.addEventListener( 'change', updateMaterials );
-
-				$("#custom-body-mat").spectrum({
-					flat: false,
-				    showInitial: true,
-				    showValue: true,
-
-					color: customBodyColour,
-
-					change: function(color) {
-						customBodyColour = color.toHexString();
-						console.log(customBodyColour);
-						updateMaterials();
-					},
-
-					move: function(color) {
-						customBodyColour = color.toHexString();
-						console.log(customBodyColour);
-						updateMaterials();
-					}
-				});
-
-				$("#custom-interior-mat").spectrum({
-					flat: false,
-				    showInitial: true,
-				    showValue: true,
-
-					color: customInteriorColour,
-
-					change: function(color) {
-						customInteriorColour = color.toHexString();
-						console.log(customInteriorColour);
-						updateMaterials();
-					},
-
-					move: function(color) {
-						customInteriorColour = color.toHexString();
-						console.log(customInteriorColour);
-						updateMaterials();
-					}
-				});
-			}
-
-			// set materials to the current values of the selection menus
-			function updateMaterials() {
-
-				var bodyMat = materialsLib.main[ bodyMatSelect.selectedIndex ];
-				var rimMat = materialsLib.main[ rimMatSelect.selectedIndex ];
-				var glassMat = materialsLib.glass[ glassMatSelect.selectedIndex ];
-
-
-				var customBodyMat = new THREE.MeshStandardMaterial( { color: customBodyColour, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'customBody' } );
-				var customInteriorMat = new THREE.MeshStandardMaterial( { color: customInteriorColour, envMap: envMap, metalness: 0.3, roughness: 0.2, name: 'customInterior' } );
-
-				// carParts.body.forEach( function ( part ) { part.material = bodyMat; } );
-				carParts.body.forEach( function ( part ) { part.material = customBodyMat; } );
-				carParts.interior.forEach( function ( part ) { part.material = customInteriorMat; } );
-
-				carParts.rims.forEach( function ( part ) { part.material = rimMat; } );
-				carParts.glass.forEach( function ( part ) { part.material = glassMat; } );
 
 			}
 
@@ -431,33 +287,17 @@
 						car.speed = 0;
 					}
 
-					if ( followCamera.checked ) {
 
+					carModel.getWorldPosition( cameraTarget );
+					cameraTarget.y += 0.5;
 
-						cameraTarget.y = 3;
-						cameraTarget.z += distance +10;
-						carModel.getWorldPosition( cameraTarget);
-
-
-
-						camera.position.set( cameraTarget.x - 0.3, cameraTarget.y + 1, cameraTarget.z  + 0.3  );
-						camera.lookAt( carModel.position.x, carModel.position.y, carModel.position.z - 10);
-
-					} else {
-
-						carModel.getWorldPosition( cameraTarget );
-						cameraTarget.y += 0.5;
-
-						camera.position.set( 3.25, 2.0, -5 );
-						camera.lookAt( carModel.position );
-					}
-
+					camera.position.set( 3.25, 2.0, -5 );
+					camera.lookAt( carModel.position );
 				}
-
-				stats.update();
 			}
 
 			init();
 
 		</script>
-@endsection
+	</body>
+</html>
