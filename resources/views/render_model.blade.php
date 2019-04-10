@@ -216,17 +216,7 @@
 
 					@if ($loadFull)
 					car.setModel( carModel );
-					@endif
 
-					carModel.traverse( function ( child ) {
-
-						if ( child.isMesh  ) {
-							child.material.envMap = envMap;
-						}
-
-					} );
-
-					@if ($loadFull)
 					// shadow
 					var texture = new THREE.TextureLoader().load( '{{ asset('storage/ferrari_ao.png') }}' ); // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
 					var shadow = new THREE.Mesh(
@@ -291,7 +281,7 @@
 					carModel.getWorldPosition( cameraTarget );
 					cameraTarget.y += 0.5;
 
-					camera.position.set( 3.25, 2.0, -5 );
+					camera.position.set( 1.5, 4.0, 10 );
 					camera.lookAt( carModel.position );
 				}
 			}
