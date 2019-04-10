@@ -362,11 +362,11 @@
 
 		</script>
 
-		<input class="input" id="flickr_data" type="text" placeholder="Text input">
-		<button id="grab_flickr_button"> Search Flickr </button>
-		<div id="imageSection"> </div>
+
 @endsection
 
-@section('')
-
+@section('image_gallery')
+<input class="input" id="flickr_data" type="text" placeholder="Text input">
+<button id="grab_flickr_button"> Search Flickr </button>
+<div id="imageSection"> </div>
 @stop
