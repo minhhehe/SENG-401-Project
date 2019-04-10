@@ -13,8 +13,11 @@
 
 
 Route::get('/', function () {
-    return redirect('/select');
+    return view('welcome_visitor');
 });
+// Route::get('/', function () {
+//     return redirect('/select');
+// });
 
 Route::get('/flickr', function() {
     return view('flickr_API_test');
