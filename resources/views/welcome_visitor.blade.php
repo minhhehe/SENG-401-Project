@@ -16,7 +16,7 @@
 		<script src="js/pmrem/PMREMGenerator.js"></script>
 		<script src="js/pmrem/PMREMCubeUVPacker.js"></script>
 
-		<script src="js/Car.js"></script>
+		<!-- <script src="js/Car.js"></script> -->
 
 		<script src="js/WebGL.js"></script>
 		<script src="js/libs/stats.min.js"></script>
@@ -50,15 +50,15 @@
 			var followCamera = document.getElementById( 'camera-toggle' );
 
 			var clock = new THREE.Clock();
-			var car = new THREE.Car();
-			car.turningRadius = 75;
+			// var car = new THREE.Car();
+			// car.turningRadius = 75;
 
-			var carParts = {
-				body: [],
-				interior: [],
-				rims:[],
-				glass: [],
-			};
+			// var carParts = {
+			// 	body: [],
+			// 	interior: [],
+			// 	rims:[],
+			// 	glass: [],
+			// };
 
 			var damping = 5.0;
 			var distance = 5;
@@ -96,8 +96,8 @@
 					//
 
 					initCar();
-					initMaterials();
-					initMaterialSelectionMenus();
+					// initMaterials();
+					// initMaterialSelectionMenus();
 
 				} );
 
@@ -130,19 +130,19 @@
 				var loader = new THREE.GLTFLoader();
 				loader.setDRACOLoader( new THREE.DRACOLoader() );
 
-				loader.load( 'storage/ferrari.glb', function( gltf ) { // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
+				loader.load( '{{ asset("/storage/pikachu.glb") }}', function( gltf ) { // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
 
 					carModel = gltf.scene.children[ 0 ];
 
-					car.setModel( carModel );
-
-					carModel.traverse( function ( child ) {
-
-						if ( child.isMesh  ) {
-							child.material.envMap = envMap;
-						}
-
-					} );
+					// car.setModel( carModel );
+					//
+					// carModel.traverse( function ( child ) {
+					//
+					// 	if ( child.isMesh  ) {
+					// 		child.material.envMap = envMap;
+					// 	}
+					//
+					// } );
 
 					// shadow
 					// var texture = new THREE.TextureLoader().load( 'storage/ferrari_ao.png' ); // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
@@ -156,148 +156,148 @@
 					scene.add( carModel );
 
 					// car parts for material selection
-					carParts.body.push( carModel.getObjectByName( 'body' ) );
+					// carParts.body.push( carModel.getObjectByName( 'body' ) );
+					//
+					// carParts.interior.push(carModel.getObjectByName('leather'));
+					//
+					// carParts.rims.push(
+					// 	carModel.getObjectByName( 'rim_fl' ),
+					// 	carModel.getObjectByName( 'rim_fr' ),
+					// 	carModel.getObjectByName( 'rim_rr' ),
+					// 	carModel.getObjectByName( 'rim_rl' ),
+					// 	carModel.getObjectByName( 'trim' ),
+					// );
+					//
+					// carParts.glass.push(
+					// 	carModel.getObjectByName( 'glass' ),
+					//  );
 
-					carParts.interior.push(carModel.getObjectByName('leather'));
-
-					carParts.rims.push(
-						carModel.getObjectByName( 'rim_fl' ),
-						carModel.getObjectByName( 'rim_fr' ),
-						carModel.getObjectByName( 'rim_rr' ),
-						carModel.getObjectByName( 'rim_rl' ),
-						carModel.getObjectByName( 'trim' ),
-					);
-
-					carParts.glass.push(
-						carModel.getObjectByName( 'glass' ),
-					 );
-
-					updateMaterials();
+					// updateMaterials();
 
 				});
 
 			}
 
-			function initMaterials() {
-
-				materialsLib = {
-
-					main: [
-
-						new THREE.MeshStandardMaterial( { color: 0xff4400, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'orange' } ),
-						new THREE.MeshStandardMaterial( { color: 0x001166, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'blue' } ),
-						new THREE.MeshStandardMaterial( { color: 0x006611, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'green' } ),
-						new THREE.MeshStandardMaterial( { color: 0x990000, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'red' } ),
-						new THREE.MeshStandardMaterial( { color: 0x000000, envMap: envMap, metalness: 0.9, roughness: 0.5, name: 'black' } ),
-						new THREE.MeshStandardMaterial( { color: 0xffffff, envMap: envMap, metalness: 0.9, roughness: 0.5, name: 'white' } ),
-						new THREE.MeshStandardMaterial( { color: 0x555555, envMap: envMap, envMapIntensity: 2.0, metalness: 1.0, roughness: 0.2, name: 'metallic' } ),
-
-					],
-
-					glass: [
-
-						new THREE.MeshStandardMaterial( { color: 0xffffff, envMap: envMap, metalness: 1, roughness: 0, opacity: 0.2, transparent: true, premultipliedAlpha: true, name: 'clear' } ),
-						new THREE.MeshStandardMaterial( { color: 0x000000, envMap: envMap, metalness: 1, roughness: 0, opacity: 0.2, transparent: true, premultipliedAlpha: true, name: 'smoked' } ),
-						new THREE.MeshStandardMaterial( { color: 0x001133, envMap: envMap, metalness: 1, roughness: 0, opacity: 0.2, transparent: true, premultipliedAlpha: true, name: 'blue' } ),
-
-					],
-
-				}
-
-			}
-
-			function initMaterialSelectionMenus() {
-
-				function addOption( name, menu ) {
-
-					var option = document.createElement( 'option' );
-					option.text = name;
-					option.value = name;
-					menu.add( option );
-
-				}
-
-				materialsLib.main.forEach( function( material ) {
-
-					addOption( material.name, bodyMatSelect );
-					addOption( material.name, rimMatSelect );
-
-				} );
-
-				materialsLib.glass.forEach( function( material ) {
-
-					addOption( material.name, glassMatSelect );
-
-				} );
-
-				bodyMatSelect.selectedIndex = 3;
-				rimMatSelect.selectedIndex = 5;
-				glassMatSelect.selectedIndex = 0;
-
-				bodyMatSelect.addEventListener( 'change', updateMaterials );
-				rimMatSelect.addEventListener( 'change', updateMaterials );
-				glassMatSelect.addEventListener( 'change', updateMaterials );
-
-				$("#custom-body-mat").spectrum({
-					flat: false,
-				    showInitial: true,
-				    showValue: true,
-
-					color: customBodyColour,
-
-					change: function(color) {
-						customBodyColour = color.toHexString();
-						console.log(customBodyColour);
-						updateMaterials();
-					},
-
-					move: function(color) {
-						customBodyColour = color.toHexString();
-						console.log(customBodyColour);
-						updateMaterials();
-					}
-				});
-
-				$("#custom-interior-mat").spectrum({
-					flat: false,
-				    showInitial: true,
-				    showValue: true,
-
-					color: customInteriorColour,
-
-					change: function(color) {
-						customInteriorColour = color.toHexString();
-						console.log(customInteriorColour);
-						updateMaterials();
-					},
-
-					move: function(color) {
-						customInteriorColour = color.toHexString();
-						console.log(customInteriorColour);
-						updateMaterials();
-					}
-				});
-			}
+			// function initMaterials() {
+			//
+			// 	materialsLib = {
+			//
+			// 		main: [
+			//
+			// 			new THREE.MeshStandardMaterial( { color: 0xff4400, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'orange' } ),
+			// 			new THREE.MeshStandardMaterial( { color: 0x001166, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'blue' } ),
+			// 			new THREE.MeshStandardMaterial( { color: 0x006611, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'green' } ),
+			// 			new THREE.MeshStandardMaterial( { color: 0x990000, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'red' } ),
+			// 			new THREE.MeshStandardMaterial( { color: 0x000000, envMap: envMap, metalness: 0.9, roughness: 0.5, name: 'black' } ),
+			// 			new THREE.MeshStandardMaterial( { color: 0xffffff, envMap: envMap, metalness: 0.9, roughness: 0.5, name: 'white' } ),
+			// 			new THREE.MeshStandardMaterial( { color: 0x555555, envMap: envMap, envMapIntensity: 2.0, metalness: 1.0, roughness: 0.2, name: 'metallic' } ),
+			//
+			// 		],
+			//
+			// 		glass: [
+			//
+			// 			new THREE.MeshStandardMaterial( { color: 0xffffff, envMap: envMap, metalness: 1, roughness: 0, opacity: 0.2, transparent: true, premultipliedAlpha: true, name: 'clear' } ),
+			// 			new THREE.MeshStandardMaterial( { color: 0x000000, envMap: envMap, metalness: 1, roughness: 0, opacity: 0.2, transparent: true, premultipliedAlpha: true, name: 'smoked' } ),
+			// 			new THREE.MeshStandardMaterial( { color: 0x001133, envMap: envMap, metalness: 1, roughness: 0, opacity: 0.2, transparent: true, premultipliedAlpha: true, name: 'blue' } ),
+			//
+			// 		],
+			//
+			// 	}
+			//
+			// }
+			//
+			// function initMaterialSelectionMenus() {
+			//
+			// 	function addOption( name, menu ) {
+			//
+			// 		var option = document.createElement( 'option' );
+			// 		option.text = name;
+			// 		option.value = name;
+			// 		menu.add( option );
+			//
+			// 	}
+			//
+			// 	materialsLib.main.forEach( function( material ) {
+			//
+			// 		addOption( material.name, bodyMatSelect );
+			// 		addOption( material.name, rimMatSelect );
+			//
+			// 	} );
+			//
+			// 	materialsLib.glass.forEach( function( material ) {
+			//
+			// 		addOption( material.name, glassMatSelect );
+			//
+			// 	} );
+			//
+			// 	bodyMatSelect.selectedIndex = 3;
+			// 	rimMatSelect.selectedIndex = 5;
+			// 	glassMatSelect.selectedIndex = 0;
+			//
+			// 	bodyMatSelect.addEventListener( 'change', updateMaterials );
+			// 	rimMatSelect.addEventListener( 'change', updateMaterials );
+			// 	glassMatSelect.addEventListener( 'change', updateMaterials );
+			//
+			// 	$("#custom-body-mat").spectrum({
+			// 		flat: false,
+			// 	    showInitial: true,
+			// 	    showValue: true,
+			//
+			// 		color: customBodyColour,
+			//
+			// 		change: function(color) {
+			// 			customBodyColour = color.toHexString();
+			// 			console.log(customBodyColour);
+			// 			updateMaterials();
+			// 		},
+			//
+			// 		move: function(color) {
+			// 			customBodyColour = color.toHexString();
+			// 			console.log(customBodyColour);
+			// 			updateMaterials();
+			// 		}
+			// 	});
+			//
+			// 	$("#custom-interior-mat").spectrum({
+			// 		flat: false,
+			// 	    showInitial: true,
+			// 	    showValue: true,
+			//
+			// 		color: customInteriorColour,
+			//
+			// 		change: function(color) {
+			// 			customInteriorColour = color.toHexString();
+			// 			console.log(customInteriorColour);
+			// 			updateMaterials();
+			// 		},
+			//
+			// 		move: function(color) {
+			// 			customInteriorColour = color.toHexString();
+			// 			console.log(customInteriorColour);
+			// 			updateMaterials();
+			// 		}
+			// 	});
+			// }
 
 
 
 			// set materials to the current values of the selection menus
 			function updateMaterials() {
 
-				var bodyMat = materialsLib.main[ bodyMatSelect.selectedIndex ];
-				var rimMat = materialsLib.main[ rimMatSelect.selectedIndex ];
-				var glassMat = materialsLib.glass[ glassMatSelect.selectedIndex ];
-
-
-				var customBodyMat = new THREE.MeshStandardMaterial( { color: customBodyColour, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'customBody' } );
-				var customInteriorMat = new THREE.MeshStandardMaterial( { color: customInteriorColour, envMap: envMap, metalness: 0.3, roughness: 0.2, name: 'customInterior' } );
-
-				// carParts.body.forEach( function ( part ) { part.material = bodyMat; } );
-				carParts.body.forEach( function ( part ) { part.material = customBodyMat; } );
-				carParts.interior.forEach( function ( part ) { part.material = customInteriorMat; } );
-
-				carParts.rims.forEach( function ( part ) { part.material = rimMat; } );
-				carParts.glass.forEach( function ( part ) { part.material = glassMat; } );
+				// var bodyMat = materialsLib.main[ bodyMatSelect.selectedIndex ];
+				// var rimMat = materialsLib.main[ rimMatSelect.selectedIndex ];
+				// var glassMat = materialsLib.glass[ glassMatSelect.selectedIndex ];
+				//
+				//
+				// var customBodyMat = new THREE.MeshStandardMaterial( { color: customBodyColour, envMap: envMap, metalness: 0.9, roughness: 0.2, name: 'customBody' } );
+				// var customInteriorMat = new THREE.MeshStandardMaterial( { color: customInteriorColour, envMap: envMap, metalness: 0.3, roughness: 0.2, name: 'customInterior' } );
+				//
+				// // carParts.body.forEach( function ( part ) { part.material = bodyMat; } );
+				// carParts.body.forEach( function ( part ) { part.material = customBodyMat; } );
+				// carParts.interior.forEach( function ( part ) { part.material = customInteriorMat; } );
+				//
+				// carParts.rims.forEach( function ( part ) { part.material = rimMat; } );
+				// carParts.glass.forEach( function ( part ) { part.material = glassMat; } );
 
 			}
 
