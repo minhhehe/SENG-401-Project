@@ -50,16 +50,16 @@ class HomeController extends Controller
           $customer->save();
         }
 
-      $role = auth()->user()->role;
-      $renderedModels = RenderedModel::all();
-      $defaultBackgrounds = {
-        'http://localhost:8000/storage/default1.jpg',
-        'http://localhost:8000/storage/default2.jpg',
-        'http://localhost:8000/storage/default3.jpg',
-        'http://localhost:8000/storage/default4.jpg',
-        'http://localhost:8000/storage/default5.jpg',
-        'http://localhost:8000/storage/default6.jpg',
-      };
-      return view('select', compact(['renderedModels', 'defaultBackgrounds']));
+        $role = auth()->user()->role;
+        $renderedModels = RenderedModel::all();
+        $defaultBackgrounds = [
+            'http://localhost:8000/storage/default1.jpg',
+            'http://localhost:8000/storage/default2.jpg',
+            'http://localhost:8000/storage/default3.jpg',
+            'http://localhost:8000/storage/default4.jpg',
+            'http://localhost:8000/storage/default5.jpg',
+            'http://localhost:8000/storage/default6.jpg',
+        ];
+        return view('select', compact(['renderedModels', 'defaultBackgrounds']));
     }
 }
