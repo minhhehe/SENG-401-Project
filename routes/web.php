@@ -13,7 +13,7 @@
 
 
 Route::get('/', function () {
-    return view('welcome_visitor');
+    return redirect('/select');
 });
 
 Route::get('/flickr', function() {
