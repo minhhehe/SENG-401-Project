@@ -25,6 +25,8 @@ Route::get('/flickr', function() {
 
 Route::get('/render_model/{id}', 'RenderedModelController@show');
 
+Route::get('/render_model_backup/{id}', 'RenderedModelController@showBackup');
+
 Route::get('/storage/{filename}', 'StorageController@sendFile');
 
 Auth::routes();

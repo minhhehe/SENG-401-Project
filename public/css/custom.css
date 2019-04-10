@@ -224,3 +224,15 @@ margin:auto;
     right: 40%;
     z-index: 5;
   }
+
+.flex-container {
+  display: flex;
+  background-color: DodgerBlue;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
