@@ -22,6 +22,8 @@
 
 		<div id="container"></div>
 
+		<script src="js/clientscript.js"></script>
+
 		<script src="js/three.min.js"></script>
 
 		<script src="js/loaders/DRACOLoader.js"></script>
@@ -308,6 +310,8 @@
 				});
 			}
 
+
+
 			// set materials to the current values of the selection menus
 			function updateMaterials() {
 
@@ -382,4 +386,7 @@
 			init();
 
 		</script>
+
+		<button id="grab_flickr_button"> Search Flickr </button>
+		<div id="imageSection"> </div>
 @endsection
