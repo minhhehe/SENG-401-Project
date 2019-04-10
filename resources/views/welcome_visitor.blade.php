@@ -125,7 +125,7 @@
 				container.appendChild( renderer.domElement );
 
 				stats = new Stats();
-				container.appendChild( stats.dom );
+				// container.appendChild( stats.dom );
 
 				window.addEventListener( 'resize', onWindowResize, false );
 
@@ -328,30 +328,30 @@
 
 			function update() {
 
-				var delta = clock.getDelta();
-
-				if ( carModel ) {
-
-					car.update( delta / 3 );
-
-					console.log(   );
-
-					if ( carModel.position.length() > 200 ) {
-
-						carModel.position.set( 0, 0, 0 );
-						car.speed = 0;
-					}
-
-
-
-						carModel.getWorldPosition( cameraTarget );
-						cameraTarget.y += 0.5;
-
-						camera.position.set( 3.25, 2.0, -5 );
-						camera.lookAt( carModel.position );
-
-
-				}
+				// var delta = clock.getDelta();
+				//
+				// if ( carModel ) {
+				//
+				// 	car.update( delta / 3 );
+				//
+				// 	console.log(   );
+				//
+				// 	if ( carModel.position.length() > 200 ) {
+				//
+				// 		carModel.position.set( 0, 0, 0 );
+				// 		car.speed = 0;
+				// 	}
+				//
+				//
+				//
+				// 		carModel.getWorldPosition( cameraTarget );
+				// 		cameraTarget.y += 0.5;
+				//
+				// 		camera.position.set( 3.25, 2.0, -5 );
+				// 		camera.lookAt( carModel.position );
+				//
+				//
+				// }
 
 				stats.update();
 			}
