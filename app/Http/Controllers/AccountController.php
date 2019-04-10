@@ -34,30 +34,17 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request)
     {
 
       $data = request()->all([
-          'address',
-          'night_phone_number',
-          'day_phone_number',
-          'email',
+          'dob',
+          'gender',
       ]);
 
       Auth()->user()->update($data);
-      $user_id = Auth()->user()->id;
-      $customer =  Customer::where('user_id', $user_id)->first();
-
-      $customer->billingInfo = request('billingInfo');
-      $customer->lastVehiclePurchased = request('lastVehiclePurchased');
-      $customer->lastVehicleYear = request('lastVehicleYear');
-      $customer->lastExterior = request('lastExterior');
-      $customer->desiredModel = request('desiredModel');
-      $customer->desiredExterior = request('desiredExterior');
-      $customer->desiredPrice = request('desiredPrice');
 
 
-      $customer->save();
 
       return redirect('/home');
     }
