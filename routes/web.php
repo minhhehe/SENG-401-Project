@@ -23,7 +23,6 @@ Route::get('/flickr', function() {
 
 Route::get('/render_model/{id}', 'RenderedModelController@show');
 
-
 Route::get('/storage/{filename}', 'StorageController@sendFile');
 
 Auth::routes();
