@@ -1,24 +1,6 @@
 @extends('layouts.layout_welcome')
 
-@section('title')
-<div>SENG 401 Project Visitor Landing Page</div>
-@endsection
-
 @section('render_window')
-
-		<!-- <div id="info">
-			<span>Body: <select id="body-mat"></select></span>
-			<span>Rims / Trim: <select id="rim-mat"></select></span>
-			<span>Glass: <select id="glass-mat"></select></span>
-			<span>Custom Body: -->
-				<!-- <input id="custom-body-mat" type="submit" name="colour" value="#FFFFFF"> -->
-				<!-- <input type='submit' name = 'colour' id ='custom-body-mat' value='#fffff'/>
-
-			</span>
-			<span>Custom Interior: <input id="custom-interior-mat" type="submit" name="colour2" value="#222222"></span>
-			<br><br> -->
-			<!-- <span>Follow camera: <input type="checkbox" id="camera-toggle"></span> -->
-		<!-- </div> -->
 
 		<div class = "model" id="container"></div>
 
@@ -369,16 +351,16 @@
 		<br>
 		<div id="imageSection" style="background:blue;"> </div>
 	@else
-		<div id="imageSection" style="background:blue;">
-			<div class="flex-container" style="margin:auto;">
-			<div><img id='thumb_0' style="width:100px;height:100px;" src='http://localhost:8000/storage/default1.jpg' onclick="swapBackround('http://localhost:8000/storage/default1.jpg')"></div>
-			<div><img id='thumb_1' style='width:100px;height:100px;' src='http://localhost:8000/storage/default2.jpg' onclick="swapBackround('http://localhost:8000/storage/default2.jpg')"></div>
-			<div><img id='thumb_2' style='width:100px;height:100px;' src='http://localhost:8000/storage/default3.jpg' onclick="swapBackround('http://localhost:8000/storage/default3.jpg')"></div>
-			</div>
+		<div id="imageSection" style="background:red;">
+				<div class="flex-container" style="justify-content: center;margin:auto;">
+					<div><img id='thumb_0' style="width:100px;height:100px;" src='http://localhost:8000/storage/default1.jpg' onclick="swapBackround('http://localhost:8000/storage/default1.jpg')"></div>
+					<div><img id='thumb_1' style='width:100px;height:100px;' src='http://localhost:8000/storage/default2.jpg' onclick="swapBackround('http://localhost:8000/storage/default2.jpg')"></div>
+					<div><img id='thumb_2' style='width:100px;height:100px;' src='http://localhost:8000/storage/default3.jpg' onclick="swapBackround('http://localhost:8000/storage/default3.jpg')"></div>
+				</div>
 		</div>
   @endauth
 @stop
 
 @section('model_background')
-<img style="width:650px;height:400px" id="model_backdrop" src="http://localhost:8000/storage/default0.jpg">
+<img id="model_backdrop" src="http://localhost:8000/storage/default0.jpg">
 @stop

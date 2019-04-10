@@ -68,7 +68,7 @@ class ImageController extends Controller
             'api_key' => '334ebb0707c2e188c4522643802154df',
             'method' => 'flickr.photos.search',
             'text' => $text,
-            'per_page' => '6',
+            'per_page' => '20',
             'page' => '1',
             'format' => 'json',
             'nojsoncallback' => '1',

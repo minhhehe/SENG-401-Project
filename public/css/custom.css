@@ -214,12 +214,20 @@ margin:auto;
 }
 
 .background{
+    /* style="width:650px;height:400px" */
+    width:900px;
+    height:600px;
+    left:350px;
     position:absolute;
     z-index = 1;
 }
 
+.background img{
+  width:900px;
+  height:600px;
+}
+
 .search{
-    position: fixed;
     bottom: 10%;
     right: 40%;
     z-index: 5;
