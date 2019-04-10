@@ -22,6 +22,7 @@
 
 		<div id="container"></div>
 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="js/clientscript.js"></script>
 
 		<script src="js/three.min.js"></script>
@@ -37,7 +38,7 @@
 		<script src="js/WebGL.js"></script>
 		<script src="js/libs/stats.min.js"></script>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script src='js/spectrum.js'></script>
     <link rel='stylesheet' href='css/spectrum.css' />
 
