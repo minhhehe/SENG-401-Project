@@ -141,7 +141,7 @@ if (typeof callback === 'function') callback()
             @foreach ($renderedModels as $renderedModel)
             <div class="col-md-4" style="margin:10px;">
                 <div class="card custom-clickable" href="http://localhost:8000/render_model/{{$renderedModel->id}}">
-                    <a href="http://localhost:8000/selectedModel/{{$renderedModel->id}}"><img style="max-height: 300px;" id="{{ $renderedModel->id }}" class="card-img" src="storage/{{$renderedModel->picture}}" alt="" title="{{$renderedModel->description}}"> </a>
+                    <a href="http://localhost:8000/selectedModel/{{$renderedModel->id}}"><img style="max-height: 372px;" id="{{ $renderedModel->id }}" class="card-img" src="storage/{{$renderedModel->picture}}" alt="" title="{{$renderedModel->description}}"> </a>
                 </div>
             </div>
             @endforeach
