@@ -13,8 +13,10 @@
 
 
 Route::get('/', function () {
-    return view('welcome_visitor');
+    return redirect('/selectedModel/1');
 });
+
+Route::get('/selectedModel/{id}', 'HomeController@index');
 // Route::get('/', function () {
 //     return redirect('/select');
 // });

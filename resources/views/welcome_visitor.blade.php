@@ -5,25 +5,25 @@
 		<div class = "model" id="container"></div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="js/clientscript.js"></script>
+		<script src="{{ URL::asset('js/clientscript.js') }}"></script>
 
 
-		<script src="js/three.min.js"></script>
+		<script src="{{ URL::asset('js/three.min.js') }}"></script>
 
-		<script src="js/loaders/DRACOLoader.js"></script>
-		<script src="js/loaders/GLTFLoader.js"></script>
+		<script src="{{ URL::asset('js/loaders/DRACOLoader.js') }}"></script>
+		<script src="{{ URL::asset('js/loaders/GLTFLoader.js') }}"></script>
 
-		<script src="js/pmrem/PMREMGenerator.js"></script>
-		<script src="js/pmrem/PMREMCubeUVPacker.js"></script>
+		<script src="{{ URL::asset('js/pmrem/PMREMGenerator.js') }}"></script>
+		<script src="{{ URL::asset('js/pmrem/PMREMCubeUVPacker.js') }}"></script>
 
 		<!-- <script src="js/Car.js"></script> -->
 
-		<script src="js/WebGL.js"></script>
-		<script src="js/libs/stats.min.js"></script>
+		<script src="{{ URL::asset('js/WebGL.js') }}"></script>
+		<script src="{{ URL::asset('js/libs/stats.min.js') }}"></script>
 
-
+<!--
     <script src='js/spectrum.js'></script>
-    <link rel='stylesheet' href='css/spectrum.css' />
+    <link rel='stylesheet' href='css/spectrum.css' /> -->
 
 
 		<script>
@@ -68,7 +68,8 @@
 				// scene.fog = new THREE.Fog( 0xd7cbb1, 1, 80 );
 
 				var urls = [ 'px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg' ];
-				var loader = new THREE.CubeTextureLoader().setPath( 'textures/cube/skyboxsun25deg/');
+				var string = "{{URL::asset('textures/cube/skyboxsun25deg/')}}" + '/';
+				var loader = new THREE.CubeTextureLoader().setPath(string);
 
 				loader.load( urls, function ( texture ) {
 
@@ -111,17 +112,65 @@
 			function initCar() {
 
 				THREE.DRACOLoader.setDecoderPath( 'js/libs/draco/gltf/' );
-
+				var file_name = "{{ $renderedModel->file_name }}";
 				var loader = new THREE.GLTFLoader();
 				loader.setDRACOLoader( new THREE.DRACOLoader() );
+				if (typeof file_name !== "undefined") {
+						// var url = '{{ asset("/storage/' + renderedModel->file_name + '")}}';
+						console.log(file_name);
+						var url = "{{ asset('/storage') }}/" + file_name;
+						console.log(url);
+						loader.load( url, function( gltf ) { // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
+							carModel = gltf.scene.children[ 0 ];
+							scene.add( carModel );
+						});
+				}
+				else {
+						console.log('hello else');
+						loader.load( '{{ asset("/storage/pikachu.glb") }}', function( gltf ) { // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
+						carModel = gltf.scene.children[ 0 ];
 
-				loader.load( '{{ asset("/storage/pikachu.glb") }}', function( gltf ) { // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
+						// car.setModel( carModel );
+						//
+						// carModel.traverse( function ( child ) {
+						//
+						// 	if ( child.isMesh  ) {
+						// 		child.material.envMap = envMap;
+						// 	}
+						//
+						// } );
 
-					carModel = gltf.scene.children[ 0 ];
+						// shadow
+						// var texture = new THREE.TextureLoader().load( 'storage/ferrari_ao.png' ); // ------------- TODO Redirect to dynamic path instead of ferrari ---------------
+						// var shadow = new THREE.Mesh(
+						// 	new THREE.PlaneBufferGeometry( 0.655 * 4, 1.3 * 4 ).rotateX( - Math.PI / 2 ),
+						// 	new THREE.MeshBasicMaterial( { map: texture, opacity: 0.8, transparent: true } )
+						// );
+						// shadow.renderOrder = 2;
+						// carModel.add( shadow );
 
-					scene.add( carModel );
+						scene.add( carModel );
+
+						// car parts for material selection
+						// carParts.body.push( carModel.getObjectByName( 'body' ) );
+						//
+						// carParts.interior.push(carModel.getObjectByName('leather'));
+						//
+						// carParts.rims.push(
+						// 	carModel.getObjectByName( 'rim_fl' ),
+						// 	carModel.getObjectByName( 'rim_fr' ),
+						// 	carModel.getObjectByName( 'rim_rr' ),
+						// 	carModel.getObjectByName( 'rim_rl' ),
+						// 	carModel.getObjectByName( 'trim' ),
+						// );
+						//
+						// carParts.glass.push(
+						// 	carModel.getObjectByName( 'glass' ),
+						//  );
+
+						// updateMaterials();
 				});
-
+			}
 			}
 
 			function updateMaterials() {
