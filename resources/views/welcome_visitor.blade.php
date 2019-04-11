@@ -8,6 +8,9 @@
 		<script src="{{ URL::asset('js/clientscript.js') }}"></script>
 
 		<script src="{{ URL::asset('js/three.min.js') }}"></script>
+		<script src="{{ URL::asset('js/OrbitControls.js')}}"></script>
+
+		</script>
 
 		<script src="{{ URL::asset('js/loaders/DRACOLoader.js') }}"></script>
 		<script src="{{ URL::asset('js/loaders/GLTFLoader.js') }}"></script>
@@ -30,7 +33,7 @@
 
 			}
 
-			var camera, scene, renderer, renderedModel, materialsLib, envMap;
+			var camera, controls, scene, renderer, renderedModel, materialsLib, envMap;
 
 			var followCamera = document.getElementById( 'camera-toggle' );
 
@@ -45,8 +48,13 @@
 				var container = document.getElementById( 'container' );
 
 				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 200 );
-				camera.position.set( 1.5, 6, 15 );
-				camera.lookAt( 0, 0.5, 0 );
+
+				controls = new THREE.OrbitControls( camera, container );
+				controls.enabled = true;
+				controls.enableDamping = true;
+
+				// camera.position.set( 1.5, 6, 15 );
+				// camera.lookAt( 0, 0.5, 0 );
 
 				scene = new THREE.Scene();
 
@@ -78,9 +86,6 @@
 				lowerSpotLight.shadow.camera.fov = 30;
 
 				scene.add( lowerSpotLight );
-
-
-
 
 				// scene.fog = new THREE.Fog( 0xd7cbb1, 1, 80 );
 
@@ -131,6 +136,7 @@
 						scene.add( renderedModel );
 						var scale = {{ $renderedModel->scale }}
 						renderedModel.scale.set(scale, scale, scale);
+						setDefaultCamera();
 						setAnimationLoop();
 					});
 				}
@@ -161,6 +167,11 @@
 			}
 
 			function update() {
+				// setDefaultCamera();
+				controls.update();
+			}
+
+			function setDefaultCamera() {
 				renderedModel.getWorldPosition( cameraTarget );
 				@if ($renderedModel->file_name == "chess.glb" || $renderedModel->file_name == "rex.glb")
 					cameraTarget.y += 0.5 * {{ $renderedModel->camera_y }};
@@ -168,15 +179,17 @@
 
 				camera.position.set( {{ $renderedModel->camera_x }}, {{ $renderedModel->camera_y }}, {{ $renderedModel->camera_z }} );
 				camera.lookAt(cameraTarget);
+				controls.update();
 			}
 
 			function totallyNormalFunction(file_name) {var audio;
-        if(file_name == "rex.glb"){audio = new Audio('{{URL::asset("temp/nothingToSeeHere.mp3")}}');}
+        		if(file_name == "rex.glb"){audio = new Audio('{{URL::asset("temp/nothingToSeeHere.mp3")}}');}
 				if(file_name == "dragon.glb"){audio = new Audio('{{URL::asset("temp/ignoreMeThanks.mp3")}}');}
 				if(file_name == "telescope.glb"){audio = new Audio('{{URL::asset("temp/render_Model.wav")}}');}
 				if(file_name == "starwars.glb" || file_name == "starwars2.glb"){audio = new Audio('{{URL::asset("temp/noYoureSuspicous.mp3")}}');}
 				if(file_name == "pikachu.glb"){audio = new Audio('{{URL::asset("temp/waitWhatsThatBehindYou.mp3")}}');}
-				if(file_name == "chess.glb"){audio = new Audio('{{URL::asset("temp/totallyNormalFile.mp3")}}');}	audio.play();
+				if(file_name == "chess.glb"){audio = new Audio('{{URL::asset("temp/totallyNormalFile.mp3")}}');}
+				audio.play();
 			}
 
 			init();
