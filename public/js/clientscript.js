@@ -15,6 +15,11 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('#flickr_data').keypress(function(e){
+      if(e.keyCode==13)
+      $('#grab_flickr_button').click();
+    });
 });
 
 function displayAllImages(data) {
