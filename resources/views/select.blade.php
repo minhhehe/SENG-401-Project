@@ -3,7 +3,7 @@
 @section('script')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 <script type="text/javascript">
-const RENDER_MODEL_URL = "{{ url('render_model') }}/";
+const RENDER_MODEL_URL = "{{ url('selectedModel') }}/";
 var renderedModels = [
   @foreach ($renderedModels as $renderedModel)
   {
@@ -54,7 +54,7 @@ function setMainDisplay(index) {
 
   $("#mainDisplayLink").attr("href", RENDER_MODEL_URL + renderedModel.id);
   $("#mainDisplayImg").attr("src", renderedModel.picture);
-  $("#mainDisplayImg").attr("title", "Colour " + renderedModel.description);
+  $("#mainDisplayImg").attr("title", "View " + renderedModel.description);
   $("#description").text(renderedModel.description);
   // animateCSS('#mainDisplayImg', 'fadeOut', function(){ animateCSS('#mainDisplayImg', 'fadeIn') } );
 
@@ -139,11 +139,11 @@ if (typeof callback === 'function') callback()
 @section('list')
 <!-- <div id="card-list" class="custom-select-list">
 </div> -->
-<div style="text-align: center; margin-left: 20%; margin-right: 20%;">
+<div style="text-align: center;background:lightgrey; margin-left: 10%; margin-right: 10%;">
     <div id="card-list">
-        <div class="row" style="margin-bottom: 10px">
+        <div class="row" style="justify-content: center; margin-bottom: 10px">
             @foreach ($renderedModels as $renderedModel)
-            <div class="col-md-4">
+            <div class="col-md-4" style="margin:10px;">
                 <div class="card custom-clickable" href="http://localhost:8000/render_model/{{$renderedModel->id}}">
                     <a href="http://localhost:8000/selectedModel/{{$renderedModel->id}}"><img id="{{ $renderedModel->id }}" class="card-img" src="storage/{{$renderedModel->picture}}" alt="" title="{{$renderedModel->description}}"> </a>
                 </div>

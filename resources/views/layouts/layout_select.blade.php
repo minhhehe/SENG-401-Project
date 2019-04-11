@@ -84,22 +84,22 @@
         </nav>
 
             <div class="content" style="margin-top:18px;">
-              <div id="swup" class="transition-fade">
+              <!-- <div id="swup" class="transition-fade"> -->
               <div class="">
                   <!-- The entity to display with the most attention -->
                 @yield('mainDisplay')
               </div>
-            </div>
-            <div id="swup" class="transition-fade">
+            <!-- </div> -->
+            <!-- <div id="swup" class="transition-fade"> -->
                 <div class="">
                     <!-- The list of content options -->
                   @yield('list')
                 </div>
-                  </div>
-            </div>
+              <!-- </div> -->
+          </div>
         <!-- </div> -->
-        <script type="text/javascript">
+        <!-- <script type="text/javascript">
             const swup = new Swup();
-        </script>
+        </script> -->
     </body>
 </html>
