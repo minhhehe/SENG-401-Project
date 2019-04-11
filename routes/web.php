@@ -13,7 +13,7 @@
 
 
 Route::get('/', function () {
-    return redirect('/selectedModel/1');
+    return redirect('/select');
 });
 
 Route::get('/selectedModel/{id}', 'HomeController@index');
