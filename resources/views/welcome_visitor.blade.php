@@ -49,8 +49,7 @@
 				camera.lookAt( 0, 0.5, 0 );
 
 				scene = new THREE.Scene();
-				// scene.add(new THREE.AmbientLight());
-
+				
 				var spotLight = new THREE.SpotLight( 0xffffff );
 				spotLight.position.set( 100, 1000, 100 );
 
@@ -160,36 +159,13 @@
 
 			}
 
-			var showPrompt = true;
-			var x = 0;
-			var y = 0;
-			var z = 0;
 			function update() {
-
-				@if (false)
-				if (showPrompt) {
-					var coord = prompt("x: " + x + " y: " + y + " z: " + z, x + " " + " " + y + " " + z);
-					if (coord.includes("off")) {
-						showPrompt = false;
-						return;
-					}
-					var coords = coord.split(' ');
-					x = parseFloat(coords[0]);
-					y = parseFloat(coords[1]);
-					z = parseFloat(coords[2]);
-				}
-				@endif
-
 				renderedModel.getWorldPosition( cameraTarget );
 				@if ($renderedModel->file_name == "chess.glb" || $renderedModel->file_name == "rex.glb")
 					cameraTarget.y += 0.5 * {{ $renderedModel->camera_y }};
 				@endif
 
-				@if (true)
 				camera.position.set( {{ $renderedModel->camera_x }}, {{ $renderedModel->camera_y }}, {{ $renderedModel->camera_z }} );
-				@else
-				camera.position.set( x, y, z );
-				@endif
 				camera.lookAt(cameraTarget);
 			}
 
