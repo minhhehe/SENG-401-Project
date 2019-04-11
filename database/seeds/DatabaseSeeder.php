@@ -15,22 +15,71 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         DB::table('rendered_models')->delete();
 
-        $statuses = [
-            ['id' => 1, 'file_name' => 'pikachu.glb', 'picture' => 'https://comicsandmemes.com/wp-content/uploads/surprise-pikachu-meme-000-original-blank.png',
-          'camera_x' => '1.50', 'camera_y' => '4.00', 'camera_z' => '10.00', 'description' => 'pikachu'],
-            ['id' => 2, 'file_name' => 'chess.glb', 'picture' => 'https://comicsandmemes.com/wp-content/uploads/surprise-pikachu-meme-000-original-blank.png',
-          'camera_x' => '1.50', 'camera_y' => '4.00', 'camera_z' => '10.00', 'description' => 'pikachu'],
-            ['id' => 3, 'file_name' => 'dragon.glb', 'picture' => 'https://comicsandmemes.com/wp-content/uploads/surprise-pikachu-meme-000-original-blank.png',
-          'camera_x' => '1.50', 'camera_y' => '4.00', 'camera_z' => '10.00', 'description' => 'pikachu'],
-            ['id' => 4, 'file_name' => 'rex.glb', 'picture' => 'https://comicsandmemes.com/wp-content/uploads/surprise-pikachu-meme-000-original-blank.png',
-          'camera_x' => '1.50', 'camera_y' => '4.00', 'camera_z' => '10.00', 'description' => 'pikachu'],
-            ['id' => 5, 'file_name' => 'starwars.glb', 'picture' => 'https://comicsandmemes.com/wp-content/uploads/surprise-pikachu-meme-000-original-blank.png',
-          'camera_x' => '1.50', 'camera_y' => '4.00', 'camera_z' => '10.00', 'description' => 'pikachu'],
-            ['id' => 6, 'file_name' => 'starwars2.glb', 'picture' => 'https://comicsandmemes.com/wp-content/uploads/surprise-pikachu-meme-000-original-blank.png',
-          'camera_x' => '1.50', 'camera_y' => '4.00', 'camera_z' => '10.00', 'description' => 'pikachu'],
-            ['id' => 7, 'file_name' => 'telescope.glb', 'picture' => 'https://comicsandmemes.com/wp-content/uploads/surprise-pikachu-meme-000-original-blank.png',
-          'camera_x' => '1.50', 'camera_y' => '4.00', 'camera_z' => '10.00', 'description' => 'pikachu'],
 
+        $renderedModels = [
+            [
+                'id' => 1,
+                'file_name' => 'pikachu.glb',
+                'picture' => 'pikachu.png',
+                'camera_x' => '1.50',
+                'camera_y' => '4.00',
+                'camera_z' => '10.00',
+                'description' => 'Pikachu'
+            ],
+            [
+                'id' => 2,
+                'file_name' => 'chess.glb',
+                'picture' => 'chess.png',
+                'camera_x' => '1.50',
+                'camera_y' => '4.00',
+                'camera_z' => '10.00',
+                'description' => 'Chess Piece'
+            ],
+            [
+                'id' => 3,
+                'file_name' => 'dragon.glb',
+                'picture' => 'dragon.png',
+                'camera_x' => '1.50',
+                'camera_y' => '4.00',
+                'camera_z' => '10.00',
+                'description' => 'Dragon'
+            ],
+            [
+                'id' => 4,
+                'file_name' => 'rex.glb',
+                'picture' => 'rex.png',
+                'camera_x' => '1.50',
+                'camera_y' => '4.00',
+                'camera_z' => '10.00',
+                'description' => 'T-Rex'
+            ],
+            [
+                'id' => 5,
+                'file_name' => 'starwars.glb',
+                'picture' => 'starwars.png',
+                'camera_x' => '1.50',
+                'camera_y' => '4.00',
+                'camera_z' => '10.00',
+                'description' => 'Star Wars BB-8'
+            ],
+            [
+                'id' => 6,
+                'file_name' => 'starwars2.glb',
+                'picture' => 'starwars2.png',
+                'camera_x' => '1.50',
+                'camera_y' => '4.00',
+                'camera_z' => '10.00',
+                'description' => 'Star Wars BB-9E'
+            ],
+            [
+                'id' => 7,
+                'file_name' => 'telescope.glb',
+                'picture' => 'telescope.png',
+                'camera_x' => '1.50',
+                'camera_y' => '4.00',
+                'camera_z' => '10.00',
+                'description' => 'Telescope'
+            ],
         ];
 
         $users = [
@@ -56,15 +105,15 @@ class DatabaseSeeder extends Seeder
           'password' => '$2y$10$d17wqC8M9aW42MCK6tRLleNdZSIqWbF6joa7I3bNX.l0n.jtfzkj6']
 
         ];
-        foreach ($statuses as $status) {
+        foreach ($renderedModels as $renderModel) {
             RenderedModel::create(array(
-                'id' => $status["id"],
-                'file_name' => $status["file_name"],
-                'picture' => $status["picture"],
-                'camera_x' => $status["camera_x"],
-                'camera_y' => $status["camera_y"],
-                'camera_z' => $status["camera_z"],
-                'description' => $status["description"],
+                'id' => $renderModel["id"],
+                'file_name' => $renderModel["file_name"],
+                'picture' => $renderModel["picture"],
+                'camera_x' => $renderModel["camera_x"],
+                'camera_y' => $renderModel["camera_y"],
+                'camera_z' => $renderModel["camera_z"],
+                'description' => $renderModel["description"],
             ));
         }
 

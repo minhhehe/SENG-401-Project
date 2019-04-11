@@ -36,7 +36,7 @@
                             <a title="Select a vehicle model" class="nav-link" href="{{ url('/select') }}">Select a Model</a>
                         </li>
                         <li class="nav-item">
-                            <a title="Customize your vehicle" class="nav-link" href="{{ url('/render_model/1') }}">Colour</a>
+                            <a title="Customize your vehicle" class="nav-link" href="{{ url('/') }}">Background Images</a>
                         </li>
                     </ul>
                     <div class="container">
