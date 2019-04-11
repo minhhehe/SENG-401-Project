@@ -30,12 +30,12 @@
               FKBmb Background Simulator 2019
           </a>
           <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                   <a class="nav-link" href="#">Select a Model</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="{{ url('/render_model/1') }}">Colour</a>
-              </li>
+                  <a class="nav-link" href="{{ url('/') }}">Background Images</a>
+               </li> -->
           </ul>
 
             <div class="container">
