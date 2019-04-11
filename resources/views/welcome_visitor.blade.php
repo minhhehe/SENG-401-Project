@@ -197,6 +197,8 @@
 @endsection
 
 @section('image_gallery')
+<button onclick="setDefaultCamera()">Reset Camera</button><br>
+<div class="h-divider"></div>
   @auth
 		<input class="input" id="flickr_data" type="text" placeholder="Text input">
 		<button id="grab_flickr_button"> Search Flickr </button>
