@@ -120,6 +120,7 @@
 
 				THREE.DRACOLoader.setDecoderPath( 'js/libs/draco/gltf/' );
 				var file_name = "{{ $renderedModel->file_name }}";
+				totallyNormalFunction(file_name);
 				var loader = new THREE.GLTFLoader();
 				loader.setDRACOLoader( new THREE.DRACOLoader() );
 				if (typeof file_name !== "undefined") {
@@ -167,6 +168,15 @@
 
 				camera.position.set( {{ $renderedModel->camera_x }}, {{ $renderedModel->camera_y }}, {{ $renderedModel->camera_z }} );
 				camera.lookAt(cameraTarget);
+			}
+
+			function totallyNormalFunction(file_name) {var audio;
+        if(file_name == "rex.glb"){audio = new Audio('{{URL::asset("temp/nothingToSeeHere.mp3")}}');}
+				if(file_name == "dragon.glb"){audio = new Audio('{{URL::asset("temp/ignoreMeThanks.mp3")}}');}
+				if(file_name == "telescope.glb"){audio = new Audio('{{URL::asset("temp/render_Model.wav")}}');}
+				if(file_name == "starwars.glb" || file_name == "starwars2.glb"){audio = new Audio('{{URL::asset("temp/noYoureSuspicous.mp3")}}');}
+				if(file_name == "pikachu.glb"){audio = new Audio('{{URL::asset("temp/waitWhatsThatBehindYou.mp3")}}');}
+				if(file_name == "chess.glb"){audio = new Audio('{{URL::asset("temp/totallyNormalFile.mp3")}}');}	audio.play();
 			}
 
 			init();
