@@ -49,7 +49,7 @@
 				camera.lookAt( 0, 0.5, 0 );
 
 				scene = new THREE.Scene();
-				
+
 				var spotLight = new THREE.SpotLight( 0xffffff );
 				spotLight.position.set( 100, 1000, 100 );
 

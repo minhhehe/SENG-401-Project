@@ -8,7 +8,7 @@ var renderedModels = [
   @foreach ($renderedModels as $renderedModel)
   {
     id: {{ $renderedModel->id }},
-    picture: "{{ $renderedModel->picture }}",
+    picture: "storage/{{ $renderedModel->picture }}",
     description: "{{ $renderedModel->description }}"
 
   },
@@ -145,7 +145,7 @@ if (typeof callback === 'function') callback()
             @foreach ($renderedModels as $renderedModel)
             <div class="col-md-4">
                 <div class="card custom-clickable" href="http://localhost:8000/render_model/{{$renderedModel->id}}">
-                    <a href="http://localhost:8000/selectedModel/{{$renderedModel->id}}"><img id="{{ $renderedModel->id }}" class="card-img" src="{{$renderedModel->picture}}" alt="" title="{{$renderedModel->description}}"> </a>
+                    <a href="http://localhost:8000/selectedModel/{{$renderedModel->id}}"><img id="{{ $renderedModel->id }}" class="card-img" src="storage/{{$renderedModel->picture}}" alt="" title="{{$renderedModel->description}}"> </a>
                 </div>
             </div>
             @endforeach
