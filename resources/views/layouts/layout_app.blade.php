@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
-    <title>Forkbomb</title>
+    <title>FK BS 2019</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -26,17 +26,17 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
                 <a title = "Back To The Homepage" class="navbar-brand" href="{{ url('/') }}">
                     <!-- {{ config('app.name', 'Laravel') }} -->
-                    SENG 401 Project
+                    FKBmb Background Simulator 2019
                 </a>
 
 
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a title="Select a vehicle model" class="nav-link" href="{{ url('/select') }}">Select a Model</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
-                            <a title="Customize your vehicle" class="nav-link" href="{{ url('/') }}">Background Images</a>
+                            <a title="Select a 3D model" class="nav-link" href="{{ url('/') }}">Select a Model</a>
                         </li>
                     </ul>
                     <div class="container">
