@@ -7,7 +7,6 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="{{ URL::asset('js/clientscript.js') }}"></script>
 
-
 		<script src="{{ URL::asset('js/three.min.js') }}"></script>
 
 		<script src="{{ URL::asset('js/loaders/DRACOLoader.js') }}"></script>
@@ -50,7 +49,40 @@
 				camera.lookAt( 0, 0.5, 0 );
 
 				scene = new THREE.Scene();
-				scene.add(new THREE.AmbientLight());
+				// scene.add(new THREE.AmbientLight());
+
+				var spotLight = new THREE.SpotLight( 0xffffff );
+				spotLight.position.set( 100, 1000, 100 );
+
+				spotLight.castShadow = true;
+
+				spotLight.shadow.mapSize.width = 1024;
+				spotLight.shadow.mapSize.height = 1024;
+
+				spotLight.shadow.camera.near = 500;
+				spotLight.shadow.camera.far = 4000;
+				spotLight.shadow.camera.fov = 30;
+
+				scene.add( spotLight );
+
+
+				var lowerSpotLight = new THREE.SpotLight( 0xffffff, 0.2 );
+				lowerSpotLight.position.set( 100, -1000, 100 );
+
+				lowerSpotLight.castShadow = true;
+
+				lowerSpotLight.shadow.mapSize.width = 1024;
+				lowerSpotLight.shadow.mapSize.height = 1024;
+
+				lowerSpotLight.shadow.camera.near = 500;
+				lowerSpotLight.shadow.camera.far = 4000;
+				lowerSpotLight.shadow.camera.fov = 30;
+
+				scene.add( lowerSpotLight );
+
+
+
+
 				// scene.fog = new THREE.Fog( 0xd7cbb1, 1, 80 );
 
 				var urls = [ 'px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg' ];
@@ -128,12 +160,35 @@
 
 			}
 
+			var showPrompt = true;
+			var x = 0;
+			var y = 0;
+			var z = 0;
 			function update() {
+
+				@if (false)
+				if (showPrompt) {
+					var coord = prompt("x: " + x + " y: " + y + " z: " + z, x + " " + " " + y + " " + z);
+					if (coord.includes("off")) {
+						showPrompt = false;
+						return;
+					}
+					var coords = coord.split(' ');
+					x = parseFloat(coords[0]);
+					y = parseFloat(coords[1]);
+					z = parseFloat(coords[2]);
+				}
+				@endif
+
 				renderedModel.getWorldPosition( cameraTarget );
-				cameraTarget.y += 0.5 * {{ $renderedModel->camera_y }};
+				@if ($renderedModel->file_name == "chess.glb" || $renderedModel->file_name == "rex.glb")
+					cameraTarget.y += 0.5 * {{ $renderedModel->camera_y }};
+				@endif
 
 				@if (true)
 				camera.position.set( {{ $renderedModel->camera_x }}, {{ $renderedModel->camera_y }}, {{ $renderedModel->camera_z }} );
+				@else
+				camera.position.set( x, y, z );
 				@endif
 				camera.lookAt(cameraTarget);
 			}
