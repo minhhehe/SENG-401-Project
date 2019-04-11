@@ -113,7 +113,7 @@ if (typeof callback === 'function') callback()
 @stop
 
 @section('mainDisplay')
-<div class="custom-main-display">
+<div class="custom-main-display" style="justify-content:center;">
     <button id="leftButton" class="custom-select-button" onclick="selectLeft()" title="View previous model">
         &lt;
     </button>
