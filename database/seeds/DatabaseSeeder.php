@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         DB::table('rendered_models')->delete();
 
+
         $renderedModels = [
             [
                 'id' => 1,

@@ -26,17 +26,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index($id)
     {
+      $renderedModel = RenderedModel::find($id);
+      return view('welcome_visitor', compact(['renderedModel']));
     }
 
     /**
 
     */
     public function select() {
-
-
-
         $renderedModels = RenderedModel::all();
         $defaultBackgrounds = [
             'http://localhost:8000/storage/default1.jpg',
@@ -48,4 +47,6 @@ class HomeController extends Controller
         ];
         return view('select', compact(['renderedModels', 'defaultBackgrounds']));
     }
+
+
 }
