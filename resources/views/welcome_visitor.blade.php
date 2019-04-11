@@ -43,6 +43,10 @@
 			var distance = 5;
 			var cameraTarget = new THREE.Vector3();
 
+			var cameraStartPosition = new THREE.Vector3();
+			var cameraStartRotation = new THREE.Vector3();
+			var controlStartCenter = new THREE.Vector3();
+
 			function init() {
 
 				var container = document.getElementById( 'container' );
@@ -172,13 +176,16 @@
 			}
 
 			function setDefaultCamera() {
-				renderedModel.getWorldPosition( cameraTarget );
+				cameraTarget = renderedModel.position.clone();
+				// renderedModel.getWorldPosition( cameraTarget );
 				@if ($renderedModel->file_name == "chess.glb" || $renderedModel->file_name == "rex.glb")
 					cameraTarget.y += 0.5 * {{ $renderedModel->camera_y }};
 				@endif
 
-				camera.position.set( {{ $renderedModel->camera_x }}, {{ $renderedModel->camera_y }}, {{ $renderedModel->camera_z }} );
-				camera.lookAt(cameraTarget);
+				controls.center = cameraTarget;
+				controls.object.position.set( {{ $renderedModel->camera_x }}, {{ $renderedModel->camera_y }}, {{ $renderedModel->camera_z }} );
+				controls.object.lookAt(cameraTarget);
+
 				controls.update();
 			}
 
