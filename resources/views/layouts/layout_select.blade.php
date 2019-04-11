@@ -34,8 +34,8 @@
                   <a class="nav-link" href="#">Select a Model</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="{{ url('/') }}">Background Images</a> -->
-              </li>
+                  <a class="nav-link" href="{{ url('/') }}">Background Images</a>
+               </li> -->
           </ul>
 
             <div class="container">
