@@ -137,7 +137,7 @@ if (typeof callback === 'function') callback()
 </div> -->
 <div style="text-align: center;background:lightgrey; margin-left: 10%; margin-right: 10%;">
     <div id="card-list">
-        <div class="row" style="justify-content: center; margin-bottom: 10px">
+        <div class="row" style="justify-content: center; align-items: center;margin-bottom: 10px">
             @foreach ($renderedModels as $renderedModel)
             <div class="col-md-4" style="margin:10px;">
                 <div class="card custom-clickable" href="http://localhost:8000/render_model/{{$renderedModel->id}}">
