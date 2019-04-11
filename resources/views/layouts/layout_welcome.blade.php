@@ -31,7 +31,7 @@
         </a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Select a Model</a>
+                <a class="nav-link" href="/select">Select a Model</a>
             </li>
             <!-- <li class="nav-item">
                 <a class="nav-link" href="{{ url('/render_model/1') }}">Backround</a>

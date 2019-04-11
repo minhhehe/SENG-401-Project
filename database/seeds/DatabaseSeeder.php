@@ -16,19 +16,19 @@ class DatabaseSeeder extends Seeder
         DB::table('rendered_models')->delete();
 
         $statuses = [
-            ['id' => 1, 'file_name' => 'pikachu.glb', 'picture' => 'pikachu.png',
+            ['id' => 1, 'file_name' => 'pikachu.glb', 'picture' => 'https://comicsandmemes.com/wp-content/uploads/surprise-pikachu-meme-000-original-blank.png',
           'camera_x' => '1.50', 'camera_y' => '4.00', 'camera_z' => '10.00', 'description' => 'pikachu'],
-            ['id' => 2, 'file_name' => 'chess.glb', 'picture' => 'pikachu.png',
+            ['id' => 2, 'file_name' => 'chess.glb', 'picture' => 'https://comicsandmemes.com/wp-content/uploads/surprise-pikachu-meme-000-original-blank.png',
           'camera_x' => '1.50', 'camera_y' => '4.00', 'camera_z' => '10.00', 'description' => 'pikachu'],
-            ['id' => 3, 'file_name' => 'dragon.glb', 'picture' => 'pikachu.png',
+            ['id' => 3, 'file_name' => 'dragon.glb', 'picture' => 'https://comicsandmemes.com/wp-content/uploads/surprise-pikachu-meme-000-original-blank.png',
           'camera_x' => '1.50', 'camera_y' => '4.00', 'camera_z' => '10.00', 'description' => 'pikachu'],
-            ['id' => 4, 'file_name' => 'rex.glb', 'picture' => 'pikachu.png',
+            ['id' => 4, 'file_name' => 'rex.glb', 'picture' => 'https://comicsandmemes.com/wp-content/uploads/surprise-pikachu-meme-000-original-blank.png',
           'camera_x' => '1.50', 'camera_y' => '4.00', 'camera_z' => '10.00', 'description' => 'pikachu'],
-            ['id' => 5, 'file_name' => 'starwars.glb', 'picture' => 'pikachu.png',
+            ['id' => 5, 'file_name' => 'starwars.glb', 'picture' => 'https://comicsandmemes.com/wp-content/uploads/surprise-pikachu-meme-000-original-blank.png',
           'camera_x' => '1.50', 'camera_y' => '4.00', 'camera_z' => '10.00', 'description' => 'pikachu'],
-            ['id' => 6, 'file_name' => 'starwars2.glb', 'picture' => 'pikachu.png',
+            ['id' => 6, 'file_name' => 'starwars2.glb', 'picture' => 'https://comicsandmemes.com/wp-content/uploads/surprise-pikachu-meme-000-original-blank.png',
           'camera_x' => '1.50', 'camera_y' => '4.00', 'camera_z' => '10.00', 'description' => 'pikachu'],
-            ['id' => 7, 'file_name' => 'telescope.glb', 'picture' => 'pikachu.png',
+            ['id' => 7, 'file_name' => 'telescope.glb', 'picture' => 'https://comicsandmemes.com/wp-content/uploads/surprise-pikachu-meme-000-original-blank.png',
           'camera_x' => '1.50', 'camera_y' => '4.00', 'camera_z' => '10.00', 'description' => 'pikachu'],
 
         ];

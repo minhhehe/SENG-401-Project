@@ -8,8 +8,9 @@ var renderedModels = [
   @foreach ($renderedModels as $renderedModel)
   {
     id: {{ $renderedModel->id }},
-    picture: "{{ asset('storage/' . $renderedModel->picture) }}",
+    picture: "{{ $renderedModel->picture }}",
     description: "{{ $renderedModel->description }}"
+
   },
   @endforeach
 ];
@@ -141,38 +142,13 @@ if (typeof callback === 'function') callback()
 <div style="text-align: center; margin-left: 20%; margin-right: 20%;">
     <div id="card-list">
         <div class="row" style="margin-bottom: 10px">
+            @foreach ($renderedModels as $renderedModel)
             <div class="col-md-4">
-                <div id="card-1" class="card custom-clickable">
-                    <img class="card-img" src="{{ url('storage/ferrari.png') }}" alt="" title="View Ferrari 458 Italia">
+                <div class="card custom-clickable" href="http://localhost:8000/render_model/{{$renderedModel->id}}">
+                    <a href="http://localhost:8000/selectedModel/{{$renderedModel->id}}"><img id="{{ $renderedModel->id }}" class="card-img" src="{{$renderedModel->picture}}" alt="" title="{{$renderedModel->description}}"> </a>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div id="card-2" class="card custom-clickable">
-                    <img class="card-img" src="{{ url('storage/range_rover.png') }}" alt="">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div id="card-3" class="card custom-clickable">
-                    <img class="card-img" src="{{ url('storage/toyota.png') }}" alt="">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div id="card-4" class="card custom-clickable">
-                    <img class="card-img" src="{{ url('storage/mclaren.png') }}" alt="">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div id="card-5" class="card custom-clickable">
-                    <img class="card-img" src="{{ url('storage/lamborghini.png') }}" alt="">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div id="card-6" class="card custom-clickable">
-                    <img class="card-img" src="{{ url('storage/x_wing.png') }}" alt="">
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
