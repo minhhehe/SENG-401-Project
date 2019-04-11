@@ -21,8 +21,9 @@ class DatabaseSeeder extends Seeder
                 'file_name' => 'pikachu.glb',
                 'picture' => 'pikachu.png',
                 'camera_x' => '1.50',
-                'camera_y' => '4.00',
-                'camera_z' => '10.00',
+                'camera_y' => '2.00',
+                'camera_z' => '15.00',
+                'scale' => '1',
                 'description' => 'Pikachu'
             ],
             [
@@ -30,8 +31,9 @@ class DatabaseSeeder extends Seeder
                 'file_name' => 'chess.glb',
                 'picture' => 'chess.png',
                 'camera_x' => '1.50',
-                'camera_y' => '4.00',
-                'camera_z' => '10.00',
+                'camera_y' => '5.00',
+                'camera_z' => '-15.00',
+                'scale' => '0.01',
                 'description' => 'Chess Piece'
             ],
             [
@@ -41,6 +43,7 @@ class DatabaseSeeder extends Seeder
                 'camera_x' => '1.50',
                 'camera_y' => '4.00',
                 'camera_z' => '10.00',
+                'scale' => '1',
                 'description' => 'Dragon'
             ],
             [
@@ -50,6 +53,7 @@ class DatabaseSeeder extends Seeder
                 'camera_x' => '10',
                 'camera_y' => '8',
                 'camera_z' => '20',
+                'scale' => '1',
                 'description' => 'T-Rex'
             ],
             [
@@ -59,6 +63,7 @@ class DatabaseSeeder extends Seeder
                 'camera_x' => '1.50',
                 'camera_y' => '4.00',
                 'camera_z' => '10.00',
+                'scale' => '1',
                 'description' => 'Star Wars BB-8'
             ],
             [
@@ -68,6 +73,7 @@ class DatabaseSeeder extends Seeder
                 'camera_x' => '1.50',
                 'camera_y' => '4.00',
                 'camera_z' => '10.00',
+                'scale' => '1',
                 'description' => 'Star Wars BB-9E'
             ],
             [
@@ -77,6 +83,7 @@ class DatabaseSeeder extends Seeder
                 'camera_x' => '1.50',
                 'camera_y' => '4.00',
                 'camera_z' => '10.00',
+                'scale' => '1',
                 'description' => 'Telescope'
             ],
         ];
@@ -104,15 +111,16 @@ class DatabaseSeeder extends Seeder
           'password' => '$2y$10$d17wqC8M9aW42MCK6tRLleNdZSIqWbF6joa7I3bNX.l0n.jtfzkj6']
 
         ];
-        foreach ($renderedModels as $renderModel) {
+        foreach ($renderedModels as $renderedModel) {
             RenderedModel::create(array(
-                'id' => $renderModel["id"],
-                'file_name' => $renderModel["file_name"],
-                'picture' => $renderModel["picture"],
-                'camera_x' => $renderModel["camera_x"],
-                'camera_y' => $renderModel["camera_y"],
-                'camera_z' => $renderModel["camera_z"],
-                'description' => $renderModel["description"],
+                'id' => $renderedModel["id"],
+                'file_name' => $renderedModel["file_name"],
+                'picture' => $renderedModel["picture"],
+                'camera_x' => $renderedModel["camera_x"],
+                'camera_y' => $renderedModel["camera_y"],
+                'camera_z' => $renderedModel["camera_z"],
+                'scale' => $renderedModel["scale"],
+                'description' => $renderedModel["description"],
             ));
         }
 
