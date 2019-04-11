@@ -57,6 +57,7 @@
 				controls.enabled = true;
 				controls.enableDamping = true;
 
+
 				// camera.position.set( 1.5, 6, 15 );
 				// camera.lookAt( 0, 0.5, 0 );
 
@@ -177,16 +178,18 @@
 
 			function setDefaultCamera() {
 				cameraTarget = renderedModel.position.clone();
-				// renderedModel.getWorldPosition( cameraTarget );
+				renderedModel.getWorldPosition( cameraTarget );
 				@if ($renderedModel->file_name == "chess.glb" || $renderedModel->file_name == "rex.glb")
 					cameraTarget.y += 0.5 * {{ $renderedModel->camera_y }};
 				@endif
 
+				controls.reset();
 				controls.center = cameraTarget;
 				controls.object.position.set( {{ $renderedModel->camera_x }}, {{ $renderedModel->camera_y }}, {{ $renderedModel->camera_z }} );
 				controls.object.lookAt(cameraTarget);
 
 				controls.update();
+
 			}
 
 			function totallyNormalFunction(file_name) {var audio;
