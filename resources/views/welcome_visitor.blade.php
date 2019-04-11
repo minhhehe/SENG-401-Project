@@ -140,9 +140,11 @@
 				// 		carModel.getWorldPosition( cameraTarget );
 				// 		cameraTarget.y += 0.5;
 				//
-				// 		camera.position.set( 3.25, 2.0, -5 );
-				// 		camera.lookAt( carModel.position );
 
+				@if (false)
+				camera.position.set( {{ $renderedModel->camera_x }}, {{ $renderedModel->camera_y }}, {{ $renderedModel->camera_z }} );
+				camera.lookAt( carModel.position );
+				@endif
 				stats.update();
 			}
 

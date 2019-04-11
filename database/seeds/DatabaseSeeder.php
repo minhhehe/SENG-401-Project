@@ -47,9 +47,9 @@ class DatabaseSeeder extends Seeder
                 'id' => 4,
                 'file_name' => 'rex.glb',
                 'picture' => 'rex.png',
-                'camera_x' => '1.50',
-                'camera_y' => '4.00',
-                'camera_z' => '10.00',
+                'camera_x' => '10',
+                'camera_y' => '8',
+                'camera_z' => '20',
                 'description' => 'T-Rex'
             ],
             [
