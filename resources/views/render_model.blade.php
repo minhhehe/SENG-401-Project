@@ -1,5 +1,6 @@
 <?php
 	$loadFull = ($renderedModel->file_name == "ferrari.glb");
+	$loadLambo = ($renderedModel->file_name == "lamborghini.glb")
  ?>
 
 
@@ -298,6 +299,15 @@
 				carParts.glass.push(
 					carModel.getObjectByName( 'glass' ),
 				);
+
+				updateMaterials();
+				@elseif ($loadLambo)
+				carParts.body = carModel.children[0].children[0].children.filter(child => child.material.color.r == 0.7681511472 && child.material.color.g == 0 && child.material.color.b == 0);
+				// carParts.body.push(carModel.getObjectByName('body'));
+				console.log("lambo loaded, parts are: ");
+				console.log(carParts.body);
+
+				carModel.rotateZ(- Math.PI / 2);
 
 				updateMaterials();
 				@endif
